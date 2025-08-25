@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Model
 {
@@ -17,4 +18,21 @@ class User extends Model
         'password_hash',
         'role'
     ];
+
+    public function reviews(): HasMany {
+        return $this->hasMany(Review::class, 'user_id', 'id');
+    }
+
+    public function wishlists(): HasMany {
+        return $this->hasMany(Wishlist::class, 'user_id', 'id');
+    }
+
+    public function favorites(): HasMany {
+        return $this->hasMany(Favorite::class, 'user_id', 'id');
+    }
+
+    public function stockLogs(): HasMany {
+        return $this->hasMany(StockLog::class, 'user_id', 'id');
+    }
+
 }   
