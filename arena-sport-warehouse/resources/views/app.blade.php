@@ -8,23 +8,20 @@
 </head>
 <body class="flex min-h-screen bg-gray-100">
     <!-- Sidebar -->
-    <aside class="w-64 bg-white shadow-md flex flex-col justify-between">
+    <aside class="w-64 bg-dark-gray shadow-md flex flex-col justify-between rounded-tr-2xl rounded-br-2xl">
         <div>
-            <div class="p-6 text-center border-b">
-                <a href="/">
-                    <img src="{{ asset('assets/logo.png') }}" alt="">
-                </a>
+            <div class="p-6 text-center">
+                <a href="/" class="font-semibold text-white text-xl">Arena Sport Warehouse</a>
             </div>
+            <hr class="w-5/6 mx-auto text-white">
             <nav class="flex flex-col p-4 space-y-2">
-                <a href="/products" class="px-4 py-2 rounded hover:bg-blue-100 text-gray-700">Products</a>
-                <a href="/register" class="px-4 py-2 rounded hover:bg-blue-100 text-gray-700">Collections</a>
-                <a href="/" class="px-4 py-2 rounded hover:bg-blue-100 text-gray-700">Orders</a>
+                <a href="/products" class="px-4 py-2 rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">Orders</a>
+                <a href="/register" class="px-4 py-2 rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">Inventory</a>
+                <a href="/" class="px-4 py-2 rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">Report</a>
             </nav>
         </div>
-        <div class="p-4 border-t">
-            <form action="{{ redirect('/login') }}">
-                <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Logout</button>
-            </form>
+        <div class="p-4 mb-10">
+            <a href="{{ route('login') }}" class="px-4 py-2 text-vibrant-orange font-semibold hover:text-white transition duration-200">Log Out</a>
         </div>
     </aside>
 

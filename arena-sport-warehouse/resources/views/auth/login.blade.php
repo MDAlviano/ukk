@@ -6,20 +6,30 @@
     @vite('resources/css/app.css')
     <title></title>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
-    <div class="text-center flex-col items-center mt-40 bg-white dark:bg-gray-800 rounded-lg p-8 w-1/3">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Login to Your Account</h1>
-        <form class="mx-auto p-6 shadow-md">
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 left-1 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
-            </div>
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="password" name="floating_password" id="floating_password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
-                <label for="floating_password" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 left-1">Password</label>
-            </div>
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-        </form>
+<body>
+    <div class="grid grid-cols-2 m-12 gap-14">
+        <div>
+            <h2 class="font-semibold text-sm">Arena Sport Warehouse</h2>
+            <h1 class="text-4xl font-bold text-dark-gray mt-16">Halo!</h1>
+            <h1 class="text-4xl font-bold text-dark-gray mt-2">Selamat Datang Kembali!</h1>
+            <p class="text-gray-400 text-sm w-2/3 mt-3">Hey, selamat datang kembali di tempat belanja favorit mu</p>
+            <form action="" class="flex flex-col gap-4 mt-8">
+                <div class="flex flex-col text-dark-gray">
+                    <label for="">Email</label>
+                    <input type="email" name="" id="" required placeholder="johndoe@gmail.com" class="p-2 border-[2px] border-light-gray focus:outline-0 rounded-md font-medium">
+                </div>
+                <div class="flex flex-col">
+                    <label for="">Password</label>
+                    <input type="password" required placeholder="j0hnd03#!" class="p-2 border-[2px] border-light-gray focus:outline-0 rounded-md font-medium">
+                </div>
+                <a href="" class="underline font-semibold text-sm text-dark-gray hover:opacity-85 transition duration-200 self-end">Lupa Password?</a>
+                <button class="bg-vibrant-orange hover:opacity-85 transition duration-200 text-white w-fit px-4 py-2 rounded-md text-sm font-semibold">Sign In</button>
+            </form>
+            <p class="mt-14 text-sm text-dark-gray">Belum memiliki akun? <a href="{{ route('register') }}" class="text-vibrant-orange hover:opacity-85 transition duration-200 font-bold">Daftar Sekarang</a></p>
+        </div>
+        <div>
+            
+        </div>
     </div>
 </body>
 </html>
