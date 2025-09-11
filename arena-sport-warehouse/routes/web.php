@@ -9,7 +9,7 @@ Route::fallback(function() {
 Route::get('/admin', function () {
     return view('admin.app');
 })->name('app');
- 
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -31,7 +31,7 @@ Route::get('/create-product', function () {
 });
 
 Route::get('/categories', function () {
-    return view('admin.product.index');
+    return view('admin.category.index');
 });
 
 Route::get('/create-category', function () {

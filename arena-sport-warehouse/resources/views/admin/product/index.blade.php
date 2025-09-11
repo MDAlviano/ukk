@@ -32,7 +32,7 @@
                 <h5 class="ml-18">Action</h5>
             </div>
             <div class="w-full h-fit flex flex-row justify-between bg-white rounded-lg drop-shadow-lg py-4 px-8 gap-3">
-                <img src="" alt="" class="size-20">
+                <img src="" alt="" class="size-20 rounded-md">
                 <div class="w-fit h-fit flex flex-col gap-1 my-auto">
                     <h5 class="font-semibold">Yonex Racket 2247 C-Tier Series</h5>
                     <h5 class="text-sm text-[#B6B6B6] font-normal">This is Yonex Racket 2247 C-Tier Series...</h5>
@@ -42,8 +42,8 @@
                 <h5 class="my-auto">10</h5>
                 <h5 class="my-auto">4.8 / 5 (182)</h5>
                 <div class="flex flex-row w-fit h-fit gap-3 my-auto">
-                    <a href="" class="bg-[#E6E6E6] px-3 py-1 rounded-lg">Edit</a>
-                    <a href="" class="bg-[#E6E6E6] px-3 py-1 rounded-lg">Delete</a>
+                    <a href="" class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Edit</a>
+                    <a href="" class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Delete</a>
                 </div>
             </div>
         </div>
