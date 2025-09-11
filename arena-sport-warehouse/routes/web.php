@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('app');
-})->name('app');
+Route::fallback(function() {
+    return view('fallback.fallback');
+})->name('fallback');
 
+Route::get('/admin', function () {
+    return view('admin.app');
+})->name('app');
+ 
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -15,9 +19,22 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::get('/products', function () {
-    return view('product.index');
+    return view('admin.product.index');
+});
+
+Route::get('/orders', function() {
+    return view('admin.order.index');
 });
 
 Route::get('/create-product', function () {
-    return view('product.create');
+    return view('admin.product.create');
 });
+
+Route::get('/categories', function () {
+    return view('admin.product.index');
+});
+
+Route::get('/create-category', function () {
+    return view('admin.category.create');
+});
+

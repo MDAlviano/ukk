@@ -19,6 +19,10 @@ class User extends Model
         'role'
     ];
 
+    public function addresses(): HasMany {
+        return $this->hasMany(Address::class, 'user_id', 'id');
+    }
+
     public function reviews(): HasMany {
         return $this->hasMany(Review::class, 'user_id', 'id');
     }

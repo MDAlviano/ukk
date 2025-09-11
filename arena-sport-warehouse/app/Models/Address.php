@@ -6,26 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Shipment extends Model
+class Address extends Model
 {
-    protected $table = "shipments";
+    protected $table = "addresses";
     protected $primaryKey = "id";
     protected $keyType = "int";
     public $timestamps = true;
     public $incrementing = true;
     protected $fillable = [
-        'method',
+        'user_id',
         'address',
-        'status',
-        'tracking_number'
+        'city',
+        'province',
+        'country',
+        'postal_code'
     ];
 
-    public function orders(): HasMany {
-        return $this->hasMany(Order::class, 'shipment_id', 'id');
+    public function shipments(): HasMany {
+        return $this->hasMany(Shipment::class, 'address_id', 'id');
     }
 
-    public function addresses(): BelongsTo {
-        return $this->belongsTo(Address::class, 'address_id', 'id');
+    public function users(): BelongsTo {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
 }
-
