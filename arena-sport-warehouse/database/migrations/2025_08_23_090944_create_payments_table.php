@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('status', 20)->nullable(false);
             $table->string('transaction_id', 100)->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

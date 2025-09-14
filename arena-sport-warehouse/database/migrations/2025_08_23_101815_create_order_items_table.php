@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('quantity')->nullable(false);
             $table->float('price')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('order_id')->on('orders')->references('id');
             $table->foreign('product_id')->on('products')->references('id');

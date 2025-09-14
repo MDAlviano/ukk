@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password_hash', 128)->nullable(false);
             $table->string('role', 20)->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

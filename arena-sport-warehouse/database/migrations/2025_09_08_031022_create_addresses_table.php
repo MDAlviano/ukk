@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('country', 50)->nullable(false);
             $table->integer('postal_code')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->on('users')->references('id');
         });

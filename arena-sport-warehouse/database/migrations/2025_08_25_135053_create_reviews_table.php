@@ -18,6 +18,7 @@ return new class extends Migration
             $table->float('rating')->nullable(false);
             $table->text('comment')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->on('users')->references('id');
             $table->foreign('product_id')->on('products')->references('id');

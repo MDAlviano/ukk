@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('payment_id')->nullable(false);
             $table->unsignedBigInteger('shipment_id')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->on('users')->references('id');
             $table->foreign('payment_id')->on('payments')->references('id');

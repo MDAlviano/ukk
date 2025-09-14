@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('reason', 100)->nullable(false);
             $table->unsignedBigInteger('user_id')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('product_id')->on('products')->references('id');
             $table->foreign('user_id')->on('users')->references('id');
