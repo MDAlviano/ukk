@@ -6,10 +6,14 @@
     @vite('resources/css/app.css')
     <title>Not Found</title>
 </head>
-<body>
-    <div class="mx-auto flex font-bold text-2xl flex-col">
-        <h1>Sorry, we can't find what do you want 😔</h1>
-        <a href="{{ route('app') }}" class="w-fit px-3 py-1 bg-vibrant-orange rounded-md text-white text-lg font-semibold">Back to Home</a>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="flex flex-col items-center text-center">
+        <h1 class="text-vibrant-orange text-9xl font-semibold">404</h1>
+        <h5 class="text-2xl text-dark-gray mt-6 font-medium">Page Not Found</h5>
+        <p class="text-dark-gray text-lg mt-2">
+            Sorry, we couldn't find the page you are looking for 😔
+        </p>
+        <a href="/admin" class="bg-vibrant-orange text-white py-1 px-6 mt-3 rounded-md">Back</a>
     </div>
-</body>
+    </body>
 </html>
