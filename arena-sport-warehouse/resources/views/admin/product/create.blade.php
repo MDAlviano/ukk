@@ -1,8 +1,8 @@
-@extends('app')
+@extends('admin.app')
 
 @section('content')
     <header class="px-8 py-5 bg-white drop-shadow-lg drop-shadow-[#00000028]">
-        <h1 class="font-semibold text-2xl">Update Product</h1>
+        <h1 class="font-semibold text-2xl">Create Product</h1>
     </header>
 
     <form class="flex flex-row gap-12 mx-20 my-12 bg-white shadow-xl rounded-xl p-7" onsubmit="">

@@ -23,8 +23,8 @@
                         <a href="/create-product" class="hover:opacity-80">Create Product</a>
                     </div>
                 </div>
-                <div class="px-4 py-2">
-                    <h5 class="font-semibold text-white">My Category</h5>
+                <div class="flex flex-col">
+                    <h5 class="px-4 py-2 cursor-pointer rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">My Category</h5>
                     <div class="text-white text-sm font-light flex flex-col gap-2 mt-2 ml-7">
                         <a href="/categories" class="hover:opacity-80">List Categories</a>
                         <a href="/create-category" class="hover:opacity-80">Create Category</a>
