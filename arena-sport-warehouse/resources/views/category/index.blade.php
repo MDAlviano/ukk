@@ -1,16 +1,16 @@
-@extends('admin.app')
+@extends('app')
 
 @section('content')
     <header class="px-8 py-5 bg-white drop-shadow-lg drop-shadow-[#00000028]">
         <h1 class="font-semibold text-2xl">Collections</h1>
     </header>
 
-    <div class="m-10 flex flex-col gap-8">
+    <main class="m-10 flex flex-col gap-8">
         {{--  filter  --}}
         <div class="flex flex-row gap-6">
             <div class="flex flex-row gap-4 px-3 py-2 rounded-md border-[1.5px] border-dark-gray active:outline-0">
                 <input type="text" placeholder="Search..." class="text-[#B6B6B6] focus:outline-0">
-                <h5>p</h5>
+                <img src="{{ asset('/assets/Search.svg') }}" alt="">
             </div>
         </div>
 
@@ -27,6 +27,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
 @endsection

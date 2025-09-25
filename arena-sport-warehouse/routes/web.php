@@ -7,7 +7,7 @@ Route::fallback(function() {
 })->name('fallback');
 
 Route::get('/admin', function () {
-    return view('admin.app');
+    return view('app');
 })->name('app');
 
 Route::get('/login', function () {
@@ -19,22 +19,25 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::get('/products', function () {
-    return view('admin.product.index');
+    return view('product.index');
 });
 
 Route::get('/orders', function() {
-    return view('admin.order.index');
+    return view('order.index');
 });
 
 Route::get('/create-product', function () {
-    return view('admin.product.create');
+    return view('product.create');
 });
 
 Route::get('/categories', function () {
-    return view('admin.category.index');
+    return view('category.index');
 });
 
 Route::get('/create-category', function () {
-    return view('admin.category.create');
+    return view('category.create');
 });
 
+Route::get('/reports', function () {
+    return view('report.index');
+});

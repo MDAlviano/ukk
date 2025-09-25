@@ -1,4 +1,4 @@
-@extends('admin.app')
+@extends('app')
 
 @section('content')
     <header class="px-8 py-5 bg-white drop-shadow-lg drop-shadow-[#00000028]">
