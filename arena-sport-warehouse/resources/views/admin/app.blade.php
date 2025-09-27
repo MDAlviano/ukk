@@ -11,26 +11,26 @@
     <aside class="w-64 bg-dark-gray shadow-md flex flex-col justify-between">
         <div>
             <div class="p-6 text-center">
-                <a href="/" class="font-semibold text-white text-xl">Arena Sport Warehouse</a>
+                <a href="/admin" class="font-semibold text-white text-xl">Arena Sport Warehouse</a>
             </div>
             <hr class="w-5/6 mx-auto text-white">
             <nav class="flex flex-col p-4 space-y-2 text-lg">
-                <a href="/orders" class="px-4 py-2 rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">My Orders</a>
+                <a href="/admin/orders" class="px-4 py-2 rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">My Orders</a>
                 <div class="flex flex-col">
                     <h5 class="px-4 py-2 cursor-pointer rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">My Product</h5>
                     <div class="text-white text-sm font-light flex flex-col gap-2 mt-2 ml-7">
-                        <a href="/products" class="hover:opacity-80">List Products</a>
-                        <a href="/create-product" class="hover:opacity-80">Create Product</a>
+                        <a href="/admin/products" class="hover:opacity-80">List Products</a>
+                        <a href="/admin/products/create" class="hover:opacity-80">Create Product</a>
                     </div>
                 </div>
                 <div class="flex flex-col">
                     <h5 class="px-4 py-2 cursor-pointer rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">My Category</h5>
                     <div class="text-white text-sm font-light flex flex-col gap-2 mt-2 ml-7">
-                        <a href="/categories" class="hover:opacity-80">List Categories</a>
-                        <a href="/create-category" class="hover:opacity-80">Create Category</a>
+                        <a href="/admin/categories" class="hover:opacity-80">List Categories</a>
+                        <a href="/admin/categories/create" class="hover:opacity-80">Create Category</a>
                     </div>
                 </div>
-                <a href="/reports" class="px-4 py-2 rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">Report</a>
+                <a href="/admin/reports" class="px-4 py-2 rounded-md font-semibold hover:bg-vibrant-orange transition duration-200 text-white">Report</a>
             </nav>
         </div>
         <div class="p-4 mb-10">

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Fallback Route
 
-Route::fallback(function() {
+Route::fallback(function () {
     return view('fallback.fallback');
 })->name('fallback');
 
@@ -19,34 +19,47 @@ Route::get('/register', function () {
 
 // Admin Route
 Route::get('/admin', function () {
-    return view('admin.app');
+    return view('admin.home.index');
 })->name('app');
 
-Route::get('/orders', function() {
+Route::get('/admin/orders', function () {
     return view('admin.order.index');
 });
 
-Route::get('/products', function () {
+Route::get('/admin/products', function () {
     return view('admin.product.index');
 });
 
-Route::get('/create-product', function () {
+Route::get('/admin/products/show', function () {
+    return view('admin.product.show');
+});
+
+Route::get('/admin/products/create', function () {
     return view('admin.product.create');
 });
 
-Route::get('/categories', function () {
+Route::get('/admin/products/update', function () {
+    return view('admin.product.update');
+});
+
+Route::get('/admin/categories', function () {
     return view('admin.category.index');
 });
 
-Route::get('/create-category', function () {
+Route::get('/admin/categories/create', function () {
     return view('admin.category.create');
 });
 
-Route::get('/reports', function () {
+Route::get('/admin/categories/update', function () {
+    return view('admin.category.update');
+});
+
+Route::get('/admin/reports', function () {
     return view('admin.report.index');
 });
 
 // Client Route
-Route::get('/', function() {
+Route::get('/', function () {
     return view('client.app');
 });
+

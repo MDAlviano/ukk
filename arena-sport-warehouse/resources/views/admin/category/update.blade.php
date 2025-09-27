@@ -14,7 +14,7 @@
             </div>
             <button type="submit"
                     class="w-full bg-vibrant-orange text-white p-2 rounded-lg hover:opacity-70 transition duration-200">
-                Create New Category
+                Update Category
             </button>
         </div>
         <div class="w-2/5 h-fit outline-2 py-3 px-4 rounded-md flex flex-col gap-4">
