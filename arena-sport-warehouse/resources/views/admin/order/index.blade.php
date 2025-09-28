@@ -5,9 +5,8 @@
         <h1 class="font-semibold text-2xl">Orders</h1>
     </header>
 
-    <div class="m-10 flex flex-col gap-8">
-
-        <!-- filter -->
+    <div class="m-10 flex flex-col gap-8 overflow-auto">
+        {{-- filter --}}
         <div class="flex flex-row gap-6">
             <div class="flex flex-row gap-4 px-3 py-2 rounded-md border-[1.5px] border-dark-gray">
                 <h5>Select Date</h5>
@@ -21,10 +20,9 @@
             </select>
         </div>
 
-        <!-- list orders -->
+        {{-- list orders --}}
         <div class="flex flex-col gap-4">
-
-            <!-- order item -->
+            {{-- order item --}}
             <div class="w-full h-fit bg-white rounded-lg drop-shadow-lg py-3 px-8 flex flex-col gap-3">
                 <div class="flex flex-row justify-between text-[#B6B6B6]">
                     <h5>Id</h5>
@@ -48,7 +46,7 @@
                     <h5><i>Pending</i></h5>
                 </div>
                 <span class="bg-[#B6B6B6] opacity-70 w-full h-[1px]"></span>
-                <a href="" class="text-[#B6B6B6] hover:underline">Details...</a>
+                <a href="/admin/orders/orderId" class="text-[#B6B6B6] hover:underline">Details...</a>
             </div>
 
         </div>

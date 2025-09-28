@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Fallback Route
-
+// Fallback route
 Route::fallback(function () {
     return view('fallback.fallback');
 })->name('fallback');
@@ -26,11 +25,15 @@ Route::get('/admin/orders', function () {
     return view('admin.order.index');
 });
 
+Route::get('/admin/orders/orderId', function () {
+    return view('admin.order.show');
+});
+
 Route::get('/admin/products', function () {
     return view('admin.product.index');
 });
 
-Route::get('/admin/products/show', function () {
+Route::get('/admin/products/slug', function () {
     return view('admin.product.show');
 });
 
@@ -44,6 +47,10 @@ Route::get('/admin/products/update', function () {
 
 Route::get('/admin/categories', function () {
     return view('admin.category.index');
+});
+
+Route::get('/admin/categories/slug', function () {
+    return view('admin.category.show');
 });
 
 Route::get('/admin/categories/create', function () {
