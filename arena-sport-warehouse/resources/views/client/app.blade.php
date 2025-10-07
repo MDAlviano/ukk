@@ -77,21 +77,24 @@
     <div id="services" class="flex flex-col gap-6">
         <h1 class="text-xl font-semibold">Layanan yang dapat Membantumu</h1>
         <div class="flex flex-row justify-between">
-            <div class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
+            <div
+                class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
                 <div class="flex flex-col gap-2 p-5">
                     <h5 class="text-2xl font-medium">Frequently Asked Question</h5>
                     <p class="text-sm">Memastikan pertanyaan mu terjawab</p>
                 </div>
                 <img src="{{ asset('/assets/faq.png') }}" alt="category image">
             </div>
-            <div class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
+            <div
+                class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
                 <div class="flex flex-col gap-2 p-5">
                     <h5 class="text-2xl font-medium">Online Payment Process</h5>
                     <p class="text-sm">Memudahkan mu dalam melakukan pembayaran</p>
                 </div>
                 <img src="{{ asset('/assets/online-payment.png') }}" alt="category image">
             </div>
-            <div class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
+            <div
+                class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
                 <div class="flex flex-col gap-2 p-5">
                     <h5 class="text-2xl font-medium">Home Delivery Options</h5>
                     <p class="text-sm">Pastikan pesananmu sampai di depan rumah</p>
