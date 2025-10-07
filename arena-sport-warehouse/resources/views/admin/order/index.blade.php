@@ -5,17 +5,17 @@
         <h1 class="font-semibold text-2xl">Orders</h1>
     </header>
 
-    <div class="m-10 flex flex-col gap-8 overflow-auto">
+    <div class="m-10 flex flex-col gap-8">
         {{-- filter --}}
         <div class="flex flex-row gap-6">
-            <div class="flex flex-row gap-4 px-3 py-2 rounded-md border-[1.5px] border-dark-gray">
+            <div class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1 outline-dark-gray">
                 <h5>Select Date</h5>
-                <input type="date">
+                <input type="date" class="outline-none focus:outline-none">
             </div>
-            <select name="" id="" class="flex flex-row gap-4 pl-3 pr-8 py-2 rounded-md border-[1.5px] border-dark-gray">
+            <select name="" id="" class="flex flex-row gap-4 pl-3 pr-8 py-2 rounded-md outline-1">
                 <option value="">Category</option>
             </select>
-            <select name="" id="" class="flex flex-row gap-4 pl-3 pr-8 py-2 rounded-md border-[1.5px] border-dark-gray">
+            <select name="" id="" class="flex flex-row gap-4 pl-3 pr-8 py-2 rounded-md outline-1">
                 <option value="">Status</option>
             </select>
         </div>

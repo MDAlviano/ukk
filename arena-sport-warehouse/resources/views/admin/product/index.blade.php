@@ -8,12 +8,12 @@
     <div class="m-10 flex flex-col gap-8">
         {{-- filter --}}
         <div class="flex flex-row gap-6">
-            <div class="flex flex-row gap-4 px-3 py-2 rounded-md border-[1.5px] border-dark-gray active:outline-0">
+            <div class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1">
                 <input type="text" placeholder="Search..." class="text-[#B6B6B6] focus:outline-0">
                 <img src="{{ asset('/assets/Search.svg') }}" alt="">
             </div>
             <select name="" id=""
-                    class="flex flex-row gap-4 pl-3 pr-8 py-2 rounded-md border-[1.5px] border-dark-gray active:outline-0">
+                    class="flex flex-row gap-4 pl-3 pr-8 py-2 rounded-md outline-1 focus:outline-0">
                 <option value="">Category</option>
             </select>
         </div>
@@ -24,8 +24,8 @@
                 <h5>Image</h5>
                 <h5 class="ml-16">Name</h5>
                 <h5 class="ml-62">Category</h5>
-                <h5 class="ml-16">Stock</h5>
                 <h5 class="ml-16">Price</h5>
+                <h5 class="ml-16">Stock</h5>
                 <h5 class="ml-8">Rating</h5>
                 <h5 class="ml-18">Action</h5>
             </div>
@@ -33,7 +33,8 @@
             <div class="w-full h-fit flex flex-row justify-between bg-white rounded-lg drop-shadow-lg py-4 px-8 gap-3">
                 <img src="{{ asset('/assets/placeholder.png') }}" alt="product image" class="w-20 rounded-md">
                 <div class="w-fit h-fit flex flex-col gap-1 my-auto">
-                    <h1 class="font-semibold hover:underline"><a href="/admin/products/slug">Yonex Racket 2247 C-Tier Series</a></h1>
+                    <h1 class="font-semibold hover:underline"><a href="/admin/products/slug">Yonex Racket 2247 C-Tier
+                            Series</a></h1>
                     <h5 class="text-sm text-[#B6B6B6] font-normal">This is Yonex Racket 2247 C-Tier Series...</h5>
                 </div>
                 <h5 class="h-fit text-white font-medium bg-vibrant-orange px-3 py-2 text-sm rounded-md my-auto">
