@@ -71,7 +71,7 @@
             </div>
 
             {{-- right section --}}
-            <div class="flex flex-col gap-3 w-3/6">
+            <div class="flex flex-col gap-5 w-3/6">
                 {{-- address info --}}
                 <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
                     <h1 class="font-semibold text-lg">Address</h1>

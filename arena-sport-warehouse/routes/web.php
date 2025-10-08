@@ -70,3 +70,7 @@ Route::get('/', function () {
     return view('client.app');
 });
 
+Route::get('/categories', function () {
+    return view('client.category.index');
+});
+
