@@ -74,3 +74,7 @@ Route::get('/categories', function () {
     return view('client.category.index');
 });
 
+Route::get('/products', function () {
+   return view('client.product.index');
+});
+

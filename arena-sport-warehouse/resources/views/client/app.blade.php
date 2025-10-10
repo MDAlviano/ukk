@@ -59,7 +59,7 @@
     <div id="products" class="flex flex-col gap-6">
         <div class="flex flex-row justify-between">
             <h1 class="text-xl font-semibold">Cek Produk Kami!</h1>
-            <a href="/" class="hover:opacity-60 transition duration-200">Lihat Semua Produk</a>
+            <a href="/products" class="hover:opacity-60 transition duration-200">Lihat Semua Produk</a>
         </div>
         <div class="flex flex-row gap-5">
             {{--  product card  --}}
