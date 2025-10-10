@@ -35,53 +35,22 @@
 
 {{-- main --}}
 <main class="py-10 px-16 flex flex-col gap-16">
-    {{-- filter & sort --}}
-    <div class="flex flex-row w-full justify-between">
-        {{-- filter --}}
-        <div class="flex flex-col gap-2">
-            <h1 class="font-medium text-dark-gray">Filter:</h1>
-            {{-- category option --}}
-            <div class="flex flex-row gap-4">
-                    {{-- price option --}}
-                    <select name="" id=""
-                            class="flex flex-row gap-4 pr-8 py-2 rounded-md outline-1 outline-dark-gray text-dark-gray">
-                        <option value="">Price</option>
-                    </select>
-                    {{-- rating option --}}
-                    <select name="" id=""
-                            class="flex flex-row gap-4 pr-8 py-2 rounded-md outline-1 outline-dark-gray text-dark-gray">
-                        <option value="">Rating</option>
-                    </select>
-            </div>
-        </div>
+    {{-- product data --}}
+    <div>
+        {{-- image --}}
+        <img src="" alt="">
+        {{-- data --}}
+        <div>
 
-        {{-- sort --}}
-        <div class="flex flex-col gap-2">
-            <h1 class="font-medium text-dark-gray">Sort:</h1>
-            {{-- sort --}}
-            <select name="" id=""
-                    class="flex flex-row gap-4 pr-8 py-2 rounded-md outline-1 outline-dark-gray text-dark-gray">
-                <option value="">Berdasarkan Abjad A-Z</option>
-            </select>
         </div>
     </div>
+    {{-- customer reviews --}}
+    <div>
+        <h1></h1>
+        {{-- reviews --}}
+        <div>
+            <div>
 
-    {{-- products --}}
-    <div id="products" class="flex flex-col gap-6">
-        <div class="grid grid-cols-4">
-            {{--  product card  --}}
-            <div class="flex flex-col gap-2 justify-center">
-                <div class="relative flex justify-end">
-                    <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl w-full">
-                    <a href=""
-                       class="absolute p-2 bg-white rounded-full m-4 hover:bg-slate-100 transition duration-200">
-                        <img src="{{ asset('/assets/favourite.svg') }}" alt="fav" class="size-5">
-                    </a>
-                </div>
-                <a href="/products/slug" class="text-2xl font-medium hover:opacity-90 transition duration-200">Test</a>
-                <p class="text-sm">Raket Yonex terbaru yang sangat bagus</p>
-                <p class="font-semibold">Rp200.000</p>
-                <p>⭐ 5.0/5.0 (125 Ulasan)</p>
             </div>
         </div>
     </div>

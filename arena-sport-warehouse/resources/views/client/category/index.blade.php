@@ -36,10 +36,10 @@
 {{-- categories --}}
 <main id="categories" class="py-10 px-16  grid grid-cols-4 gap-6">
     {{--  category card  --}}
-    <div class="relative flex justify-center">
+    <a href="/categories/slug" class="relative flex justify-center">
         <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl">
-        <h5 class="absolute text-3xl font-medium text-white top-5">Test</h5>
-    </div>
+        <h1 class="absolute text-3xl font-medium text-white top-5">Test</h1>
+    </a>
 </main>
 
 {{-- footer --}}

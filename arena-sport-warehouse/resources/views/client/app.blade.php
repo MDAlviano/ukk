@@ -48,10 +48,10 @@
         </div>
         <div class="flex flex-row gap-5">
             {{--  category card  --}}
-            <div class="relative flex justify-center">
+            <a href="/categories/slug" class="relative flex justify-center">
                 <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl">
                 <h5 class="absolute text-3xl font-medium text-white top-5">Test</h5>
-            </div>
+            </a>
         </div>
     </div>
 
@@ -65,7 +65,7 @@
             {{--  product card  --}}
             <div class="flex flex-col gap-2 justify-center">
                 <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl">
-                <h5 class="text-2xl font-medium">Test</h5>
+                <a href="/products/slug" class="text-2xl font-medium hover:opacity-90 transition duration-200">Test</a>
                 <p class="text-sm">Raket Yonex terbaru yang sangat bagus</p>
                 <p class="font-semibold">Rp200.000</p>
                 <p>⭐ 5.0/5.0 (125 Ulasan)</p>

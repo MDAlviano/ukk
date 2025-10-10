@@ -74,7 +74,14 @@ Route::get('/categories', function () {
     return view('client.category.index');
 });
 
-Route::get('/products', function () {
-   return view('client.product.index');
+Route::get('/categories/slug', function () {
+    return view('client.category.show');
 });
 
+Route::get('/products', function () {
+    return view('client.product.index');
+});
+
+Route::get('/products/slug', function () {
+    return view('client.product.show');
+});
