@@ -15,10 +15,17 @@
         </div>
 
         <div class="flex flex-col gap-2">
+            {{-- title --}}
+            <div class="w-full h-fit flex flex-row bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm py-4 px-8 gap-3 text-[#B6B6B6]">
+                <h5>Image</h5>
+                <h5 class="ml-16">Name</h5>
+                <h5 class="ml-80">Total Products</h5>
+                <h5 class="ml-72">Action</h5>
+            </div>
             {{-- item --}}
             <div class="w-full h-fit flex flex-row justify-between bg-white rounded-lg drop-shadow-lg py-4 px-8 gap-3">
                 <div class="flex flex-row gap-6">
-                    <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="size-24 rounded-md">
+                    <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="size-24 rounded-md object-cover">
                     <h5 class="font-semibold my-auto hover:underline"><a href="/admin/categories/slug">Badminton</a></h5>
                 </div>
                 <h5 class="font-semibold my-auto">10 Products</h5>

@@ -24,7 +24,7 @@
         </div>
         <div class="flex flex-row gap-5 w-fit h-fit pl-8">
             <a href="/">
-                <img src="{{ asset('/assets/shopping_cart.svg') }}" alt="shopping cart" class="w-10">
+                <img src="{{ asset('/assets/shopping-cart.svg') }}" alt="shopping cart" class="w-10">
             </a>
             <a href="/">
                 <img src="{{ asset('/assets/account_circle.svg') }}" alt="profile" class="w-10">

@@ -1,7 +1,7 @@
-@extends('admin.app')
+@extends('client.profile.app')
 
 @section('content')
-    <header class="px-8 py-5 bg-white drop-shadow-lg drop-shadow-[#00000028]">
+    <header class="px-8 py-5 bg-white shadow-md drop-shadow-[#00000028]">
         <h1 class="font-semibold text-2xl">Orders</h1>
     </header>
 
@@ -24,31 +24,25 @@
         <div class="flex flex-col gap-4">
             {{-- order item --}}
             <div class="w-full h-fit bg-white rounded-lg drop-shadow-lg py-3 px-8 flex flex-col gap-3">
-                <div class="grid grid-cols-5 gap-x-8 text-[#B6B6B6]">
+                <div class="grid grid-cols-4 gap-x-8 text-[#B6B6B6]">
                     <h5>Id</h5>
-                    <h5 class="text-center">Created</h5>
-                    <h5 class="text-left">Customer</h5>
+                    <h5>Created</h5>
                     <h5 class="text-right">Total Price</h5>
                     <h5 class="text-center">Status Order</h5>
                 </div>
                 <span class="bg-[#B6B6B6] opacity-70 w-full h-[1px]"></span>
-                <div class="grid grid-cols-5 gap-x-8">
+                <div class="grid grid-cols-4 gap-x-8">
                     <h5>#12A23</h5>
-                    <div class="flex flex-col gap-1 text-center">
+                    <div class="flex flex-col gap-1">
                         <h5>07 Sep</h5>
                         <h5 class="text-sm text-[#B6B6B6]">20:48</h5>
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <h5>Detryalviano</h5>
-                        <h5 class="text-sm text-[#B6B6B6]">mdetry@gmail.com</h5>
                     </div>
                     <h5 class="text-right">Rp 1.500.000</h5>
                     <h5 class="text-center"><i>Pending</i></h5>
                 </div>
                 <span class="bg-[#B6B6B6] opacity-70 w-full h-[1px]"></span>
-                <a href="/admin/orders/orderId" class="text-[#B6B6B6] hover:underline">Details...</a>
+                <a href="/profile/orders/show" class="text-[#B6B6B6] hover:underline">Details...</a>
             </div>
         </div>
     </div>
-
 @endsection

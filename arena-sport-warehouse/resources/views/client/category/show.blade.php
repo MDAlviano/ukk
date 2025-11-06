@@ -24,7 +24,7 @@
         </div>
         <div class="flex flex-row gap-5 w-fit h-fit pl-8">
             <a href="/">
-                <img src="{{ asset('/assets/shopping_cart.svg') }}" alt="shopping cart" class="w-10">
+                <img src="{{ asset('/assets/shopping-cart.svg') }}" alt="shopping cart" class="w-10">
             </a>
             <a href="/">
                 <img src="{{ asset('/assets/account_circle.svg') }}" alt="profile" class="w-10">
@@ -70,18 +70,22 @@
     <div id="products" class="flex flex-col gap-6">
         <div class="grid grid-cols-4">
             {{--  product card  --}}
-            <div class="flex flex-col gap-2 justify-center">
-                <div class="relative flex justify-end">
-                    <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl w-full">
-                    <a href=""
-                       class="absolute p-2 bg-white rounded-full m-4 hover:bg-slate-100 transition duration-200">
-                        <img src="{{ asset('/assets/favourite.svg') }}" alt="fav" class="size-5">
-                    </a>
-                </div>
-                <a href="/products/slug" class="text-2xl font-medium hover:opacity-90 transition duration-200">Test</a>
-                <p class="text-sm">Raket Yonex terbaru yang sangat bagus</p>
-                <p class="font-semibold">Rp200.000</p>
-                <p>⭐ 5.0/5.0 (125 Ulasan)</p>
+            <div class="relative hover:scale-105 transition duration-200">
+                <a href="/products/slug" class="flex flex-col gap-2 justify-center">
+                    <div class="relative flex justify-end">
+                        <img src="{{ asset('/assets/placeholder.png') }}" alt="Raket Yonex terbaru" class="rounded-xl w-full h-72 object-cover">
+                        <!-- Tombol favorit DILUAR <a> agar tidak ikut ke href -->
+                    </div>
+                    <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">Test</h1>
+                    <p class="text-sm">Raket Yonex terbaru yang sangat bagus</p>
+                    <p class="font-semibold">Rp200.000</p>
+                    <p>⭐ 5.0/5.0 (125 Ulasan)</p>
+                </a>
+
+                <!-- Tombol favorit: tetap di posisi semula, tapi di luar <a> -->
+                <a href="javascript:void(0)" onclick="event.stopPropagation(); /* tambahkan logika favorit di sini */" class="absolute top-0 right-0 p-2 bg-white rounded-full m-4 hover:bg-slate-100 transition duration-200 z-10">
+                    <img src="{{ asset('/assets/favourite.svg') }}" alt="favorit" class="size-5">
+                </a>
             </div>
         </div>
     </div>

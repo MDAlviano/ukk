@@ -19,8 +19,7 @@
         </div>
 
         <div class="flex flex-col gap-2">
-            <div
-                class="w-full h-fit flex flex-row bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm py-4 px-8 gap-3 text-[#B6B6B6]">
+            <div class="w-full h-fit flex flex-row bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm py-4 px-8 gap-3 text-[#B6B6B6]">
                 <h5>Image</h5>
                 <h5 class="ml-16">Name</h5>
                 <h5 class="ml-62">Category</h5>
@@ -31,7 +30,7 @@
             </div>
             {{-- item --}}
             <div class="w-full h-fit flex flex-row justify-between bg-white rounded-lg drop-shadow-lg py-4 px-8 gap-3">
-                <img src="{{ asset('/assets/placeholder.png') }}" alt="product image" class="w-20 rounded-md">
+                <img src="{{ asset('/assets/placeholder.png') }}" alt="product image" class="w-20 rounded-md object-cover">
                 <div class="w-fit h-fit flex flex-col gap-1 my-auto">
                     <h1 class="font-semibold hover:underline"><a href="/admin/products/slug">Yonex Racket 2247 C-Tier
                             Series</a></h1>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
-    <title>Admin Panel</title>
+    <title>Arena Sport Warehouse | Admin Panel</title>
 </head>
 <body class="flex min-h-screen">
 <!-- Sidebar -->
@@ -17,7 +17,7 @@
         <nav class="flex flex-col p-4 space-y-2 text-lg">
             <div
                 class="flex flex-row gap-2 hover:bg-vibrant-orange transition duration-200 text-white cursor-pointer rounded-md px-2 py-2 align-middle">
-                <img src="{{ asset('/assets/shopping-cart.svg') }}" alt="cart icon" class="size-6">
+                <img src="{{ asset('/assets/shopping-cart-white.svg') }}" alt="cart icon" class="size-6">
                 <a href="/admin/orders" class="font-semibold">My Orders</a>
             </div>
             <div class="flex flex-col">

@@ -85,3 +85,15 @@ Route::get('/products', function () {
 Route::get('/products/slug', function () {
     return view('client.product.show');
 });
+
+Route::get('/profile', function () {
+    return view('client.profile.index');
+});
+
+Route::get('/profile/orders', function () {
+    return view('client.profile.order.index');
+});
+
+Route::get('/profile/orders/show', function () {
+    return view('client.profile.order.show');
+});

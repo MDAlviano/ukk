@@ -1,4 +1,4 @@
-@extends('admin.app')
+@extends('client.profile.app')
 
 @section('content')
     <div class="flex flex-col gap-10 m-10">
@@ -101,17 +101,6 @@
                     <h1 class="font-semibold text-lg">Note</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, id?</p>
                 </div>
-                {{-- update order status --}}
-                <form onsubmit="" class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-4">
-                    <h1 class="font-semibold text-lg">Update Order Status</h1>
-                    <select name="" id="" class="flex flex-row gap-4 w-full pl-3 pr-8 py-2 rounded-md outline-1">
-                        <option value="">Pending</option>
-                    </select>
-                    <button
-                        class="w-fit bg-vibrant-orange py-1 px-6 rounded-md text-white cursor-pointer hover:opacity-90 transition duration-200">
-                        Save
-                    </button>
-                </form>
             </div>
         </div>
     </div>

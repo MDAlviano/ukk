@@ -1,0 +1,33 @@
+@extends('client.profile.app')
+
+@section('content')
+    <div class="flex flex-col p-10 gap-10">
+        <div class="flex flex-row items-center gap-10 outline-2 outline-gray-300 rounded-xl p-6">
+            <div class="flex flex-col gap-4">
+                <img src="{{ asset('assets/placeholder.png') }}" alt="profile" class="rounded-full size-40">
+                <a class="flex flex-row gap-2 items-center justify-center hover:cursor-pointer hover:opacity-70 transition duration-200">
+                    <h1 class="font-medium text-lg">Change Photo</h1>
+                    <img src="{{ asset('assets/edit.svg') }}" alt="edit">
+                </a>
+            </div>
+            <div class="flex flex-col gap-4">
+                <p class="text-lg font-medium">Email : johndoe@gmail.com</p>
+                <p class="text-lg font-medium">Name : John Doe</p>
+                <p class="text-lg font-medium">Phone : 08123456789</p>
+            </div>
+        </div>
+        <div class="flex flex-col gap-5 outline-2 outline-gray-300 rounded-xl p-6">
+            <a href="" class="flex flex-row gap-3 hover:opacity-70 transition duration-200">
+                <img src="{{ asset('assets/plus.svg') }}" alt="add">
+                <h1 class="font-semibold text-lg">Create New Address</h1>
+            </a>
+            {{-- list addresses --}}
+            <div class="flex flex-col gap-3">
+                {{-- item --}}
+                <div class="p-4 rounded-xl shadow-md hover:bg-slate-50 transition duration-200">
+                    <a href="" class="text-lg font-medium">user address</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

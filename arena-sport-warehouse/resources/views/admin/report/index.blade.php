@@ -57,7 +57,7 @@
                 </div>
                 {{-- total orders --}}
                 <div class="flex flex-row gap-2">
-                    <img src="{{ asset('/assets/shopping_cart_white.svg') }}" alt="dollar"
+                    <img src="{{ asset('/assets/shopping-cart-white.svg') }}" alt="dollar"
                          class="bg-vibrant-orange p-3 rounded-full">
                     <div class="flex flex-col font-semibold">
                         <h1 class="text-xl opacity-80">Total Orders</h1>
