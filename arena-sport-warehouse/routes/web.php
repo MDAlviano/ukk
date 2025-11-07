@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Fallback route
 Route::fallback(function () {
-    return view('fallback.fallback');
+    return view('partial.fallback');
 })->name('fallback');
 
 // Auth Route
@@ -91,9 +91,9 @@ Route::get('/profile', function () {
 });
 
 Route::get('/profile/orders', function () {
-    return view('client.profile.order.index');
+    return view('client.order.index');
 });
 
 Route::get('/profile/orders/show', function () {
-    return view('client.profile.order.show');
+    return view('client.order.show');
 });

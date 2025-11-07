@@ -26,7 +26,7 @@
             <a href="/">
                 <img src="{{ asset('/assets/shopping-cart.svg') }}" alt="shopping cart" class="w-10">
             </a>
-            <a href="/">
+            <a href="/profile">
                 <img src="{{ asset('/assets/account_circle.svg') }}" alt="profile" class="w-10">
             </a>
         </div>
