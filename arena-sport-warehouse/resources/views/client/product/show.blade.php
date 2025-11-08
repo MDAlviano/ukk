@@ -36,66 +36,65 @@
 {{-- main --}}
 <main class="py-10 px-16 flex flex-col gap-16">
     {{-- product data --}}
-    <div>
+    <div class="flex flex-row gap-10 items-center">
         {{-- image --}}
-        <img src="" alt="">
+        <img src="{{ asset('/assets/placeholder.png') }}" alt="img" class="h-96 rounded-lg">
         {{-- data --}}
-        <div>
-
-        </div>
-    </div>
-    {{-- customer reviews --}}
-    <div>
-        <h1></h1>
-        {{-- reviews --}}
-        <div>
-            <div>
-
+        <div class="flex flex-col gap-4">
+            <h1 class="text-4xl font-bold">Raket Yonex</h1>
+            <p class="text-dark-gray font-medium">⭐ 5.0/5.0 (125 Ulasan)</p>
+            <h3 class="text-2xl font-medium text-vibrant-orange">Rp200.000</h3>
+            <div class="flex flex-row gap-3">
+                {{-- add to favourite btn --}}
+                <a href="">
+                    <div class="flex flex-row py-3 px-5 items-center rounded-3xl gap-2 bg-black text-white hover:bg-dark-gray transition duration-200">
+                        <img src="{{ asset('/assets/favourite-white.svg') }}" alt="shopping cart" class="size-5">
+                        <p>Add to Cart</p>
+                    </div>
+                </a>
+                {{-- add to cart btn --}}
+                <a href="">
+                    <div class="flex flex-row py-3 px-5 items-center rounded-3xl gap-2 bg-black text-white hover:bg-dark-gray transition duration-200">
+                        <img src="{{ asset('/assets/shopping-cart-white.svg') }}" alt="shopping cart" class="size-5">
+                        <p>Add to Cart</p>
+                    </div>
+                </a>
+            </div>
+            <div class="flex flex-col gap-1">
+                <h1 class="font-semibold text-lg">Description:</h1>
+                <p class="text-lg">Raket Yonex terbaru yang sangat bagusRaket Yonex terbaru yang sangat bagusRaket Yonex terbaru yang
+                    sangat bagusRaket Yonex terbaru yang sangat bagusRaket Yonex terbaru yang sangat bagusRaket Yonex
+                    terbaru yang sangat bagusRaket Yonex terbaru yang sangat bagus</p>
             </div>
         </div>
+    </div>
+
+    {{-- customer reviews --}}
+    <div class="flex flex-col gap-4">
+        <h1 class="font-semibold text-2xl">Reviews</h1>
+        {{-- reviews --}}
+        <x-review-card
+            name="Alviano"
+            rate=4.5
+            date="08 November 2025"
+            description="Product nya bagus sekali, aku suka banget. Makanya aku kasih rating 4,5 dari 5. Pas aku bawa buat main badminton bareng temen-temenku di atas rel kereta, enak banget rasanya. Kayak powerful banget gitu lho. Temen-temenku sampe pada nanya beli dimana, yaudah deh kusaranin buat beli di Toko Arena lewat web ini, gituuu. Jos deh mantep pokoknya!"
+        />
+        <x-review-card
+            name="Alviano"
+            rate=4.5
+            date="08 November 2025"
+            description="Product nya bagus sekali, aku suka banget. Makanya aku kasih rating 4,5 dari 5. Pas aku bawa buat main badminton bareng temen-temenku di atas rel kereta, enak banget rasanya. Kayak powerful banget gitu lho. Temen-temenku sampe pada nanya beli dimana, yaudah deh kusaranin buat beli di Toko Arena lewat web ini, gituuu. Jos deh mantep pokoknya!"
+        />
+        <x-review-card
+            name="Alviano"
+            rate=4.5
+            date="08 November 2025"
+            description="Product nya bagus sekali, aku suka banget. Makanya aku kasih rating 4,5 dari 5. Pas aku bawa buat main badminton bareng temen-temenku di atas rel kereta, enak banget rasanya. Kayak powerful banget gitu lho. Temen-temenku sampe pada nanya beli dimana, yaudah deh kusaranin buat beli di Toko Arena lewat web ini, gituuu. Jos deh mantep pokoknya!"
+        />
     </div>
 </main>
 
 {{-- footer --}}
-<footer class="mt-20 bg-gray-300 py-10 px-16 flex flex-row gap-20">
-    <div class="font-semibold">
-        <h1 class="text-vibrant-orange text-xl">Arena Sport Warehouse</h1>
-        <h4 class="opacity-80">Tempat belanja favoritmu!</h4>
-    </div>
-    <div class="flex flex-col gap-2">
-        <h1 class="text-xl font-semibold">Links</h1>
-        <span class="w-full h-[0.7px] bg-dark-gray"></span>
-        <div class="flex flex-col gap-1 text-gray-500">
-            <a href="/" class="hover:underline">
-                Home
-            </a>
-            <a href="/categories" class="hover:underline">
-                Categories
-            </a>
-            <a href="/products" class="hover:underline">
-                Products
-            </a>
-            <a href="/about" class="hover:underline">
-                About
-            </a>
-            <a href="/profile" class="hover:underline">
-                Profile
-            </a>
-        </div>
-    </div>
-    <div class="flex flex-col gap-2">
-        <h1 class="text-xl font-semibold">Follow Us</h1>
-        <span class="w-full h-[0.7px] bg-dark-gray"></span>
-        <div class="flex flex-row gap-1 items-center text-gray-500">
-            <img src="{{ asset('/assets/instagram.svg') }}" alt="" class="h-5">
-            <a href="/" class="hover:underline">@sportwarehouse</a>
-        </div>
-    </div>
-    <div class="flex flex-col gap-2">
-        <h1 class="text-xl font-semibold">Location</h1>
-        <span class="w-full h-[0.7px] bg-dark-gray"></span>
-        <p class="text-gray-500">Jl. Pemuda no 12 Kota Semarang Jawa Tengah</p>
-    </div>
-</footer>
+@include('partial.footer')
 </body>
 </html>

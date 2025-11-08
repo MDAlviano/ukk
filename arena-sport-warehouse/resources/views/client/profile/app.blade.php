@@ -11,7 +11,7 @@
 <aside class="w-64 shadow-lg flex flex-col justify-between">
     <div>
         <a href="/" class="flex flex-row gap-2 px-6 pt-6 hover:opacity-80 transition duration-200">
-            <img src="{{ asset('assets/arrow_back.png') }}" alt="back">
+            <img src="{{ asset('assets/arrow_back.svg') }}" alt="back">
             <h5 class="text-lg font-medium">Back</h5>
         </a>
         <div class="p-6 flex flex-row items-center gap-3">
