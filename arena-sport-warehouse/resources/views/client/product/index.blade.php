@@ -105,6 +105,14 @@
             rate=4.5
             reviews=125
         />
+        <x-product-card
+            imageUrl="/assets/placeholder.png"
+            name="Raket Yonex"
+            description="Raket Yonex terbaru yang sangat bagus"
+            price=200000
+            rate=4.5
+            reviews=125
+        />
     </div>
 </main>
 

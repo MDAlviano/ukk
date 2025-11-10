@@ -71,13 +71,30 @@
         </div>
         <div class="flex flex-row gap-5">
             {{--  product card  --}}
-            <div class="flex flex-col gap-2 justify-center">
-                <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl object-cover">
-                <a href="/products/slug" class="text-2xl font-medium hover:opacity-90 transition duration-200">Test</a>
-                <p class="text-sm">Raket Yonex terbaru yang sangat bagus</p>
-                <p class="font-semibold">Rp200.000</p>
-                <p>⭐ 5.0/5.0 (125 Ulasan)</p>
-            </div>
+            <x-home-product-card
+                imageUrl="/assets/placeholder.png"
+                name="Raket Yonex"
+                description="Raket Yonex terbaru yang sangat bagus"
+                price=200000
+                rate=4.5
+                reviews=125
+            />
+            <x-home-product-card
+                imageUrl="/assets/placeholder.png"
+                name="Raket Yonex"
+                description="Raket Yonex terbaru yang sangat bagus"
+                price=200000
+                rate=4.5
+                reviews=125
+            />
+            <x-home-product-card
+                imageUrl="/assets/placeholder.png"
+                name="Raket Yonex"
+                description="Raket Yonex terbaru yang sangat bagus"
+                price=200000
+                rate=4.5
+                reviews=125
+            />
         </div>
     </div>
 
