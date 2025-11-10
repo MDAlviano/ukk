@@ -41,17 +41,25 @@
     </div>
 
     {{--  categories  --}}
-    <div id="categories" class="flex flex-col gap-6">
+    <div id="categories" class="flex flex-col">
         <div class="flex flex-row justify-between">
             <h1 class="text-xl font-semibold">Cari Berdasarkan Kategori</h1>
             <a href="/categories" class="hover:opacity-60 transition duration-200">Lihat Semua Kategori</a>
         </div>
         <div class="flex flex-row gap-5">
             {{--  category card  --}}
-            <a href="/categories/slug" class="relative flex justify-center hover:scale-105 transition duration-200">
-                <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl">
-                <h5 class="absolute text-3xl font-medium text-white top-5">Test</h5>
-            </a>
+            <x-category-card
+                imageUrl="/assets/placeholder.png"
+                name="Badminton"
+            />
+            <x-category-card
+                imageUrl="/assets/placeholder.png"
+                name="Badminton"
+            />
+            <x-category-card
+                imageUrl="/assets/placeholder.png"
+                name="Badminton"
+            />
         </div>
     </div>
 
@@ -64,7 +72,7 @@
         <div class="flex flex-row gap-5">
             {{--  product card  --}}
             <div class="flex flex-col gap-2 justify-center">
-                <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl">
+                <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl object-cover">
                 <a href="/products/slug" class="text-2xl font-medium hover:opacity-90 transition duration-200">Test</a>
                 <p class="text-sm">Raket Yonex terbaru yang sangat bagus</p>
                 <p class="font-semibold">Rp200.000</p>

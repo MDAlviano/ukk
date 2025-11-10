@@ -34,12 +34,28 @@
 </nav>
 
 {{-- categories --}}
-<main id="categories" class="py-10 px-16  grid grid-cols-4 gap-6">
+<main id="categories" class="px-20 grid grid-cols-4">
     {{--  category card  --}}
-    <a href="/categories/slug" class="relative flex justify-center hover:scale-105 transition duration-200">
-        <img src="{{ asset('/assets/placeholder.png') }}" alt="category image" class="rounded-xl">
-        <h1 class="absolute text-3xl font-medium text-white top-5">Test</h1>
-    </a>
+    <x-category-card
+        imageUrl="/assets/placeholder.png"
+        name="Badminton"
+    />
+    <x-category-card
+        imageUrl="/assets/placeholder.png"
+        name="Badminton"
+    />
+    <x-category-card
+        imageUrl="/assets/placeholder.png"
+        name="Badminton"
+    />
+    <x-category-card
+        imageUrl="/assets/placeholder.png"
+        name="Badminton"
+    />
+    <x-category-card
+        imageUrl="/assets/placeholder.png"
+        name="Badminton"
+    />
 </main>
 
 {{-- footer --}}
