@@ -26,5 +26,5 @@
         </div>
     </div>
     <span class="w-full bg-white h-[0.1px] opacity-50"></span>
-    <p class="text-white font-medium">@2025 Arena Sport Warehouse - All Rights Reserved</p>
+    <p class="text-white font-medium w-full text-center opacity-70">@2025 Arena Sport Warehouse - All Rights Reserved</p>
 </footer>
