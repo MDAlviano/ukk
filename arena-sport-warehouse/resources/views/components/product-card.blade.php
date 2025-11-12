@@ -1,13 +1,16 @@
-<div class="relative hover:shadow-lg transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90">
+<div class="relative hover:shadow-lg mb-6 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
     <a href="/products/slug" class="flex flex-col justify-center items-start">
-        <div class="relative flex justify-end">
-            <img src="{{ asset($imageUrl) }}" alt="Raket Yonex terbaru" class="self-start w-72 h-64 object-cover">
+        <div class="relative flex justify-end overflow-hidden">
+            <img src="{{ asset($imageUrl) }}" alt="Raket Yonex terbaru" class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-105">
         </div>
         <div class="flex flex-col gap-2 p-3">
             <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">{{ $name }}</h1>
             <p class="text-sm">{{ $description }}</p>
             <p class="font-semibold">Rp{{ number_format($price) }}</p>
-            <p>⭐ {{ $rate }}/5.0 ({{ $reviews }} Ulasan)</p>
+            <div class="flex flex-row gap-1 items-center">
+                <img src="{{ asset('/assets/ic_star.svg') }}" alt="star" class="size-5">
+                <p><span class="text-[#FFB700] font-medium">{{ $rate }}/5.0</span> ({{ $reviews }} Ulasan)</p>
+            </div>
         </div>
     </a>
 

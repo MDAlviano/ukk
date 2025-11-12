@@ -33,7 +33,7 @@
 </nav>
 
 {{-- main --}}
-<main class="flex flex-col gap-12">
+<main class="flex flex-col gap-12 mb-24">
     {{--  jumbotron  --}}
     <div id="jumbotron" class="relative">
         <img src="{{ asset('/assets/ig_jumbotron.png') }}" alt="" class="w-full h-auto object-cover">
@@ -41,15 +41,16 @@
             <h1 class="text-3xl text-white drop-shadow-lg">Gerak Lebih Mudah,</h1>
             <h1 class="text-6xl font-semibold text-white drop-shadow-lg">Belanja Lebih Cepat</h1>
             <h1 class="text-xl text-white drop-shadow-lg">hanya di</h1>
-            <h1 class="text-7xl font-bold text-white drop-shadow-lg md:w-1/2 hover:text-vibrant-orange transition duration-200">Arena Sport Warehouse</h1>
+            <h1 class="text-7xl font-bold text-white drop-shadow-lg md:w-1/2 hover:text-vibrant-orange transition duration-200">
+                Arena Sport Warehouse</h1>
         </div>
     </div>
 
     <div class="py-10 px-16 flex flex-col gap-16">
         {{--  categories  --}}
-        <div id="categories" class="flex flex-col">
+        <div id="categories" class="flex flex-col gap-6">
             <div class="flex flex-row justify-between">
-                <h1 class="text-xl font-semibold">Cari Berdasarkan Kategori</h1>
+                <h1 class="text-2xl font-semibold">Cari Berdasarkan Kategori</h1>
                 <a href="/categories" class="hover:opacity-60 transition duration-200">Lihat Semua Kategori</a>
             </div>
             <div class="grid grid-cols-2">
@@ -75,7 +76,7 @@
         {{--  products  --}}
         <div id="products" class="flex flex-col gap-6">
             <div class="flex flex-row justify-between">
-                <h1 class="text-xl font-semibold">Cek Produk Kami!</h1>
+                <h1 class="text-2xl font-semibold">Cek Produk Kami!</h1>
                 <a href="/products" class="hover:opacity-60 transition duration-200">Lihat Semua Produk</a>
             </div>
             <div class="flex flex-row gap-5">
@@ -109,31 +110,43 @@
 
         {{--  services  --}}
         <div id="services" class="flex flex-col gap-6">
-            <h1 class="text-xl font-semibold">Layanan yang dapat Membantumu</h1>
-            <div class="flex flex-row justify-between">
-                <div
-                    class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
-                    <div class="flex flex-col gap-2 p-5">
-                        <h5 class="text-2xl font-medium">Frequently Asked Question</h5>
-                        <p class="text-sm">Memastikan pertanyaan mu terjawab</p>
-                    </div>
-                    <img src="{{ asset('/assets/faq.png') }}" alt="category image">
-                </div>
-                <div
-                    class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
-                    <div class="flex flex-col gap-2 p-5">
+            <h1 class="text-2xl font-semibold">Layanan yang dapat Membantumu</h1>
+            <div class="flex flex-row gap-6 justify-center items-stretch">
+                <div class="flex-1 flex flex-col rounded-xl bg-white shadow-lg overflow-hidden cursor-pointer group">
+                    <div class="flex flex-col gap-2 p-5 flex-1">
                         <h5 class="text-2xl font-medium">Online Payment Process</h5>
-                        <p class="text-sm">Memudahkan mu dalam melakukan pembayaran</p>
+                        <p class="text-sm text-gray-600">Memudahkan mu dalam melakukan pembayaran yang cepat dan
+                            aman</p>
                     </div>
-                    <img src="{{ asset('/assets/online-payment.png') }}" alt="category image">
+                    <div class="overflow-hidden">
+                        <img src="{{ asset('/assets/online-payment.png') }}"
+                             alt="Online Payment"
+                             class="w-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    </div>
                 </div>
-                <div
-                    class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
-                    <div class="flex flex-col gap-2 p-5">
-                        <h5 class="text-2xl font-medium">Home Delivery Options</h5>
-                        <p class="text-sm">Pastikan pesananmu sampai di depan rumah</p>
+                <div class="flex-1 flex flex-col rounded-xl bg-white shadow-lg overflow-hidden cursor-pointer group">
+                    <div class="flex flex-col gap-2 p-5 flex-1">
+                        <h5 class="text-2xl font-medium">Pengiriman Terpercaya</h5>
+                        <p class="text-sm text-gray-600">Memastikan barang dikirim dengan cepat melalui jasa pengiriman
+                            terpercaya.</p>
                     </div>
-                    <img src="{{ asset('/assets/delivery.png') }}" alt="category image">
+                    <div class="overflow-hidden">
+                        <img src="{{ asset('/assets/delivery.png') }}"
+                             alt="Pengiriman"
+                             class="w-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    </div>
+                </div>
+                <div class="flex-1 flex flex-col rounded-xl bg-white shadow-lg overflow-hidden cursor-pointer group">
+                    <div class="flex flex-col gap-2 p-5 flex-1">
+                        <h5 class="text-2xl font-medium">Keakuratan Data Barang</h5>
+                        <p class="text-sm text-gray-600">Memastikan bahwa setiap produk selalu menampilkan stok yang
+                            akurat.</p>
+                    </div>
+                    <div class="overflow-hidden">
+                        <img src="{{ asset('/assets/faq.png') }}"
+                             alt="Data Akurat"
+                             class="w-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    </div>
                 </div>
             </div>
         </div>
