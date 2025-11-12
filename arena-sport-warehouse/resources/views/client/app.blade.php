@@ -14,7 +14,6 @@
         <a href="/categories" class="hover:underline">Categories</a>
         <a href="/products" class="hover:underline">Products</a>
         <a href="/about" class="hover:underline">About</a>
-        <a href="/contact" class="hover:underline">Contact</a>
     </div>
     <div class="px-20 py-6 outline-1 outline-gray-300 flex flex-row justify-between items-center">
         <a href="/" class="text-vibrant-orange font-bold text-lg">Arena Sport Warehouse</a>
@@ -34,100 +33,112 @@
 </nav>
 
 {{-- main --}}
-<main class="py-10 px-16 flex flex-col gap-16">
+<main class="flex flex-col gap-12">
     {{--  jumbotron  --}}
-    <div id="jumbotron">
-
-    </div>
-
-    {{--  categories  --}}
-    <div id="categories" class="flex flex-col">
-        <div class="flex flex-row justify-between">
-            <h1 class="text-xl font-semibold">Cari Berdasarkan Kategori</h1>
-            <a href="/categories" class="hover:opacity-60 transition duration-200">Lihat Semua Kategori</a>
-        </div>
-        <div class="flex flex-row gap-5">
-            {{--  category card  --}}
-            <x-category-card
-                imageUrl="/assets/placeholder.png"
-                name="Badminton"
-            />
-            <x-category-card
-                imageUrl="/assets/placeholder.png"
-                name="Badminton"
-            />
-            <x-category-card
-                imageUrl="/assets/placeholder.png"
-                name="Badminton"
-            />
+    <div id="jumbotron" class="relative">
+        <img src="{{ asset('/assets/ig_jumbotron.png') }}" alt="" class="w-full h-auto object-cover">
+        <div class="absolute inset-0 flex flex-col justify-center gap-2 px-16">
+            <h1 class="text-3xl text-white drop-shadow-lg">Gerak Lebih Mudah,</h1>
+            <h1 class="text-6xl font-semibold text-white drop-shadow-lg">Belanja Lebih Cepat</h1>
+            <h1 class="text-xl text-white drop-shadow-lg">hanya di</h1>
+            <h1 class="text-7xl font-bold text-white drop-shadow-lg md:w-1/2 hover:text-vibrant-orange transition duration-200">Arena Sport Warehouse</h1>
         </div>
     </div>
 
-    {{--  products  --}}
-    <div id="products" class="flex flex-col gap-6">
-        <div class="flex flex-row justify-between">
-            <h1 class="text-xl font-semibold">Cek Produk Kami!</h1>
-            <a href="/products" class="hover:opacity-60 transition duration-200">Lihat Semua Produk</a>
-        </div>
-        <div class="flex flex-row gap-5">
-            {{--  product card  --}}
-            <x-home-product-card
-                imageUrl="/assets/placeholder.png"
-                name="Raket Yonex"
-                description="Raket Yonex terbaru yang sangat bagus"
-                price=200000
-                rate=4.5
-                reviews=125
-            />
-            <x-home-product-card
-                imageUrl="/assets/placeholder.png"
-                name="Raket Yonex"
-                description="Raket Yonex terbaru yang sangat bagus"
-                price=200000
-                rate=4.5
-                reviews=125
-            />
-            <x-home-product-card
-                imageUrl="/assets/placeholder.png"
-                name="Raket Yonex"
-                description="Raket Yonex terbaru yang sangat bagus"
-                price=200000
-                rate=4.5
-                reviews=125
-            />
-        </div>
-    </div>
-
-    {{--  services  --}}
-    <div id="services" class="flex flex-col gap-6">
-        <h1 class="text-xl font-semibold">Layanan yang dapat Membantumu</h1>
-        <div class="flex flex-row justify-between">
-            <div
-                class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
-                <div class="flex flex-col gap-2 p-5">
-                    <h5 class="text-2xl font-medium">Frequently Asked Question</h5>
-                    <p class="text-sm">Memastikan pertanyaan mu terjawab</p>
-                </div>
-                <img src="{{ asset('/assets/faq.png') }}" alt="category image">
+    <div class="py-10 px-16 flex flex-col gap-16">
+        {{--  categories  --}}
+        <div id="categories" class="flex flex-col">
+            <div class="flex flex-row justify-between">
+                <h1 class="text-xl font-semibold">Cari Berdasarkan Kategori</h1>
+                <a href="/categories" class="hover:opacity-60 transition duration-200">Lihat Semua Kategori</a>
             </div>
-            <div
-                class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
-                <div class="flex flex-col gap-2 p-5">
-                    <h5 class="text-2xl font-medium">Online Payment Process</h5>
-                    <p class="text-sm">Memudahkan mu dalam melakukan pembayaran</p>
-                </div>
-                <img src="{{ asset('/assets/online-payment.png') }}" alt="category image">
-            </div>
-            <div
-                class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
-                <div class="flex flex-col gap-2 p-5">
-                    <h5 class="text-2xl font-medium">Home Delivery Options</h5>
-                    <p class="text-sm">Pastikan pesananmu sampai di depan rumah</p>
-                </div>
-                <img src="{{ asset('/assets/delivery.png') }}" alt="category image">
+            <div class="grid grid-cols-2">
+                {{--  category card  --}}
+                <x-category-card
+                    imageUrl="/assets/placeholder.png"
+                    name="Badminton"
+                    products=10
+                />
+                <x-category-card
+                    imageUrl="/assets/placeholder.png"
+                    name="Badminton"
+                    products=10
+                />
+                <x-category-card
+                    imageUrl="/assets/placeholder.png"
+                    name="Badminton"
+                    products=10
+                />
             </div>
         </div>
+
+        {{--  products  --}}
+        <div id="products" class="flex flex-col gap-6">
+            <div class="flex flex-row justify-between">
+                <h1 class="text-xl font-semibold">Cek Produk Kami!</h1>
+                <a href="/products" class="hover:opacity-60 transition duration-200">Lihat Semua Produk</a>
+            </div>
+            <div class="flex flex-row gap-5">
+                {{--  product card  --}}
+                <x-home-product-card
+                    imageUrl="/assets/placeholder.png"
+                    name="Raket Yonex"
+                    description="Raket Yonex terbaru yang sangat bagus"
+                    price=200000
+                    rate=4.5
+                    reviews=125
+                />
+                <x-home-product-card
+                    imageUrl="/assets/placeholder.png"
+                    name="Raket Yonex"
+                    description="Raket Yonex terbaru yang sangat bagus"
+                    price=200000
+                    rate=4.5
+                    reviews=125
+                />
+                <x-home-product-card
+                    imageUrl="/assets/placeholder.png"
+                    name="Raket Yonex"
+                    description="Raket Yonex terbaru yang sangat bagus"
+                    price=200000
+                    rate=4.5
+                    reviews=125
+                />
+            </div>
+        </div>
+
+        {{--  services  --}}
+        <div id="services" class="flex flex-col gap-6">
+            <h1 class="text-xl font-semibold">Layanan yang dapat Membantumu</h1>
+            <div class="flex flex-row justify-between">
+                <div
+                    class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
+                    <div class="flex flex-col gap-2 p-5">
+                        <h5 class="text-2xl font-medium">Frequently Asked Question</h5>
+                        <p class="text-sm">Memastikan pertanyaan mu terjawab</p>
+                    </div>
+                    <img src="{{ asset('/assets/faq.png') }}" alt="category image">
+                </div>
+                <div
+                    class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
+                    <div class="flex flex-col gap-2 p-5">
+                        <h5 class="text-2xl font-medium">Online Payment Process</h5>
+                        <p class="text-sm">Memudahkan mu dalam melakukan pembayaran</p>
+                    </div>
+                    <img src="{{ asset('/assets/online-payment.png') }}" alt="category image">
+                </div>
+                <div
+                    class="flex flex-col gap-2 justify-center rounded-xl bg-white shadow-xl hover:scale-105 transition duration-300 cursor-pointer">
+                    <div class="flex flex-col gap-2 p-5">
+                        <h5 class="text-2xl font-medium">Home Delivery Options</h5>
+                        <p class="text-sm">Pastikan pesananmu sampai di depan rumah</p>
+                    </div>
+                    <img src="{{ asset('/assets/delivery.png') }}" alt="category image">
+                </div>
+            </div>
+        </div>
     </div>
+
 </main>
 
 {{-- footer --}}

@@ -14,7 +14,6 @@
         <a href="/categories" class="hover:underline">Categories</a>
         <a href="/products" class="hover:underline">Products</a>
         <a href="/about" class="hover:underline">About</a>
-        <a href="/contact" class="hover:underline">Contact</a>
     </div>
     <div class="px-20 py-6 outline-1 outline-gray-300 flex flex-row justify-between items-center">
         <a href="/" class="text-vibrant-orange font-bold text-lg">Arena Sport Warehouse</a>

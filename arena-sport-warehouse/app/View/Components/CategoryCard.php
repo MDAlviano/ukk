@@ -10,14 +10,17 @@ class CategoryCard extends Component
 {
     public $imageUrl;
     public $name;
+    public $products;
 
     public function __construct(
         $imageUrl,
         $name,
+        $products,
     )
     {
         $this->imageUrl = $imageUrl;
         $this->name = $name;
+        $this->products = $products;
     }
 
     /**
