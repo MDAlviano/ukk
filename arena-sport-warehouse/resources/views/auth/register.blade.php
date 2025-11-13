@@ -7,9 +7,9 @@
     <title>Register</title>
 </head>
 <body>
-    <div class="grid grid-cols-2 m-12 gap-14">
-        <div>
-            <h2 class="font-semibold text-sm">Arena Sport Warehouse</h2>
+    <div class="flex flex-row justify-between m-12 gap-14">
+        <div class="w-full">
+            <a href="/" class="font-bold text-vibrant-orange mt-5">Arena Sport Warehouse</a>
             <h1 class="text-4xl font-bold text-dark-gray mt-16">Selamat Datang!</h1>
             <p class="text-gray-400 text-sm w-2/3 mt-3">Arena sport warehouse akan menjadi tempat favorit kamu untuk belanja alat-alat olahraga</p>
             <form action="" class="flex flex-col gap-4 mt-8">
@@ -29,9 +29,7 @@
             </form>
             <p class="mt-14 text-sm text-dark-gray">Sudah memiliki akun? <a href="{{ route('login') }}" class="text-vibrant-orange hover:opacity-85 transition duration-200 font-bold">Login</a></p>
         </div>
-        <div>
-
-        </div>
+        <img src="{{ asset('/assets/ig_register.png') }}" alt="register image" class="h-[90vh] rounded-xl">
     </div>
 </body>
 </html>
