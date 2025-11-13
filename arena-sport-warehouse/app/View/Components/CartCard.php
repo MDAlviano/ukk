@@ -6,10 +6,9 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class AdminProductCard extends Component
+class CartCard extends Component
 {
     public $imageUrl;
-    public $uniqueId;
     public $title;
     public $description;
     public $category;
@@ -20,7 +19,6 @@ class AdminProductCard extends Component
 
     public function __construct(
         $imageUrl,
-        $uniqueId,
         $title,
         $description,
         $category,
@@ -31,7 +29,6 @@ class AdminProductCard extends Component
     )
     {
         $this->imageUrl = $imageUrl;
-        $this->uniqueId = $uniqueId;
         $this->title = $title;
         $this->description = $description;
         $this->category = $category;
@@ -46,6 +43,6 @@ class AdminProductCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin-product-card');
+        return view('components.cart-card');
     }
 }

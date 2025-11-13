@@ -86,6 +86,10 @@ Route::get('/products/slug', function () {
     return view('client.product.show');
 });
 
+Route::get('/order/create', function () {
+    return view('client.order.create');
+});
+
 Route::get('/profile', function () {
     return view('client.profile.index');
 });
@@ -96,4 +100,16 @@ Route::get('/profile/orders', function () {
 
 Route::get('/profile/orders/show', function () {
     return view('client.order.show');
+});
+
+Route::get('/profile/add-address', function () {
+    return view('client.address.create');
+});
+
+Route::get('/profile/cart', function () {
+    return view('client.cart.index');
+});
+
+Route::get('/profile/favorite', function () {
+    return view('client.favorite.index');
 });

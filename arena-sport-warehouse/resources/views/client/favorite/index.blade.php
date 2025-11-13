@@ -1,8 +1,8 @@
-@extends('admin.app')
+@extends('client.profile.app')
 
 @section('content')
     <header class="px-8 py-5 bg-white drop-shadow-lg drop-shadow-[#00000028]">
-        <h1 class="font-semibold text-2xl">Products</h1>
+        <h1 class="font-semibold text-2xl">Favorite</h1>
     </header>
 
     <div class="m-10 flex flex-col gap-8">
@@ -19,14 +19,6 @@
                             class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1 focus:outline-0">
                         <option value="">Kategori</option>
                     </select>
-                    <select name="" id=""
-                            class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1 focus:outline-0">
-                        <option value="">Harga</option>
-                    </select>
-                    <select name="" id=""
-                            class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1 focus:outline-0">
-                        <option value="">Rating</option>
-                    </select>
                 </div>
             </div>
             <div class="flex flex-col gap-1">
@@ -37,10 +29,10 @@
                 </select>
             </div>
         </div>
-        </div>
 
-        <div class="flex flex-col gap-2 mx-10">
-            <div class="w-full h-fit flex flex-row bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm py-4 px-8 gap-3 text-[#B6B6B6]">
+        <div class="flex flex-col gap-2">
+            <div
+                class="w-full h-fit flex flex-row bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm py-4 px-8 gap-3 text-[#B6B6B6]">
                 <h5>Image</h5>
                 <h5 class="ml-16">Name</h5>
                 <h5 class="ml-62">Category</h5>
@@ -50,8 +42,7 @@
                 <h5 class="ml-18">Action</h5>
             </div>
             {{-- item --}}
-            <x-admin-product-card
-                uniqueId="#A1234"
+            <x-favorite-card
                 imageUrl="/assets/placeholder.png"
                 title="Yonex Racket 2247 C-Tier Series"
                 description="This is Yonex Racket 2247 C-Tier Series is the good racket in badminton"
@@ -61,8 +52,7 @@
                 rating=4.2
                 reviews=182
             />
-            <x-admin-product-card
-                uniqueId="#A1234"
+            <x-favorite-card
                 imageUrl="/assets/placeholder.png"
                 title="Yonex Racket 2247 C-Tier Series"
                 description="This is Yonex Racket 2247 C-Tier Series is the good racket in badminton"

@@ -7,7 +7,11 @@
 
     <form class="flex flex-row gap-12 mx-20 my-12 bg-white shadow-xl rounded-xl p-7" onsubmit="">
         <div class="w-3/5 flex flex-col gap-5">
-            <h1 class="text-lg font-semibold">Add Product Form</h1>
+            <h1 class="text-lg font-semibold">Update Product Form</h1>
+            <div class="flex flex-col gap-2 w-full">
+                <h4 class="font-semibold">Unique ID</h4>
+                <input type="text" placeholder="#A1234" class="outline-2 py-2 px-4 rounded-md">
+            </div>
             <div class="flex flex-row gap-5">
                 <div class="flex flex-col gap-2 w-full">
                     <h4 class="font-semibold">Name</h4>

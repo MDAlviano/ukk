@@ -22,14 +22,22 @@
             </div>
         </div>
         <hr class="w-5/6 mx-auto">
-        <nav class="flex flex-col p-4 space-y-2 text-lg">
+        <nav class="flex flex-col p-4 text-lg">
             <div class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
                 <img src="{{ asset('/assets/user.svg') }}" alt="cart icon" class="size-6">
                 <a href="/profile" class="font-semibold text-black">My Profile</a>
             </div>
             <div class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
-                <img src="{{ asset('/assets/shopping-cart.svg') }}" alt="cart icon" class="size-6">
+                <img src="{{ asset('/assets/ic_order.svg') }}" alt="cart icon" class="size-6">
                 <a href="/profile/orders" class="font-semibold text-black">My Orders</a>
+            </div>
+            <div class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
+                <img src="{{ asset('/assets/ic_cart.svg') }}" alt="cart icon" class="size-6">
+                <a href="/profile/cart" class="font-semibold text-black">My Cart</a>
+            </div>
+            <div class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
+                <img src="{{ asset('/assets/ic_favorite.svg') }}" alt="cart icon" class="size-6">
+                <a href="/profile/favorite" class="font-semibold text-black">My Favorite</a>
             </div>
         </nav>
     </div>

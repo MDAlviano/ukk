@@ -17,16 +17,21 @@
             </div>
         </div>
         <div class="flex flex-col gap-5 outline-2 outline-gray-300 rounded-xl p-6">
-            <a href="" class="flex flex-row gap-3 hover:opacity-70 transition duration-200">
+            <a href="/profile/add-address" class="flex flex-row gap-3 hover:opacity-70 transition duration-200">
                 <img src="{{ asset('assets/plus.svg') }}" alt="add">
                 <h1 class="font-semibold text-lg">Create New Address</h1>
             </a>
             {{-- list addresses --}}
             <div class="flex flex-col gap-3">
                 {{-- item --}}
-                <div class="p-4 rounded-xl shadow-md hover:bg-slate-50 transition duration-200">
-                    <a href="" class="text-lg font-medium">user address</a>
-                </div>
+                <x-address-card
+                    address="Jl. Kenangan"
+                    city="Semarang"
+                    province="Jawa Tengah"
+                    country="Indonesia"
+                    postalCode=50161
+                    additionalInfo="..."
+                />
             </div>
         </div>
     </div>
