@@ -10,13 +10,14 @@
 {{-- navbar --}}
 <nav class="w-full flex flex-col">
     <div class="w-full flex flex-row justify-between opacity-70 px-20 py-6">
-        <a href="/" class="hover:underline">Home</a>
+        <a href="/home" class="hover:underline">Home</a>
         <a href="/categories" class="hover:underline">Categories</a>
         <a href="/products" class="hover:underline">Products</a>
-        <a href="/about" class="hover:underline">About</a>
     </div>
     <div class="px-20 py-6 outline-1 outline-gray-300 flex flex-row justify-between items-center">
-        <a href="/" class="text-vibrant-orange font-bold text-lg">Arena Sport Warehouse</a>
+        <a href="/home" class="-ml-8 mr-4">
+            <img src="{{ asset('/assets/ic_logo.svg') }}" alt="logo" class="w-44">
+        </a>
         <div class="flex flex-row w-full gap-4 px-3 py-2 rounded-lg outline-1 outline-dark-gray">
             <img src="{{ asset('/assets/Search.svg') }}" alt="search" class="opacity-70 w-5">
             <input type="text" placeholder="Search product here..." class="focus:outline-0 w-full">
@@ -41,16 +42,11 @@
             <h1 class="font-medium text-dark-gray">Filter:</h1>
             {{-- category option --}}
             <div class="flex flex-row gap-4">
-                    {{-- price option --}}
-                    <select name="" id=""
-                            class="flex flex-row gap-4 pr-8 py-2 rounded-md outline-1 outline-dark-gray text-dark-gray">
-                        <option value="">Price</option>
-                    </select>
-                    {{-- rating option --}}
-                    <select name="" id=""
-                            class="flex flex-row gap-4 pr-8 py-2 rounded-md outline-1 outline-dark-gray text-dark-gray">
-                        <option value="">Rating</option>
-                    </select>
+                {{-- price option --}}
+                <select name="" id=""
+                        class="flex flex-row gap-4 pr-8 py-2 rounded-md outline-1 outline-dark-gray text-dark-gray">
+                    <option value="">Price</option>
+                </select>
             </div>
         </div>
 
@@ -66,27 +62,43 @@
     </div>
 
     {{-- products --}}
-    <div id="products" class="flex flex-col gap-6">
-        <div class="grid grid-cols-4">
-            {{--  product card  --}}
-            <div class="relative hover:scale-105 transition duration-200">
-                <a href="/products/slug" class="flex flex-col gap-2 justify-center">
-                    <div class="relative flex justify-end">
-                        <img src="{{ asset('/assets/placeholder.png') }}" alt="Raket Yonex terbaru" class="rounded-xl w-full h-72 object-cover">
-                        <!-- Tombol favorit DILUAR <a> agar tidak ikut ke href -->
-                    </div>
-                    <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">Test</h1>
-                    <p class="text-sm">Raket Yonex terbaru yang sangat bagus</p>
-                    <p class="font-semibold">Rp200.000</p>
-                    <p>⭐ 5.0/5.0 (125 Ulasan)</p>
-                </a>
-
-                <!-- Tombol favorit: tetap di posisi semula, tapi di luar <a> -->
-                <a href="javascript:void(0)" onclick="event.stopPropagation(); /* tambahkan logika favorit di sini */" class="absolute top-0 right-0 p-2 bg-white rounded-full m-4 hover:bg-slate-100 transition duration-200 z-10">
-                    <img src="{{ asset('/assets/favourite.svg') }}" alt="favorit" class="size-5">
-                </a>
-            </div>
-        </div>
+    <div id="products" class="grid grid-cols-4 justify-between">
+        {{--  product card  --}}
+        <x-product-card
+            imageUrl="/assets/placeholder.png"
+            name="Raket Yonex"
+            description="Raket Yonex terbaru yang sangat bagus"
+            price=200000
+            orders=125
+        />
+        <x-product-card
+            imageUrl="/assets/placeholder.png"
+            name="Raket Yonex"
+            description="Raket Yonex terbaru yang sangat bagus"
+            price=200000
+            orders=125
+        />
+        <x-product-card
+            imageUrl="/assets/placeholder.png"
+            name="Raket Yonex"
+            description="Raket Yonex terbaru yang sangat bagus"
+            price=200000
+            orders=125
+        />
+        <x-product-card
+            imageUrl="/assets/placeholder.png"
+            name="Raket Yonex"
+            description="Raket Yonex terbaru yang sangat bagus"
+            price=200000
+            orders=125
+        />
+        <x-product-card
+            imageUrl="/assets/placeholder.png"
+            name="Raket Yonex"
+            description="Raket Yonex terbaru yang sangat bagus"
+            price=200000
+            orders=125
+        />
     </div>
 </main>
 

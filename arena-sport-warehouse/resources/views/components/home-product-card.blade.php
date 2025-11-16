@@ -5,11 +5,11 @@
         </div>
         <div class="flex flex-col gap-2 p-3">
             <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">{{ $name }}</h1>
-            <p class="text-sm">{{ $description }}</p>
+            <p class="text-sm truncate">{{ $description }}</p>
             <p class="font-semibold">Rp{{ number_format($price) }}</p>
             <div class="flex flex-row gap-1 items-center">
-                <img src="{{ asset('/assets/ic_star.svg') }}" alt="star" class="size-5">
-                <p><span class="text-[#FFB700] font-medium">{{ $rate }}/5.0</span> ({{ $reviews }} Ulasan)</p>
+                <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
+                <p><span class="font-medium text-dark-gray">{{ $orders }} Terjual</p>
             </div>
         </div>
     </a>

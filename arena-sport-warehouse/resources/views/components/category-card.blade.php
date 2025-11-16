@@ -2,9 +2,7 @@
     <img src="{{ asset($imageUrl) }}" alt="{{ $name }}"
          class="absolute w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
 
-    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#ff4500]"></div>
-
-    <div class="absolute inset-0 flex flex-col justify-between p-6 text-white">
+    <div class="absolute inset-0 flex flex-col justify-between p-6 text-white w-1/2 backdrop-blur-md">
         <div class="flex justify-between items-start">
             <div>
                 <h3 class="text-3xl font-bold drop-shadow-md">{{ $name }}</h3>

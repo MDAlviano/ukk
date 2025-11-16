@@ -10,13 +10,14 @@
 {{-- navbar --}}
 <nav class="w-full flex flex-col">
     <div class="w-full flex flex-row justify-between opacity-70 px-20 py-6">
-        <a href="/" class="hover:underline">Home</a>
+        <a href="/home" class="hover:underline">Home</a>
         <a href="/categories" class="hover:underline">Categories</a>
         <a href="/products" class="hover:underline">Products</a>
-        <a href="/about" class="hover:underline">About</a>
     </div>
     <div class="px-20 py-6 outline-1 outline-gray-300 flex flex-row justify-between items-center">
-        <a href="/" class="text-vibrant-orange font-bold text-lg">Arena Sport Warehouse</a>
+        <a href="/home" class="-ml-8 mr-4">
+            <img src="{{ asset('/assets/ic_logo.svg') }}" alt="logo" class="w-44">
+        </a>
         <div class="flex flex-row w-full gap-4 px-3 py-2 rounded-lg outline-1 outline-dark-gray">
             <img src="{{ asset('/assets/Search.svg') }}" alt="search" class="opacity-70 w-5">
             <input type="text" placeholder="Search product here..." class="focus:outline-0 w-full">
@@ -50,11 +51,6 @@
                         class="flex flex-row gap-4 pr-8 py-2 rounded-md outline-1 outline-dark-gray text-dark-gray">
                     <option value="">Price</option>
                 </select>
-                {{-- rating option --}}
-                <select name="" id=""
-                        class="flex flex-row gap-4 pr-8 py-2 rounded-md outline-1 outline-dark-gray text-dark-gray">
-                    <option value="">Rating</option>
-                </select>
             </div>
         </div>
 
@@ -77,40 +73,35 @@
             name="Raket Yonex"
             description="Raket Yonex terbaru yang sangat bagus"
             price=200000
-            rate=4.5
-            reviews=125
+            orders=125
         />
         <x-product-card
             imageUrl="/assets/placeholder.png"
             name="Raket Yonex"
             description="Raket Yonex terbaru yang sangat bagus"
             price=200000
-            rate=4.5
-            reviews=125
+            orders=125
         />
         <x-product-card
             imageUrl="/assets/placeholder.png"
             name="Raket Yonex"
             description="Raket Yonex terbaru yang sangat bagus"
             price=200000
-            rate=4.5
-            reviews=125
+            orders=125
         />
         <x-product-card
             imageUrl="/assets/placeholder.png"
             name="Raket Yonex"
             description="Raket Yonex terbaru yang sangat bagus"
             price=200000
-            rate=4.5
-            reviews=125
+            orders=125
         />
         <x-product-card
             imageUrl="/assets/placeholder.png"
             name="Raket Yonex"
             description="Raket Yonex terbaru yang sangat bagus"
             price=200000
-            rate=4.5
-            reviews=125
+            orders=125
         />
     </div>
 </main>

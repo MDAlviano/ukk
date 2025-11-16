@@ -12,24 +12,21 @@ class ProductCard extends Component
     public $name;
     public $description;
     public $price;
-    public $rate;
-    public $reviews;
+    public $orders;
 
     public function __construct(
         $imageUrl,
         $name,
         $description,
         $price,
-        $rate,
-        $reviews,
+        $orders,
     )
     {
         $this->imageUrl = $imageUrl;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
-        $this->rate = $rate;
-        $this->reviews = $reviews;
+        $this->orders = $orders;
     }
 
     /**
