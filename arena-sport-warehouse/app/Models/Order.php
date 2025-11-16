@@ -15,21 +15,25 @@ class Order extends Model
     public $incrementing = true;
     protected $fillable = [
         'user_id',
-        'total_amount',
+        'order_number',
+        'final_price',
         'status',
         'payment_id',
         'shipment_id'
     ];
 
-    public function orderItems(): HasMany {
+    public function orderItems(): HasMany
+    {
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
     }
 
-    public function payments(): BelongsTo {
+    public function payments(): BelongsTo
+    {
         return $this->belongsTo(Payment::class, 'payment_id', 'id');
     }
 
-    public function shipments(): BelongsTo {
+    public function shipments(): BelongsTo
+    {
         return $this->belongsTo(Shipment::class, 'shipment_id', 'id');
     }
 

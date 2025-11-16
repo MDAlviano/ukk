@@ -13,7 +13,9 @@ class Category extends Model
     public $timestamps = true;
     public $incrementing = true;
     protected $fillable = [
-        'name'
+        'name',
+        'slug',
+        'image_url'
     ];
 
     public function products(): HasMany {

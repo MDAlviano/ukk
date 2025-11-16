@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('recipient_name', 200)->nullable(false);
             $table->string('address', 200)->nullable(false);
             $table->string('city', 100)->nullable(false);
             $table->string('province', 100)->nullable(false);

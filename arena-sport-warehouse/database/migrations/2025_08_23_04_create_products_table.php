@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name', 150)->nullable(false);
-            $table->float('price')->nullable(false);
+            $table->string('slug', 150)->nullable(false)->unique('users_slug_unique');
+            $table->integer('price')->nullable(false);
             $table->string('image_url', 255)->nullable(false);
-            $table->float('rating')->default(0.0)->nullable(false);
             $table->text('description')->nullable(false);
             $table->integer('stock')->default(0)->nullable(false);
             $table->unsignedBigInteger('category_id')->nullable(false);

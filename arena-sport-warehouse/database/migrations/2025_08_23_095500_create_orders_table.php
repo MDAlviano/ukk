@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_number', 20)->nullable(false)->unique('orders_number_unique');
             $table->unsignedBigInteger('user_id')->nullable(false);
-            $table->float('total_amount')->nullable(false);
-            $table->string('status', 20)->nullable(false);
+            $table->integer('final_price')->nullable(false);
+            $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled'])->nullable(false)->default('pending');
             $table->unsignedBigInteger('payment_id')->nullable(false);
             $table->unsignedBigInteger('shipment_id')->nullable(false);
             $table->timestamps();
@@ -23,7 +24,6 @@ return new class extends Migration
 
             $table->foreign('user_id')->on('users')->references('id');
             $table->foreign('payment_id')->on('payments')->references('id');
-            $table->foreign('shipment_id')->on('shipments')->references('id');
         });
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Fallback route
@@ -7,109 +8,62 @@ Route::fallback(function () {
     return view('partial.fallback');
 })->name('fallback');
 
-// Auth Route
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+// Landing Route
+Route::view('/', 'landing.index')->name('landing');
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+// Auth Route
+Route::view('/login', 'auth.login')->name('login');
+Route::view('/register', 'auth.register')->name('register');
+
+Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
+Route::post('/user/login', [UserController::class, 'login'])->name('user.login');
 
 // Admin Route
-Route::get('/admin', function () {
-    return view('admin.home.index');
-})->name('app');
+Route::view('/admin', 'admin.home.index')->name('admin');
 
-Route::get('/admin/orders', function () {
-    return view('admin.order.index');
-});
+Route::view('/admin/orders', 'admin.order.index');
 
-Route::get('/admin/orders/orderId', function () {
-    return view('admin.order.show');
-});
+Route::view('/admin/orders/orderId', 'admin.order.show');
 
-Route::get('/admin/products', function () {
-    return view('admin.product.index');
-});
+Route::view('/admin/products', 'admin.product.index');
 
-Route::get('/admin/products/slug', function () {
-    return view('admin.product.show');
-});
+Route::view('/admin/products/slug', 'admin.product.show');
 
-Route::get('/admin/products/create', function () {
-    return view('admin.product.create');
-});
+Route::view('/admin/products/create', 'admin.product.create');
 
-Route::get('/admin/products/update', function () {
-    return view('admin.product.update');
-});
+Route::view('/admin/products/update', 'admin.product.update');
 
-Route::get('/admin/categories', function () {
-    return view('admin.category.index');
-});
+Route::view('/admin/categories', 'admin.category.index');
 
-Route::get('/admin/categories/slug', function () {
-    return view('admin.category.show');
-});
+Route::view('/admin/categories/slug', 'admin.category.show');
 
-Route::get('/admin/categories/create', function () {
-    return view('admin.category.create');
-});
+Route::view('/admin/categories/create', 'admin.category.create');
 
-Route::get('/admin/categories/update', function () {
-    return view('admin.category.update');
-});
+Route::view('/admin/categories/update', 'admin.category.update');
 
-Route::get('/admin/reports', function () {
-    return view('admin.report.index');
-});
+Route::view('/admin/reports', 'admin.report.index');
 
 // Client Route
-Route::get('/', function () {
-    return view('client.app');
-});
+Route::view('/home', 'client.app');
 
-Route::get('/categories', function () {
-    return view('client.category.index');
-});
+Route::view('/categories', 'client.category.index');
 
-Route::get('/categories/slug', function () {
-    return view('client.category.show');
-});
+Route::view('/categories/slug', 'client.category.show');
 
-Route::get('/products', function () {
-    return view('client.product.index');
-});
+Route::view('/products', 'client.product.index');
 
-Route::get('/products/slug', function () {
-    return view('client.product.show');
-});
+Route::view('/products/slug', 'client.product.show');
 
-Route::get('/order/create', function () {
-    return view('client.order.create');
-});
+Route::view('/order/create', 'client.order.create');
 
-Route::get('/profile', function () {
-    return view('client.profile.index');
-});
+Route::view('/profile', 'client.profile.index')->name('profile');
 
-Route::get('/profile/orders', function () {
-    return view('client.order.index');
-});
+Route::view('/profile/orders', 'client.order.index');
 
-Route::get('/profile/orders/show', function () {
-    return view('client.order.show');
-});
+Route::view('/profile/orders/show', 'client.order.show');
 
-Route::get('/profile/add-address', function () {
-    return view('client.address.create');
-});
+Route::view('/profile/add-address', 'client.address.create');
 
-Route::get('/profile/cart', function () {
-    return view('client.cart.index');
-});
+Route::view('/profile/cart', 'client.cart.index');
 
-Route::get('/profile/favorite', function () {
-    return view('client.favorite.index');
-});
+Route::view('/profile/favorite', 'client.favorite.index');

@@ -14,7 +14,8 @@ class Cart extends Model
     public $incrementing = true;
     protected $fillable = [
         'user_id',
-        'product_id'
+        'product_id',
+        'quantity',
     ];
 
     public function users(): BelongsTo {

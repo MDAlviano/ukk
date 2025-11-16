@@ -15,6 +15,7 @@ class Address extends Model
     public $incrementing = true;
     protected $fillable = [
         'user_id',
+        'recipient_name',
         'address',
         'city',
         'province',
@@ -22,11 +23,13 @@ class Address extends Model
         'postal_code'
     ];
 
-    public function shipments(): HasMany {
-        return $this->hasMany(Shipment::class, 'address_id', 'id');
+    public function shipments(): HasMany
+    {
+        return $this->hasMany(Shipment::class, 'shipment_id', 'id');
     }
 
-    public function users(): BelongsTo {
+    public function users(): BelongsTo
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 

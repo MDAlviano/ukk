@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable(false);
             $table->unsignedBigInteger('product_id')->nullable(false);
+            $table->integer('quantity')->nullable(false);
             $table->timestamps();
             $table->softDeletes();
 

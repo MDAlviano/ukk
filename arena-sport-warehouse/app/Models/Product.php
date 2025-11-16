@@ -17,7 +17,7 @@ class Product extends Model
         'name',
         'price',
         'image_url',
-        'rating',
+        'slug',
         'description',
         'stock',
         'category_id'
@@ -27,20 +27,8 @@ class Product extends Model
         return $this->hasMany(OrderItem::class, 'product_id', 'id');
     }
 
-    public function reviews(): HasMany {
-        return $this->hasMany(Review::class, 'product_id', 'id');
-    }
-
-    public function wishlists(): HasMany {
-        return $this->hasMany(Wishlist::class, 'product_id', 'id');
-    }
-
     public function favorites(): HasMany {
         return $this->hasMany(Favorite::class, 'product_id', 'id');
-    }
-
-    public function stockLogs(): HasMany {
-        return $this->hasMany(StockLog::class, 'product_id', 'id');
     }
 
     public function categories(): BelongsTo {

@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100)->nullable(false);
+            $table->unsignedBigInteger('address_id')->nullable(false);
+            $table->enum('name', ['delivery', 'pickup'])->nullable(false);
+            $table->integer('price')->nullable(false);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('address_id')->on('addresses')->references('id');
         });
     }
 
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('shipments');
     }
 };

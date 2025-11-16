@@ -23,20 +23,8 @@ class User extends Model
         return $this->hasMany(Address::class, 'user_id', 'id');
     }
 
-    public function reviews(): HasMany {
-        return $this->hasMany(Review::class, 'user_id', 'id');
-    }
-
-    public function wishlists(): HasMany {
-        return $this->hasMany(Wishlist::class, 'user_id', 'id');
-    }
-
     public function favorites(): HasMany {
         return $this->hasMany(Favorite::class, 'user_id', 'id');
     }
 
-    public function stockLogs(): HasMany {
-        return $this->hasMany(StockLog::class, 'user_id', 'id');
-    }
-
-}   
+}

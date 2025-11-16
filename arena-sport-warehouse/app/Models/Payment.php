@@ -14,9 +14,7 @@ class Payment extends Model
     public $incrementing = true;
     protected $fillable = [
         'method',
-        'amount',
-        'status',
-        'transaction_id'
+        'price',
     ];
 
     public function orders(): HasMany {

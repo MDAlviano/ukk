@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id')->nullable(false);
             $table->unsignedBigInteger('product_id')->nullable(false);
             $table->integer('quantity')->nullable(false);
-            $table->float('price')->nullable(false);
+            $table->integer('price')->nullable(false);
             $table->timestamps();
             $table->softDeletes();
 

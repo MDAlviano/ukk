@@ -14,18 +14,16 @@ class Shipment extends Model
     public $timestamps = true;
     public $incrementing = true;
     protected $fillable = [
-        'method',
-        'address',
-        'status',
-        'tracking_number'
+        'address_id',
+        'name',
+        'price',
     ];
-
-    public function orders(): HasMany {
-        return $this->hasMany(Order::class, 'shipment_id', 'id');
-    }
 
     public function addresses(): BelongsTo {
         return $this->belongsTo(Address::class, 'address_id', 'id');
     }
-}
 
+    public function orders(): HasMany {
+        return $this->hasMany(Favorite::class, 'shipment_id', 'id');
+    }
+}
