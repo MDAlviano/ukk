@@ -43,6 +43,17 @@ class CategoryController extends Controller
         return redirect()->route('category.index', with('success', 'Data berhasil ditambahkan'));
     }
 
+    public function show($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+
+        if (!$category) {
+            return redirect()->route('category.index')->with('error', 'Data tidak ditemukan');
+        }
+
+        return view('category.show', compact('category'));
+    }
+
     public function update($slug, Request $request)
     {
         $data = $request->validate([

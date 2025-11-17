@@ -46,6 +46,17 @@ class ProductController extends Controller
         return redirect()->route('product.index', with('success', 'Data berhasil ditambahkan'));
     }
 
+    public function show($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+
+        if (!$product) {
+            return redirect()->route('product.index')->with('error', 'Data tidak ditemukan');
+        }
+
+        return view('product.show', compact('product'));
+    }
+
     public function update($slug, Request $request)
     {
         $data = $request->validate([
