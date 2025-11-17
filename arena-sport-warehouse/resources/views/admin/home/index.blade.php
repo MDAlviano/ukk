@@ -4,10 +4,10 @@
     <div class="flex flex-col gap-5 m-10">
         {{-- 1st section --}}
         <div class="w-full rounded-lg p-8 flex flex-col gap-4 shadow-md">
-            <h1 class="font-semibold text-3xl">{tanggal}</h1>
+            <h1 class="font-semibold text-3xl">{{ $date }}</h1>
             <span class="w-full h-[1px] bg-dark-gray opacity-50"></span>
             <h1 class="font-semibold text-2xl">👋 Halo,</h1>
-            <h1 class="font-bold text-4xl">{name}</h1>
+            <h1 class="font-bold text-4xl">{{ $user->full_name }}</h1>
         </div>
 
         {{-- 2nd section --}}
@@ -19,11 +19,13 @@
             <p class="opacity-75">Ini adalah total pemasukan dan beberapa pesanan di hari ini.</p>
             <span class="w-full h-[1px] bg-dark-gray opacity-50"></span>
             <div class="flex flex-row gap-4">
-                <img src="{{ asset('/assets/Dollar.svg') }}" alt="dollar"
-                     class="bg-vibrant-orange p-3 rounded-full">
                 <div class="flex flex-col font-semibold">
                     <h1 class="text-xl opacity-80">Total Pemasukan</h1>
-                    <h5 class="text-2xl">Rp 1.200.000</h5>
+                    <h5 class="text-2xl">Rp{{ number_format($totalRevenue, 0, ',', '.') }}</h5>
+                </div>
+                <div class="flex flex-col font-semibold">
+                    <h1 class="text-xl opacity-80">Total Order</h1>
+                    <h5 class="text-2xl">{{ $totalOrders }}</h5>
                 </div>
             </div>
             <span class="w-full h-[1px] bg-dark-gray opacity-50"></span>
@@ -31,13 +33,15 @@
             {{-- orders --}}
             <div class="flex flex-col gap-2">
                 {{-- item --}}
-                <div class="p-3 flex-col gap-1 shadow-sm rounded-md">
-                    <a href="/" class="font-medium opacity-50">#12A23 - Pending</a>
-                    <div class="flex flex-row justify-between w-full font-semibold">
-                        <p>Detryalviano</p>
-                        <p>Rp600.000</p>
+                @foreach($orders as $order)
+                    <div class="p-3 flex-col gap-1 shadow-sm rounded-md">
+                        <a href="/" class="font-medium opacity-50"> - </a>
+                        <div class="flex flex-row justify-between w-full font-semibold">
+                            <p>{{ $order->users->full_name }}</p>
+                            <p>Rp{{ number_format($order->total_price, 0, ',', '.') }}</p>
+                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
