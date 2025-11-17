@@ -38,11 +38,10 @@
     {{--  jumbotron  --}}
     <div id="jumbotron" class="relative">
         <img src="{{ asset('/assets/ig_jumbotron.png') }}" alt="" class="w-full h-auto object-cover">
-        <div class="absolute inset-0 flex flex-col justify-center gap-2 px-16">
+        <div class="absolute inset-0 w-1/2 flex flex-col justify-center gap-2 px-16">
             <h1 class="text-3xl text-white drop-shadow-lg">Halo,</h1>
             <h1 class="text-6xl font-semibold text-white drop-shadow-lg">Mau Belanja Apa</h1>
-            <h1 class="text-7xl font-bold text-white drop-shadow-lg md:w-1/2 hover:text-vibrant-orange transition duration-200">
-                Alviano?</h1>
+            <h1 class="text-6xl font-bold text-white drop-shadow-lg md:w-1/2 hover:text-vibrant-orange transition duration-200">{{ $fullName }}</h1>
         </div>
     </div>
 
@@ -53,24 +52,23 @@
                 <h1 class="text-2xl font-semibold">Cari Berdasarkan Kategori</h1>
                 <a href="/categories" class="hover:opacity-60 transition duration-200">Lihat Semua Kategori</a>
             </div>
-            <div class="grid grid-cols-2 gap-x-6">
-                {{--  category card  --}}
-                <x-category-card
-                    imageUrl="/assets/placeholder.png"
-                    name="Badminton"
-                    products=10
-                />
-                <x-category-card
-                    imageUrl="/assets/placeholder.png"
-                    name="Badminton"
-                    products=10
-                />
-                <x-category-card
-                    imageUrl="/assets/placeholder.png"
-                    name="Badminton"
-                    products=10
-                />
-            </div>
+            @if(session('categoryEmpty'))
+                <div class="w-full flex flex-col items-center py-20">
+                    <h1 class="font-medium text-dark-gray opacity-80">{{ session('categoryEmpty') }}</h1>
+                </div>
+            @else
+                @foreach($categories as $category)
+                    <div class="grid grid-cols-2 gap-x-6">
+                        {{--  category card  --}}
+                        <x-category-card
+                            imageUrl="{{ $category->image_url }}"
+                            name="{{ $category->name }}"
+                            products={{ $category->products->count() }}
+                            slug="{{ $category->slug }}"
+                        />
+                    </div>
+                @endforeach
+            @endif
         </div>
 
         {{--  products  --}}
@@ -79,30 +77,25 @@
                 <h1 class="text-2xl font-semibold">Cek Produk Kami!</h1>
                 <a href="/products" class="hover:opacity-60 transition duration-200">Lihat Semua Produk</a>
             </div>
-            <div class="grid grid-cols-4 justify-between">
-                {{--  product card  --}}
-                <x-product-card
-                    imageUrl="/assets/placeholder.png"
-                    name="Raket Yonex"
-                    description="Raket Yonex terbaru yang sangat bagus"
-                    price=200000
-                    orders=125
-                />
-                <x-product-card
-                    imageUrl="/assets/placeholder.png"
-                    name="Raket Yonex"
-                    description="Raket Yonex terbaru yang sangat bagus"
-                    price=200000
-                    orders=125
-                />
-                <x-product-card
-                    imageUrl="/assets/placeholder.png"
-                    name="Raket Yonex"
-                    description="Raket Yonex terbaru yang sangat bagus"
-                    price=200000
-                    orders=125
-                />
-            </div>
+            @if(session('productEmpty'))
+                <div class="w-full flex flex-col items-center py-20">
+                    <h1 class="font-medium text-dark-gray opacity-80">{{ session('categoryEmpty') }}</h1>
+                </div>
+            @else
+                @foreach($products as $product)
+                    <div class="grid grid-cols-4 justify-between">
+                        {{--  product card  --}}
+                        <x-product-card
+                            imageUrl="{{ $product->image_url }}"
+                            name="{{ $product->name }}"
+                            description="{{ $product->description }}"
+                            price={{ $product->price }}
+                            orders=125
+                            slug="{{ $product->slug }}"
+                        />
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 

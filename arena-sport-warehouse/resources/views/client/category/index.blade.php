@@ -34,34 +34,24 @@
 </nav>
 
 {{-- categories --}}
-<main id="categories" class="px-20 py-16 grid grid-cols-2 gap-x-6">
-    {{--  category card  --}}
-    <x-category-card
-        imageUrl="/assets/placeholder.png"
-        name="Badminton"
-        products=10
-    />
-    <x-category-card
-        imageUrl="/assets/placeholder.png"
-        name="Badminton"
-        products=10
-    />
-    <x-category-card
-        imageUrl="/assets/placeholder.png"
-        name="Badminton"
-        products=10
-    />
-    <x-category-card
-        imageUrl="/assets/placeholder.png"
-        name="Badminton"
-        products=10
-    />
-    <x-category-card
-        imageUrl="/assets/placeholder.png"
-        name="Badminton"
-        products=10
-    />
-</main>
+@if(session('empty'))
+    <main id="empty" class="px-20 py-16 flex flex-col items-center">
+        <h1 class="font-medium text-dark-gray opacity-80">{{ session('empty') }}</h1>
+    </main>
+@else
+    @foreach($categories as $category)
+        <main id="categories" class="px-20 py-16 grid grid-cols-2 gap-x-6">
+            <h1 class="text-xl font-semibold">Jelajahi Semua Kategori yang Tersedia!</h1>
+            {{--  category card  --}}
+            <x-category-card
+                imageUrl="{{ $category->image_url }}"
+                name="{{ $category->name }}"
+                products={{ $category->products->count() }}
+                slug="{{ $category->slug }}"
+            />
+        </main>
+    @endforeach
+@endif
 
 {{-- footer --}}
 @include('partial.footer')

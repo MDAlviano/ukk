@@ -66,44 +66,25 @@
     </div>
 
     {{-- products --}}
-    <div id="products" class="grid grid-cols-4">
-        {{--  product card  --}}
-        <x-product-card
-            imageUrl="/assets/placeholder.png"
-            name="Raket Yonex"
-            description="Raket Yonex terbaru yang sangat bagus"
-            price=200000
-            orders=125
-        />
-        <x-product-card
-            imageUrl="/assets/placeholder.png"
-            name="Raket Yonex"
-            description="Raket Yonex terbaru yang sangat bagus"
-            price=200000
-            orders=125
-        />
-        <x-product-card
-            imageUrl="/assets/placeholder.png"
-            name="Raket Yonex"
-            description="Raket Yonex terbaru yang sangat bagus"
-            price=200000
-            orders=125
-        />
-        <x-product-card
-            imageUrl="/assets/placeholder.png"
-            name="Raket Yonex"
-            description="Raket Yonex terbaru yang sangat bagus"
-            price=200000
-            orders=125
-        />
-        <x-product-card
-            imageUrl="/assets/placeholder.png"
-            name="Raket Yonex"
-            description="Raket Yonex terbaru yang sangat bagus"
-            price=200000
-            orders=125
-        />
-    </div>
+    @if(session('empty'))
+        <div id="empty" class="px-20 py-16 flex flex-col items-center">
+            <h1 class="font-medium text-dark-gray opacity-80">{{ session('empty') }}</h1>
+        </div>
+    @else
+        @foreach($products as $product)
+            <div id="products" class="grid grid-cols-4 justify-between">
+                {{--  product card  --}}
+                <x-product-card
+                    imageUrl="{{ $product->image_url }}"
+                    name="{{ $product->name }}"
+                    description="{{ $product->description }}"
+                    price={{ $product->price }}
+                    orders=125
+                    slug="{{ $product->slug }}"
+                />
+            </div>
+        @endforeach
+    @endif
 </main>
 
 {{-- footer --}}

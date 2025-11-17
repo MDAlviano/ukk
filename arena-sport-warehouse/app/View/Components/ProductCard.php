@@ -13,6 +13,7 @@ class ProductCard extends Component
     public $description;
     public $price;
     public $orders;
+    public $slug;
 
     public function __construct(
         $imageUrl,
@@ -20,6 +21,7 @@ class ProductCard extends Component
         $description,
         $price,
         $orders,
+        $slug,
     )
     {
         $this->imageUrl = $imageUrl;
@@ -27,6 +29,7 @@ class ProductCard extends Component
         $this->description = $description;
         $this->price = $price;
         $this->orders = $orders;
+        $this->slug = $slug;
     }
 
     /**

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -11,9 +11,9 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Category::all();
+        $products = Category::all()->where('deleted_at', null);
 
-        return view('category.index', compact('products'));
+        return view('admin.category.index', compact('products'));
     }
 
     public function create(Request $request)
@@ -37,10 +37,10 @@ class CategoryController extends Controller
 
         $category = Category::create($data);
         $category->slug = Str::slug($category->name);
+        $category->created_at = now();
         $category->save();
 
-
-        return redirect()->route('category.index', with('success', 'Data berhasil ditambahkan'));
+        return redirect()->route('admin.category.index', with('success', 'Data berhasil ditambahkan'));
     }
 
     public function show($slug)
@@ -51,7 +51,9 @@ class CategoryController extends Controller
             return redirect()->route('category.index')->with('error', 'Data tidak ditemukan');
         }
 
-        return view('category.show', compact('category'));
+        $products = $category->products;
+
+        return view('admin.category.show', compact('products'));
     }
 
     public function update($slug, Request $request)
@@ -79,8 +81,10 @@ class CategoryController extends Controller
         }
 
         $category->update($data);
+        $category->updated_at = now();
+        $category->save();
 
-        return redirect()->route('category.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('admin.category.index')->with('success', 'Data berhasil diupdate');
     }
 
     public function delete($slug)
@@ -91,8 +95,9 @@ class CategoryController extends Controller
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
 
-        $category->delete();
+        $category->deleted_at = now();
+        $category->save();
 
-        return redirect()->route('category.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('admin.category.index')->with('success', 'Data berhasil dihapus');
     }
 }

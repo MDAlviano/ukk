@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -10,9 +11,9 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::all();
+        $products = Product::with('categories')->where('deleted_at', null)->get();
 
-        return view('product.index', compact('products'));
+        return view('admin.product.index', compact('products'));
     }
 
     public function create(Request $request)
@@ -41,20 +42,21 @@ class ProductController extends Controller
 
         $product = Product::create($data);
         $product->slug = Str::slug($product->name);
+        $product->created_at = time();
         $product->save();
 
-        return redirect()->route('product.index', with('success', 'Data berhasil ditambahkan'));
+        return redirect()->route('admin.product.index', with('success', 'Data berhasil ditambahkan'));
     }
 
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::where('slug', $slug)->with('categories')->first();
 
         if (!$product) {
             return redirect()->route('product.index')->with('error', 'Data tidak ditemukan');
         }
 
-        return view('product.show', compact('product'));
+        return view('admin.product.show', compact('product'));
     }
 
     public function update($slug, Request $request)
@@ -87,8 +89,9 @@ class ProductController extends Controller
         }
 
         $product->update($data);
+        $product->updated_at = time();
 
-        return redirect()->route('product.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('admin.product.index')->with('success', 'Data berhasil diupdate');
     }
 
     public function delete($slug)
@@ -99,8 +102,9 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
 
-        $product->delete();
+        $product->deleted_at = time();
+        $product->save();
 
-        return redirect()->route('product.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('admin.product.index')->with('success', 'Data berhasil dihapus');
     }
 }

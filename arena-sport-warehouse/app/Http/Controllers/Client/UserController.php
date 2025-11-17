@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function register(UserRegisterRequest $request) {
+    public function register(UserRegisterRequest $request)
+    {
         $data = $request->validated();
 
         if (User::where('email', $data['email'])->exists()) {
@@ -26,7 +30,8 @@ class UserController extends Controller
         return redirect()->route('login')->with('success', 'Berhasil mendaftar akun!');
     }
 
-    public function login(UserLoginRequest $request) {
+    public function login(UserLoginRequest $request)
+    {
         $data = $request->validated();
 
         $user = User::where('email', $data['email'])->first();
@@ -40,5 +45,18 @@ class UserController extends Controller
         } else {
             return redirect()->route('admin')->with('success', 'Berhasil login!');
         }
+    }
+
+    public function update(Request $request)
+    {
+        $data = $request->validate([
+            'full_name' => 'nullable',
+        ]);
+
+        $user = Auth::user();
+        $user->full_name = $data['full_name'];
+        $user->save();
+
+        return redirect()->route('profile')->with('success', 'Berhasil mengupdate profil!');
     }
 }

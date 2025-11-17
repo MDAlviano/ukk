@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Client\LandingPageController;
+use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Fallback route
@@ -9,7 +10,7 @@ Route::fallback(function () {
 })->name('fallback');
 
 // Landing Route
-Route::view('/', 'landing.index')->name('landing');
+Route::get('/', [LandingPageController::class, 'index'])->name('landing');
 
 // Auth Route
 Route::view('/login', 'auth.login')->name('login');

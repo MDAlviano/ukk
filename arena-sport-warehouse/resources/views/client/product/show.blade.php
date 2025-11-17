@@ -39,12 +39,12 @@
     <div class="flex flex-row gap-12 items-center">
         {{-- image --}}
         <div class="w-2/5 rounded-lg object-cover aspect-square overflow-hidden">
-            <img src="{{ asset('/assets/placeholder.png') }}" alt="img"
+            <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}"
                  class="size-full hover:scale-105 hover:opacity-85 transition duration-200 object-cover">
         </div>
         {{-- data --}}
         <div class="flex flex-col gap-5">
-            <h1 class="text-4xl font-bold">Raket Yonex</h1>
+            <h1 class="text-4xl font-bold">{{ $product->name }}</h1>
             <div class="flex flex-row gap-1 items-center">
                 <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
                 <p><span class="text-dark-gray font-semibold text-lg opacity-50">{{ number_format(125) }} orders</span>
@@ -52,31 +52,37 @@
             </div>
             <div class="flex flex-col">
                 <h1 class="font-semibold">Stok Tersedia:</h1>
-                <p class="text-3xl font-semibold">{{ number_format(10) }}</p>
+                <p class="text-3xl font-semibold">{{ $product->stock }}</p>
             </div>
             <div class="flex flex-col">
-                <h1 class="font-semibold">Stok Tersedia:</h1>
-                <p class="text-3xl font-semibold">Rp{{ number_format(200000) }}</p>
+                <h1 class="font-semibold">Harga:</h1>
+                <p class="text-3xl font-semibold">Rp{{ number_format($product->price) }}</p>
             </div>
-            <div class="flex flex-col gap-1.5">
-                <h1 class="font-semibold">Jumlah:</h1>
-                <input type="number" value="1" min="1" class="py-2 px-3 rounded-md outline-1 w-fit">
-            </div>
-            <div class="flex flex-row gap-3">
-                <button
-                    class="bg-vibrant-orange hover:opacity-90 hover:drop-shadow-sm transition duration-200 cursor-pointer flex flex-row items-center gap-3 text-white rounded-lg px-5 py-3 font-medium">
-                    <img src="{{ asset('/assets/ic_cart-white.svg') }}" alt="cart" class="size-5">
-                    Tambah ke Keranjang
-                </button>
-                <button
-                    class="bg-dark-gray hover:opacity-90 hover:drop-shadow-sm transition duration-200 cursor-pointer flex flex-row items-center gap-3 text-white rounded-lg px-5 py-3 font-medium">
-                    Beli Sekarang
-                </button>
-                <button
-                    class="bg-dark-gray hover:bg-pink-400 hover:drop-shadow-sm transition duration-200 cursor-pointer flex flex-row items-center gap-3 text-white rounded-lg p-3 font-medium">
-                    <img src="{{ asset('/assets/favourite-white.svg') }}" alt="cart" class="size-7">
-                </button>
-            </div>
+            <form method="POST" onsubmit="">
+                <div class="flex flex-col gap-1.5">
+                    <label for="quantity" class="font-semibold">Jumlah:</label>
+                    <input id="quantity" name="quantity" type="number" value="1" min="1"
+                           class="py-2 px-3 rounded-md outline-1 w-fit">
+                </div>
+                <div class="flex flex-row gap-3">
+                    <button type="submit"
+                            class="bg-vibrant-orange hover:opacity-90 hover:drop-shadow-sm transition duration-200 cursor-pointer flex flex-row items-center gap-3 text-white rounded-lg px-5 py-3 font-medium">
+                        <img src="{{ asset('/assets/ic_cart-white.svg') }}" alt="cart" class="size-5">
+                        Tambah ke Keranjang
+                    </button>
+                    <button type="submit"
+                            class="bg-dark-gray hover:opacity-90 hover:drop-shadow-sm transition duration-200 cursor-pointer flex flex-row items-center gap-3 text-white rounded-lg px-5 py-3 font-medium">
+                        Beli Sekarang
+                    </button>
+                    <form onsubmit="" method="POST">
+                        <button
+                            type="submit"
+                            class="bg-dark-gray hover:bg-pink-400 hover:drop-shadow-sm transition duration-200 cursor-pointer flex flex-row items-center gap-3 text-white rounded-lg p-3 font-medium">
+                            <img src="{{ asset('/assets/favourite-white.svg') }}" alt="cart" class="size-7">
+                        </button>
+                    </form>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -84,46 +90,25 @@
     <div class="flex flex-col gap-2">
         <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
         <h1 class="font-semibold text-xl mb-4">Deskripsi</h1>
-        <p class="text-lg">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cilium
-            dolore eu fugiat nulla pariatur.</p>
+        <p class="text-lg">{{ $product->description }}</p>
     </div>
 
     {{-- reccomendation products --}}
     <div class="flex flex-col gap-2 mb-10">
         <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
         <h1 class="font-semibold text-xl mb-4">Rekomendasi Produk Lainnya!</h1>
-        <div id="products" class="grid grid-cols-4">
-            {{--  product card  --}}
-            <x-product-card
-                imageUrl="/assets/placeholder.png"
-                name="Raket Yonex"
-                description="Raket Yonex terbaru yang sangat bagus"
-                price=200000
-                orders=125
-            />
-            <x-product-card
-                imageUrl="/assets/placeholder.png"
-                name="Raket Yonex"
-                description="Raket Yonex terbaru yang sangat bagus"
-                price=200000
-                orders=125
-            />
-            <x-product-card
-                imageUrl="/assets/placeholder.png"
-                name="Raket Yonex"
-                description="Raket Yonex terbaru yang sangat bagus"
-                price=200000
-                orders=125
-            />
-            <x-product-card
-                imageUrl="/assets/placeholder.png"
-                name="Raket Yonex"
-                description="Raket Yonex terbaru yang sangat bagus"
-                price=200000
-                orders=125
-            />
+        <div id="products" class="grid grid-cols-4 justify-between">
+            @foreach($products as $product)
+                {{--  product card  --}}
+                <x-product-card
+                    imageUrl="{{ $product->image_url }}"
+                    name="{{ $product->name }}"
+                    description="{{ $product->description }}"
+                    price={{ $product->price }}
+                    orders=125
+                    slug="{{ $product->slug }}"
+                />
+            @endforeach
         </div>
     </div>
 

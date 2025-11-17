@@ -1,5 +1,5 @@
 <div class="relative hover:shadow-lg mb-6 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
-    <a href="/products/slug" class="flex flex-col justify-center items-start">
+    <a href="/products/{{ $slug }}" class="flex flex-col justify-center items-start">
         <div class="relative flex justify-end overflow-hidden">
             <img src="{{ asset($imageUrl) }}" alt="Raket Yonex terbaru" class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-105">
         </div>

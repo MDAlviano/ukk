@@ -43,30 +43,24 @@
 {{-- products --}}
 <div id="products" class="mt-12 flex flex-col mx-20 gap-6 items-center">
     <h1 class="font-semibold text-4xl">Produk Unggulan Kami</h1>
-    <div class="grid grid-cols-4 gap-20">
-        {{--  product card  --}}
-        <x-home-product-card
-            imageUrl="/assets/placeholder.png"
-            name="Raket Yonex"
-            description="Raket Yonex terbaru yang sangat bagus"
-            price=200000
-            orders=125
-        />
-        <x-home-product-card
-            imageUrl="/assets/placeholder.png"
-            name="Raket Yonex"
-            description="Raket Yonex terbaru yang sangat bagus"
-            price=200000
-            orders=125
-        />
-        <x-home-product-card
-            imageUrl="/assets/placeholder.png"
-            name="Raket Yonex"
-            description="Raket Yonex terbaru yang sangat bagus"
-            price=200000
-            orders=125
-        />
-    </div>
+    @if(session('empty'))
+        <div class="w-full flex flex-col items-center py-20">
+            <h1 class="font-medium text-dark-gray opacity-80">{{ session('empty') }}</h1>
+        </div>
+    @else
+        @foreach($products as $product)
+            <div class="grid grid-cols-4 gap-20">
+                {{--  product card  --}}
+                <x-home-product-card
+                    imageUrl="{{ $product->image_url }}"
+                    name="{{ $product->name }}"
+                    description="{{ $product->description }}"
+                    price={{ $product->price }}
+                    orders=125
+                />
+            </div>
+        @endforeach
+    @endif
 </div>
 
 {{--  services  --}}

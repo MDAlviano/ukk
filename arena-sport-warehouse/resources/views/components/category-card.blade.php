@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <a href="/categories/slug" class="hover:opacity-80 transition duration-200">
+        <a href="/categories/{{ $slug }}" class="hover:opacity-80 transition duration-200">
             <div class="flex flex-row gap-2 items-center">
                 <h1 class="text-xl">Jelajahi</h1>
                 <img src="{{ asset('/assets/ic_chevron-right.svg') }}" alt="explore" class="size-7">
