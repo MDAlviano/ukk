@@ -7,7 +7,7 @@
     <title>My Profile</title>
 </head>
 <body class="flex min-h-screen">
-<!-- Sidebar -->
+{{-- sidebar --}}
 <aside class="w-64 shadow-lg flex flex-col justify-between">
     <div>
         <a href="/" class="flex flex-row gap-2 px-6 pt-6 hover:opacity-80 transition duration-200">
@@ -15,7 +15,7 @@
             <h5 class="text-lg font-medium">Back</h5>
         </a>
         <div class="p-6 flex flex-row items-center gap-3">
-            <img src="{{ asset('assets/placeholder.png') }}" alt="plachholder" class="rounded-full size-16">
+            <img src="{{ asset('assets/ig_user.png') }}" alt="plachholder" class="rounded-full size-16">
             <div class="flex flex-col">
                 <h2 class="font-semibold text-xl">Alviano</h2>
                 <h3 class="font-semibold">alvin@gmail.com</h3>
@@ -47,7 +47,7 @@
     </div>
 </aside>
 
-<!-- Main content -->
+{{-- main content --}}
 <main class="flex-1">
     @yield('content')
 </main>

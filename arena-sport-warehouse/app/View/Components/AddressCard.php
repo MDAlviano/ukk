@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class AddressCard extends Component
 {
+    public $recipientName;
     public $address;
     public $city;
     public $province;
@@ -16,6 +17,7 @@ class AddressCard extends Component
     public $additionalInfo;
 
     public function __construct(
+        $recipientName,
         $address,
         $city,
         $province,
@@ -24,6 +26,7 @@ class AddressCard extends Component
         $additionalInfo,
     )
     {
+        $this->recipientName = $recipientName;
         $this->address = $address;
         $this->city = $city;
         $this->province = $province;

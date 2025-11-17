@@ -47,7 +47,7 @@
         </div>
         <div class="w-2/5 h-fit outline-2 py-3 px-4 rounded-md flex flex-col gap-4">
             <h4>Image</h4>
-            <input type="image" src="{{ asset('/assets/ic_baseline-plus.svg') }}" alt="Input Image Product"
+            <input type="image" src="{{ asset('/assets/ic_upload.svg') }}" alt="Input Image Product"
                    class="outline-2 py-2 px-4 rounded-md h-24 mb-2">
         </div>
     </form>

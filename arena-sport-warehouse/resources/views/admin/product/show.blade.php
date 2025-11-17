@@ -26,28 +26,12 @@
                         <li>Harga : Rp{{ number_format(200000) }}</li>
                         <li>Stok : {{ number_format(10) }}</li>
                         <li>Terjual : {{ number_format(128) }}</li>
-                        <li>Rating : {{ number_format(4.6) }} / 5.0</li>
                     </ul>
                 </div>
             </div>
 
             {{-- product image --}}
             <img src="{{ asset('/assets/placeholder.png') }}" alt="product image" class="w-full h-96 object-cover">
-        </div>
-
-        <span class="w-full h-[1px] bg-[#DCDCDC]"></span>
-
-        <div class="flex flex-col gap-4">
-            <h1 class="text-xl font-semibold">Reviews</h1>
-            {{-- item --}}
-            <div class="flex flex-col py-3 px-5 rounded-xl gap-2 border-[1px]">
-                <h1 class="font-semibold">Muhammad Hanif - <span class="text-[#FFB700]">4.5 / 5.0</span></h1>
-                <p class="font-medium">13 November 2025</p>
-                <p class="opacity-70">Product nya bagus sekali, aku suka banget. Makanya aku kasih rating 4,5 dari 5.
-                    Pas aku bawa buat main badminton bareng temen-temenku di atas rel kereta, enak banget rasanya. Kayak
-                    powerful banget gitu lho. Temen-temenku sampe pada nanya beli dimana, yaudah deh kusaranin buat beli
-                    di Toko Arena lewat web ini, gituuu. Jos deh mantep pokoknya!</p>
-            </div>
         </div>
     </div>
 @endsection

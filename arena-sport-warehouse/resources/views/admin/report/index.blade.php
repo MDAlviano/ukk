@@ -10,18 +10,14 @@
         <div class="w-fit rounded-lg p-8 flex flex-col gap-4 shadow-md">
             <div class="flex flex-row gap-2">
                 <img src="{{ asset('/assets/Calendar.svg') }}" alt="calendar">
-                <h1 class="text-2xl font-semibold">Today</h1>
+                <h1 class="text-2xl font-semibold">Hari ini</h1>
             </div>
-            <p class="opacity-75">Here are the details of today revenue & orders.</p>
+            <p class="opacity-75">Ini adalah total pemasukan dan beberapa pesanan di hari ini.</p>
             <span class="w-full h-[1px] bg-dark-gray opacity-50"></span>
             {{-- total revenue --}}
-            <div class="flex flex-row gap-4">
-                <img src="{{ asset('/assets/Dollar.svg') }}" alt="dollar"
-                     class="bg-vibrant-orange p-3 rounded-full">
-                <div class="flex flex-col font-semibold">
-                    <h1 class="text-xl opacity-80">Total Revenue</h1>
-                    <h5 class="text-2xl">Rp 1.200.000</h5>
-                </div>
+            <div class="flex flex-col font-semibold">
+                <h1 class="text-xl opacity-80">Total Pemasukan</h1>
+                <h5 class="text-2xl">Rp 1.200.000</h5>
             </div>
             <span class="w-full h-[1px] bg-dark-gray opacity-50"></span>
             <h1 class="text-2xl font-semibold">Orders</h1>
@@ -44,31 +40,25 @@
                 <select name="" id="" class="w-1/3 text-2xl font-semibold">
                     <option value="">September</option>
                 </select>
-                <p class="opacity-75">Here are the details of this month revenue & orders.</p>
+                <p class="opacity-75">Total penjualan pada bulan terpilih.</p>
                 <span class="w-full h-[1px] bg-dark-gray opacity-50"></span>
                 {{-- total revenue --}}
-                <div class="flex flex-row gap-2">
-                    <img src="{{ asset('/assets/Dollar.svg') }}" alt="dollar"
-                         class="bg-vibrant-orange p-3 rounded-full">
-                    <div class="flex flex-col font-semibold">
-                        <h1 class="text-xl opacity-80">Total Revenue</h1>
-                        <h5 class="text-2xl">Rp 1.200.000</h5>
-                    </div>
+                <div class="flex flex-col font-semibold">
+                    <h1 class="text-xl opacity-80">Total Revenue</h1>
+                    <h5 class="text-2xl">Rp 1.200.000</h5>
                 </div>
                 {{-- total orders --}}
-                <div class="flex flex-row gap-2">
-                    <img src="{{ asset('/assets/shopping-cart-white.svg') }}" alt="dollar"
-                         class="bg-vibrant-orange p-3 rounded-full">
-                    <div class="flex flex-col font-semibold">
-                        <h1 class="text-xl opacity-80">Total Orders</h1>
-                        <h5 class="text-2xl">150</h5>
-                    </div>
+                <div class="flex flex-col font-semibold">
+                    <h1 class="text-xl opacity-80">Total Orders</h1>
+                    <h5 class="text-2xl">150</h5>
                 </div>
             </div>
             <div class="rounded-lg p-8 flex flex-col gap-4 shadow-md">
                 <h1 class="text-2xl font-semibold">Export to CSV</h1>
-                <button class="w-full py-2 rounded-lg bg-vibrant-orange text-white font-medium text-center hover:opacity-80 transition duration-200">Export Today Report to CSV</button>
-                <button class="w-full py-2 rounded-lg bg-vibrant-orange text-white font-medium text-center hover:opacity-80 transition duration-200">Export Selected Month Report to CSV</button>
+                <button
+                    class="w-full py-2 rounded-lg bg-vibrant-orange text-white font-medium text-center hover:opacity-80 transition duration-200">
+                    Export Selected Month Report to CSV
+                </button>
             </div>
         </div>
     </div>

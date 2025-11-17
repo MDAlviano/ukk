@@ -8,7 +8,9 @@
 </head>
 <body>
 <header class="px-8 py-5 bg-white drop-shadow-lg drop-shadow-[#00000028]">
-    <a href="/" class="font-bold text-2xl text-vibrant-orange">Arena Sport Warehouse</a>
+    <a href="/home" class="w-32 -ml-8">
+        <img src="{{ asset('/assets/ic_logo.svg') }}" alt="logo">
+    </a>
 </header>
 
 <div class="flex flex-col gap-6 m-12">
@@ -83,7 +85,13 @@
             <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
                 <div class="flex flex-row justify-between">
                     <h1 class="font-semibold text-lg">Address</h1>
-                    <a href="/"><img src="{{ asset('/assets/edit.svg') }}" alt=""></a>
+                    <select name="" id="" class="flex flex-row gap-4 pl-3 pr-5 py-2 rounded-md outline-1">
+                        <option value="">Jl. Pandanaran</option>
+                    </select>
+                </div>
+                <div class="flex flex-row w-full justify-between">
+                    <h4>Recipient Name</h4>
+                    <p>{name}</p>
                 </div>
                 <div class="flex flex-row w-full justify-between">
                     <h4>Address</h4>

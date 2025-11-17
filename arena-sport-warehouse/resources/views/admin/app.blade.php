@@ -7,11 +7,13 @@
     <title>Arena Sport Warehouse | Admin Panel</title>
 </head>
 <body class="flex min-h-screen">
-<!-- Sidebar -->
+{{-- sidebar --}}
 <aside class="w-64 bg-dark-gray shadow-md flex flex-col justify-between">
     <div>
         <div class="p-6 text-center">
-            <a href="/admin" class="font-semibold text-white text-xl">Arena Sport Warehouse</a>
+            <a href="/admin" class="-ml-8 w-32">
+                <img src="{{ '/assets/ic_logo.svg' }}" alt="logo">
+            </a>
         </div>
         <hr class="w-5/6 mx-auto text-white">
         <nav class="flex flex-col p-4 space-y-2 text-lg">
@@ -53,7 +55,7 @@
     </div>
 </aside>
 
-<!-- Main content -->
+{{-- main content --}}
 <main class="flex-1">
     @yield('content')
 </main>
