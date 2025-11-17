@@ -14,6 +14,7 @@ class Product extends Model
     public $timestamps = true;
     public $incrementing = true;
     protected $fillable = [
+        'unique_id',
         'name',
         'price',
         'image_url',

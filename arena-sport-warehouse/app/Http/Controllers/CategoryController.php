@@ -2,29 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::all();
+        $products = Category::all();
 
-        return view('product.index', compact('products'));
+        return view('category.index', compact('products'));
     }
 
     public function create(Request $request)
     {
         $data = $request->validate([
-            'unique_id' => 'required',
             'name' => 'required',
-            'price' => 'required',
             'image' => 'required|file',
-            'category_id' => 'required',
-            'description' => 'required',
-            'stock' => 'required',
         ]);
 
         // Upload image to storage
@@ -35,32 +31,28 @@ class ProductController extends Controller
             $fileName = Str::slug($request->name) . '-' . time() . '.' . $image->getClientOriginalExtension();
 
             // Storing image and uri
-            $path = $image->storeAs('images/products', $fileName, 'public');
+            $path = $image->storeAs('images/categories', $fileName, 'public');
             $data['image'] = $path;
         }
 
-        $product = Product::create($data);
-        $product->slug = Str::slug($product->name);
-        $product->save();
+        $category = Category::create($data);
+        $category->slug = Str::slug($category->name);
+        $category->save();
 
-        return redirect()->route('product.index', with('success', 'Data berhasil ditambahkan'));
+
+        return redirect()->route('category.index', with('success', 'Data berhasil ditambahkan'));
     }
 
     public function update($slug, Request $request)
     {
         $data = $request->validate([
-            'unique_id' => 'nullable',
             'name' => 'nullable',
-            'price' => 'nullable',
             'image' => 'nullable|file',
-            'category_id' => 'nullable',
-            'description' => 'nullable',
-            'stock' => 'nullable',
         ]);
 
-        $product = Product::where('slug', $slug)->first();
+        $category = Category::where('slug', $slug)->first();
 
-        if (!$product) {
+        if (!$category) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
 
@@ -71,25 +63,25 @@ class ProductController extends Controller
             $fileName = Str::slug($request->name) . '-' . time() . '.' . $image->getClientOriginalExtension();
 
             // Storing image and uri
-            $path = $image->storeAs('images/products', $fileName, 'public');
+            $path = $image->storeAs('images/categories', $fileName, 'public');
             $data['image'] = $path;
         }
 
-        $product->update($data);
+        $category->update($data);
 
-        return redirect()->route('product.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('category.index')->with('success', 'Data berhasil diupdate');
     }
 
     public function delete($slug)
     {
-        $product = Product::where('slug', $slug)->first();
+        $category = Category::where('slug', $slug)->first();
 
-        if (!$product) {
+        if (!$category) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
 
-        $product->delete();
+        $category->delete();
 
-        return redirect()->route('product.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('category.index')->with('success', 'Data berhasil dihapus');
     }
 }
