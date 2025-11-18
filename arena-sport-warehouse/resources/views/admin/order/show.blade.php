@@ -76,6 +76,10 @@
                 <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
                     <h1 class="font-semibold text-lg">Address</h1>
                     <div class="flex flex-row w-full justify-between">
+                        <h4>Recipient Name</h4>
+                        <p>{name}</p>
+                    </div>
+                    <div class="flex flex-row w-full justify-between">
                         <h4>Address</h4>
                         <p>{address}</p>
                     </div>

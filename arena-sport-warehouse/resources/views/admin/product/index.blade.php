@@ -43,7 +43,7 @@
             <h5 class="ml-62">Category</h5>
             <h5 class="ml-16">Price</h5>
             <h5 class="ml-16">Stock</h5>
-            <h5 class="ml-8">Rating</h5>
+            <h5 class="ml-8">Orders</h5>
             <h5 class="ml-18">Action</h5>
         </div>
         {{-- item --}}
@@ -55,8 +55,7 @@
             category="Badminton"
             price=200000
             quantity=10
-            rating=4.2
-            reviews=182
+            orders=182
         />
         <x-admin-product-card
             uniqueId="#A1234"
@@ -66,8 +65,7 @@
             category="Badminton"
             price=200000
             quantity=10
-            rating=4.2
-            reviews=182
+            orders=182
         />
     </div>
 @endsection

@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
-    <title>Register</title>
+    <title>Register | Arena Sport Warehouse</title>
 </head>
 <body>
     <div class="flex flex-row justify-between m-12 gap-14">
         <div class="w-full">
-            <a href="/" class="font-bold text-vibrant-orange mt-5">Arena Sport Warehouse</a>
+            <a href="/" class="font-bold text-vibrant-orange mt-5"><img src="{{ asset('/assets/ic_icon.svg') }}" alt="icon" class="w-32 -ml-7"></a>
             <h1 class="text-4xl font-bold text-dark-gray mt-16">Selamat Datang!</h1>
             <p class="text-gray-400 w-2/3 mt-3">Arena sport warehouse akan menjadi tempat favorit kamu untuk belanja alat-alat olahraga</p>
 

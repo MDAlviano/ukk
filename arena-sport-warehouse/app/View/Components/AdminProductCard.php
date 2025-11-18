@@ -15,8 +15,7 @@ class AdminProductCard extends Component
     public $category;
     public $price;
     public $quantity;
-    public $rating;
-    public $reviews;
+    public $orders;
 
     public function __construct(
         $imageUrl,
@@ -26,8 +25,7 @@ class AdminProductCard extends Component
         $category,
         $price,
         $quantity,
-        $rating,
-        $reviews,
+        $orders,
     )
     {
         $this->imageUrl = $imageUrl;
@@ -37,8 +35,7 @@ class AdminProductCard extends Component
         $this->category = $category;
         $this->price = $price;
         $this->quantity = $quantity;
-        $this->rating = $rating;
-        $this->reviews = $reviews;
+        $this->orders = $orders;
     }
 
     /**

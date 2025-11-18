@@ -35,7 +35,7 @@
                 {{-- item --}}
                 @foreach($orders as $order)
                     <div class="p-3 flex-col gap-1 shadow-sm rounded-md">
-                        <a href="/" class="font-medium opacity-50"> - </a>
+                        <a href="/" class="font-medium opacity-50">{{ $order->order_number }} - {{ $order->status }}</a>
                         <div class="flex flex-row justify-between w-full font-semibold">
                             <p>{{ $order->users->full_name }}</p>
                             <p>Rp{{ number_format($order->total_price, 0, ',', '.') }}</p>
