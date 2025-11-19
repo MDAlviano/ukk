@@ -5,7 +5,6 @@
         <h1 class="font-semibold hover:underline"><a href="/admin/products/slug">{{ $title }}</a></h1>
         <h5 class="text-sm text-[#B6B6B6] font-normal truncate max-w-64">{{ $description }}</h5>
     </div>
-    <h5 class="h-fit text-white font-medium bg-vibrant-orange px-3 py-2 text-sm rounded-md my-auto">{{ $category }}</h5>
     <h5 class="my-auto">Rp {{ number_format($price) }}</h5>
     <h5 class="my-auto">{{ number_format($quantity) }}</h5>
     <h5 class="my-auto">{{ $orders }}</h5>

@@ -34,38 +34,41 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-2">
-            <div
-                class="w-full h-fit flex flex-row bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm py-4 px-8 gap-3 text-[#B6B6B6]">
-                <h5>Image</h5>
-                <h5 class="ml-12">Name</h5>
-                <h5 class="ml-72">Price</h5>
-                <h5 class="ml-24">Stock</h5>
-                <h5 class="ml-18">Rating</h5>
-                <h5 class="ml-32">Action</h5>
-            </div>
-            {{-- item --}}
-            <x-admin-product-card
-                uniqueId="#A1234"
-                imageUrl="/assets/placeholder.png"
-                title="Yonex Racket 2247 C-Tier Series"
-                description="This is Yonex Racket 2247 C-Tier Series is the good racket in badminton"
-                category="Badminton"
-                price=200000
-                quantity=10
-                orders=182
-            />
-            <x-admin-product-card
-                uniqueId="#A1234"
-                imageUrl="/assets/placeholder.png"
-                title="Yonex Racket 2247 C-Tier Series"
-                description="This is Yonex Racket 2247 C-Tier Series is the good racket in badminton"
-                category="Badminton"
-                price=200000
-                quantity=10
-                orders=182
-            />
-        </div>
+        <table class="w-full table-fixed border-collapse">
+            <thead>
+            <tr class="bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm text-[#B6B6B6]">
+                <th class="py-4 px-8 text-left">Image</th>
+                <th class="py-4 px-8 text-left">Name</th>
+                <th class="py-4 px-8 text-left">Price</th>
+                <th class="py-4 px-8 text-left">Stock</th>
+                <th class="py-4 px-8 text-left">Orders</th>
+                <th class="py-4 px-8 text-left">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-white rounded-lg drop-shadow-lg">
+                <td class="py-4 px-8 align-middle">
+                    <img src="{{ asset($imageUrl) }}" alt="product image" class="w-20 rounded-md object-cover">
+                </td>
+                <td class="py-4 px-8 align-middle">
+                    <div class="flex flex-col gap-1">
+                        <h1 class="font-semibold">{{ $uniqueId }}</h1>
+                        <h1 class="font-semibold hover:underline"><a href="/admin/products/slug">{{ $title }}</a></h1>
+                        <h5 class="text-sm text-[#B6B6B6] truncate max-w-64">{{ $description }}</h5>
+                    </div>
+                </td>
+                <td class="py-4 px-8 align-middle">Rp {{ number_format($price) }}</td>
+                <td class="py-4 px-8 align-middle">{{ $stock }}</td>
+                <td class="py-4 px-8 align-middle">{{ $orders }}</td>
+                <td class="py-4 px-8 align-middle">
+                    <div class="flex gap-3">
+                        <a href="/admin/products/update" class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Edit</a>
+                        <a href="" class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
     </div>
 @endsection

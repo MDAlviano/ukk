@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
     protected $table = "users";
     protected $primaryKey = "id";
@@ -19,6 +19,16 @@ class User extends Model
         'role'
     ];
 
+    protected $hidden = [
+        'password_hash',
+        'remember_token',
+    ];
+
+    public function getAuthPassword()
+    {
+        return $this->password_hash;
+    }
+
     public function addresses(): HasMany {
         return $this->hasMany(Address::class, 'user_id', 'id');
     }
@@ -26,5 +36,4 @@ class User extends Model
     public function favorites(): HasMany {
         return $this->hasMany(Favorite::class, 'user_id', 'id');
     }
-
 }

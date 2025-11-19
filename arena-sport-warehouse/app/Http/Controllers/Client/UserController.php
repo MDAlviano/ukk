@@ -27,24 +27,38 @@ class UserController extends Controller
             'role' => 'user'
         ]);
 
-        return redirect()->route('login')->with('success', 'Berhasil mendaftar akun!');
+        return redirect()->route('login')->with('success', 'Berhasil mendaftar! Silakan login.');
     }
 
     public function login(UserLoginRequest $request)
     {
-        $data = $request->validated();
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
 
-        $user = User::where('email', $data['email'])->first();
+        if (Auth::attempt($credentials, $request->filled('remember'))) {
+            $request->session()->regenerate();
 
-        if (!$user || !Hash::check($data['password'], $user->password_hash)) {
-            return redirect()->back()->with('error', 'Email atau password salah!');
+            $user = Auth::user();
+
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard')->with('success', 'Selamat datang, Admin!');
+            }
+
+            return redirect()->route('profile')->with('success', 'Login berhasil!');
         }
 
-        if ($user->role == 'user') {
-            return redirect()->route('profile')->with('success', 'Berhasil login!');
-        } else {
-            return redirect()->route('admin')->with('success', 'Berhasil login!');
-        }
+        return back()->with('error', 'Email atau password salah!');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('landing')->with('success', 'Berhasil logout!');
     }
 
     public function update(Request $request)
