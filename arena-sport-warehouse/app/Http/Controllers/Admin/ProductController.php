@@ -42,7 +42,7 @@ class ProductController extends Controller
 
         $product = Product::create($data);
         $product->slug = Str::slug($product->name);
-        $product->created_at = time();
+        $product->created_at = now();
         $product->save();
 
         return redirect()->route('admin.product.index', with('success', 'Data berhasil ditambahkan'));
@@ -89,7 +89,7 @@ class ProductController extends Controller
         }
 
         $product->update($data);
-        $product->updated_at = time();
+        $product->updated_at = now();
 
         return redirect()->route('admin.product.index')->with('success', 'Data berhasil diupdate');
     }
@@ -102,7 +102,7 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
 
-        $product->deleted_at = time();
+        $product->deleted_at = now();
         $product->save();
 
         return redirect()->route('admin.product.index')->with('success', 'Data berhasil dihapus');

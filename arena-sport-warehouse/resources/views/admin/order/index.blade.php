@@ -13,9 +13,6 @@
                 <input type="date" class="outline-none focus:outline-none">
             </div>
             <select name="" id="" class="flex flex-row gap-4 pl-3 pr-8 py-2 rounded-md outline-1">
-                <option value="">Category</option>
-            </select>
-            <select name="" id="" class="flex flex-row gap-4 pl-3 pr-8 py-2 rounded-md outline-1">
                 <option value="">Status</option>
             </select>
         </div>
@@ -23,24 +20,17 @@
         {{-- list orders --}}
         <div class="flex flex-col gap-4">
             {{-- order item --}}
-            <x-admin-order-card
-                id="#A1234"
-                date="07 Nov"
-                time="11:09"
-                name="John Doe"
-                email="johndoe@gmail.com"
-                price=150000
-                status="Pending"
-            />
-            <x-admin-order-card
-                id="#A1234"
-                date="07 Nov"
-                time="11:09"
-                name="John Doe"
-                email="johndoe@gmail.com"
-                price=150000
-                status="Pending"
-            />
+            @foreach($orders as $order)
+                <x-admin-order-card
+                    id="{{ $order->order_number }}"
+                    date="{{ $order->created_at }}"
+                    time="{{ $order->created_at }}"
+                    name="{{ $order->users->full_name }}"
+                    email="{{ $order->users->email }}"
+                    price="{{ $order->total_price }}"
+                    status="{{ $order->status }}"
+                />
+            @endforeach
         </div>
     </div>
 

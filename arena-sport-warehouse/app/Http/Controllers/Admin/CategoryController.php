@@ -11,9 +11,9 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Category::all()->where('deleted_at', null);
+        $categories = Category::all()->where('deleted_at', null);
 
-        return view('admin.category.index', compact('products'));
+        return view('admin.category.index', compact('categories'));
     }
 
     public function create(Request $request)

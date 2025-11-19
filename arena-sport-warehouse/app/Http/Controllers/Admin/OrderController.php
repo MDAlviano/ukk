@@ -46,7 +46,7 @@ class OrderController extends Controller
         }
 
         $order->status = $data['status'];
-        $order->updated_at = time();
+        $order->updated_at = now();
         $order->save();
 
         return redirect()->route('admin.order.index')->with('success', 'Data berhasil diupdate');

@@ -14,8 +14,6 @@ class CartCard extends Component
     public $category;
     public $price;
     public $quantity;
-    public $rating;
-    public $reviews;
 
     public function __construct(
         $imageUrl,
@@ -24,8 +22,6 @@ class CartCard extends Component
         $category,
         $price,
         $quantity,
-        $rating,
-        $reviews,
     )
     {
         $this->imageUrl = $imageUrl;
@@ -34,8 +30,6 @@ class CartCard extends Component
         $this->category = $category;
         $this->price = $price;
         $this->quantity = $quantity;
-        $this->rating = $rating;
-        $this->reviews = $reviews;
     }
 
     /**

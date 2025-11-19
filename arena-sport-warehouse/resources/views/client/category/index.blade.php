@@ -39,9 +39,9 @@
         <h1 class="font-medium text-dark-gray opacity-80">{{ session('empty') }}</h1>
     </main>
 @else
-    @foreach($categories as $category)
-        <main id="categories" class="px-20 py-16 grid grid-cols-2 gap-x-6">
-            <h1 class="text-xl font-semibold">Jelajahi Semua Kategori yang Tersedia!</h1>
+    <main id="categories" class="px-20 py-16 grid grid-cols-2 gap-x-6">
+        <h1 class="text-xl font-semibold">Jelajahi Semua Kategori yang Tersedia!</h1>
+        @foreach($categories as $category)
             {{--  category card  --}}
             <x-category-card
                 imageUrl="{{ $category->image_url }}"
@@ -49,8 +49,8 @@
                 products={{ $category->products->count() }}
                 slug="{{ $category->slug }}"
             />
-        </main>
-    @endforeach
+        @endforeach
+    </main>
 @endif
 
 {{-- footer --}}

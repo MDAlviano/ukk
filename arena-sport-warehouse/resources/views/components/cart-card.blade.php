@@ -7,7 +7,6 @@
     <h5 class="h-fit text-white font-medium bg-vibrant-orange px-3 py-2 text-sm rounded-md my-auto">{{ $category }}</h5>
     <h5 class="my-auto">Rp {{ number_format($price) }}</h5>
     <h5 class="my-auto">{{ number_format($quantity) }}</h5>
-    <h5 class="my-auto">{{ $rating }} ({{ $reviews }})</h5>
     <div class="flex flex-row w-fit h-fit gap-3 my-auto">
         <a href="/admin/products/update"
            class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Remove</a>

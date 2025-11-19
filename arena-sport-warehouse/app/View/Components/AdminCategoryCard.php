@@ -11,16 +11,19 @@ class AdminCategoryCard extends Component
     public $imageUrl;
     public $title;
     public $products;
+    public $slug;
 
     public function __construct(
         $imageUrl,
         $title,
         $products,
+        $slug,
     )
     {
         $this->imageUrl = $imageUrl;
         $this->title = $title;
         $this->products = $products;
+        $this->slug = $slug;
     }
 
     /**

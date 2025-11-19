@@ -16,7 +16,8 @@
     <a href="#about" class="hover:underline">Tentang Kami</a>
     <a href="#products" class="hover:underline">Produk Kami</a>
     <a href="#services" class="hover:underline">Layanan</a>
-    <a href="/login" class="bg-vibrant-orange px-4 py-2 items-center rounded-md text-white font-medium hover:opacity-90 transition duration-200">Login</a>
+    <a href="/login"
+       class="bg-vibrant-orange px-4 py-2 items-center rounded-md text-white font-medium hover:opacity-90 transition duration-200">Login</a>
 </nav>
 
 {{-- jumbotron --}}
@@ -33,7 +34,8 @@
 {{-- about us --}}
 <div id="about" class="mt-8 flex flex-col mx-20 gap-6 items-center">
     <h1 class="font-semibold text-4xl">Tentang Kami</h1>
-    <p class="text-xl text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+    <p class="text-xl text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+        incididunt ut
         labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cilium dolore eu fugiat nulla
@@ -48,8 +50,8 @@
             <h1 class="font-medium text-dark-gray opacity-80">{{ session('empty') }}</h1>
         </div>
     @else
-        @foreach($products as $product)
-            <div class="grid grid-cols-4 gap-20">
+        <div class="grid grid-cols-4 gap-20">
+            @foreach($products as $product)
                 {{--  product card  --}}
                 <x-home-product-card
                     imageUrl="{{ $product->image_url }}"
@@ -58,8 +60,8 @@
                     price={{ $product->price }}
                     orders=125
                 />
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     @endif
 </div>
 

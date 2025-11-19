@@ -15,7 +15,7 @@ class AddressController extends Controller
 
         $addresses = Address::all()->where('deleted_at', null)->where('user_id', $user->id);
 
-        return view('client.profile.index', compact('addresses'));
+        return view('client.profile.index', compact(['user', 'addresses']));
     }
 
     public function create(Request $request)

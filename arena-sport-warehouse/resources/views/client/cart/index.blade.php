@@ -28,7 +28,7 @@
                 <h5 class="ml-62">Category</h5>
                 <h5 class="ml-16">Price</h5>
                 <h5 class="ml-16">Stock</h5>
-                <h5 class="ml-8">Rating</h5>
+                <h5 class="ml-16">Quantity</h5>
                 <h5 class="ml-18">Action</h5>
             </div>
             {{-- item --}}
@@ -39,8 +39,6 @@
                 category="Badminton"
                 price=200000
                 quantity=10
-                rating=4.2
-                reviews=182
             />
             <x-cart-card
                 imageUrl="/assets/placeholder.png"
@@ -49,8 +47,6 @@
                 category="Badminton"
                 price=200000
                 quantity=10
-                rating=4.2
-                reviews=182
             />
         </div>
     </div>

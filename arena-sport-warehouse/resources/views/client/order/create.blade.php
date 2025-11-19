@@ -122,7 +122,7 @@
             </div>
             <button
                 class="rounded-lg bg-vibrant-orange px-4 py-2 my-2 text-white font-semibold hover:opacity-80 transition-opacity duration-200">
-                Pay Now
+                Bayar Sekarang
             </button>
         </div>
     </div>

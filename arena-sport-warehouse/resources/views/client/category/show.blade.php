@@ -67,8 +67,8 @@
             <h1 class="font-medium text-dark-gray opacity-80">{{ session('empty') }}</h1>
         </div>
     @else
-        @foreach($products as $product)
-            <div id="products" class="grid grid-cols-4 justify-between">
+        <div id="products" class="grid grid-cols-4 justify-between">
+            @foreach($products as $product)
                 {{--  product card  --}}
                 <x-product-card
                     imageUrl="{{ $product->image_url }}"
@@ -78,8 +78,8 @@
                     orders=125
                     slug="{{ $product->slug }}"
                 />
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     @endif
 </main>
 

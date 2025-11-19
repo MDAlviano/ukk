@@ -17,7 +17,6 @@
                 <a href="/home" class="hover:underline text-sm">Home</a>
                 <a href="/categories" class="hover:underline text-sm">Categories</a>
                 <a href="/products" class="hover:underline text-sm">Products</a>
-                <a href="/about" class="hover:underline text-sm">About</a>
             </div>
             <div class="flex flex-col gap-2">
                 <h3 class="font-medium">Socials</h3>

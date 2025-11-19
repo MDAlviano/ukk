@@ -38,8 +38,6 @@
                 <h5 class="ml-62">Category</h5>
                 <h5 class="ml-16">Price</h5>
                 <h5 class="ml-16">Stock</h5>
-                <h5 class="ml-8">Rating</h5>
-                <h5 class="ml-18">Action</h5>
             </div>
             {{-- item --}}
             <x-favorite-card
@@ -48,9 +46,7 @@
                 description="This is Yonex Racket 2247 C-Tier Series is the good racket in badminton"
                 category="Badminton"
                 price=200000
-                quantity=10
-                rating=4.2
-                reviews=182
+                stock=10
             />
             <x-favorite-card
                 imageUrl="/assets/placeholder.png"
@@ -58,9 +54,7 @@
                 description="This is Yonex Racket 2247 C-Tier Series is the good racket in badminton"
                 category="Badminton"
                 price=200000
-                quantity=10
-                rating=4.2
-                reviews=182
+                stock=10
             />
         </div>
     </div>

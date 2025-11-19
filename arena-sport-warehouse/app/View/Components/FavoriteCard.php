@@ -13,9 +13,7 @@ class FavoriteCard extends Component
     public $description;
     public $category;
     public $price;
-    public $quantity;
-    public $rating;
-    public $reviews;
+    public $stock;
 
     public function __construct(
         $imageUrl,
@@ -23,9 +21,7 @@ class FavoriteCard extends Component
         $description,
         $category,
         $price,
-        $quantity,
-        $rating,
-        $reviews,
+        $stock,
     )
     {
         $this->imageUrl = $imageUrl;
@@ -33,9 +29,7 @@ class FavoriteCard extends Component
         $this->description = $description;
         $this->category = $category;
         $this->price = $price;
-        $this->quantity = $quantity;
-        $this->rating = $rating;
-        $this->reviews = $reviews;
+        $this->stock = $stock;
     }
 
     /**

@@ -79,7 +79,7 @@
             </div>
             @if(session('productEmpty'))
                 <div class="w-full flex flex-col items-center py-20">
-                    <h1 class="font-medium text-dark-gray opacity-80">{{ session('categoryEmpty') }}</h1>
+                    <h1 class="font-medium text-dark-gray opacity-80">{{ session('productEmpty') }}</h1>
                 </div>
             @else
                 @foreach($products as $product)
