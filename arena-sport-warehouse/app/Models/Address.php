@@ -24,9 +24,9 @@ class Address extends Model
         'additional_information',
     ];
 
-    public function shipments(): HasMany
+    public function orders(): HasMany
     {
-        return $this->hasMany(Shipment::class, 'shipment_id', 'id');
+        return $this->hasMany(Order::class, 'address_id', 'id');
     }
 
     public function users(): BelongsTo

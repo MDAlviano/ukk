@@ -79,27 +79,27 @@
                     <h1 class="font-semibold text-lg">Address</h1>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Recipient Name</h4>
-                        <p>{{ $order->shipments->addresses->recipient_name }}</p>
+                        <p>{{ $order->addresses->recipient_name }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Address</h4>
-                        <p>{{ $order->shipments->addresses->address }}</p>
+                        <p>{{ $order->addresses->address }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>City</h4>
-                        <p>{{ $order->shipments->addresses->city }}</p>
+                        <p>{{ $order->addresses->city }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Province</h4>
-                        <p>{{ $order->shipments->addresses->province }}</p>
+                        <p>{{ $order->addresses->province }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Country</h4>
-                        <p>{{ $order->shipments->addresses->country }}</p>
+                        <p>{{ $order->addresses->country }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Postal Code</h4>
-                        <p>{{ $order->shipments->addresses->postal_code }}</p>
+                        <p>{{ $order->addresses->postal_code }}</p>
                     </div>
                 </div>
                 {{-- note info --}}

@@ -9,12 +9,12 @@
 <body>
     <div class="flex flex-row justify-between m-12 gap-14">
         <div class="w-full">
-            <a href="/" class="font-bold text-vibrant-orange mt-5"><img src="{{ asset('/assets/ic_icon.svg') }}" alt="icon" class="w-32 -ml-7"></a>
+            <a href="/" class="font-bold text-vibrant-orange mt-5"><img src="{{ asset('/assets/ic_logo.svg') }}" alt="icon" class="w-32 -ml-7"></a>
             <h1 class="text-4xl font-bold text-dark-gray mt-16">Halo!</h1>
             <h1 class="text-4xl font-bold text-dark-gray mt-2">Selamat Datang Kembali!</h1>
             <p class="text-gray-400 w-2/3 mt-3">Hey, selamat datang kembali di tempat belanja favorit mu</p>
 
-            <form onsubmit="{{ route('user.login') }}" method="POST" class="flex flex-col gap-4 mt-8">
+            <form action="{{ route('user.login') }}" method="POST" class="flex flex-col gap-4 mt-8">
                 @csrf
                 <div class="flex flex-col text-dark-gray gap-1">
                     <label for="email">Email</label>
@@ -24,7 +24,6 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" required placeholder="..." class="py-2 px-4 border-[2px] border-light-gray focus:outline-0 rounded-md">
                 </div>
-                <a href="" class="underline font-semibold text-sm text-dark-gray hover:opacity-85 transition duration-200 self-end">Lupa Password?</a>
                 <button type="submit" class="bg-vibrant-orange hover:opacity-85 transition duration-200 text-white w-fit px-4 py-2 rounded-md text-sm font-semibold">Sign In</button>
             </form>
 

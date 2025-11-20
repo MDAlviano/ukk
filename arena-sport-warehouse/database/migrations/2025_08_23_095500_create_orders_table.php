@@ -15,16 +15,18 @@ return new class extends Migration
             $table->id();
             $table->string('order_number', 20)->nullable(false)->unique('orders_number_unique');
             $table->unsignedBigInteger('user_id')->nullable(false);
+            $table->unsignedBigInteger('address_id')->nullable(false);
             $table->integer('final_price')->nullable(false);
             $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled'])->nullable(false)->default('pending');
-            $table->unsignedBigInteger('payment_id')->nullable(false);
-            $table->unsignedBigInteger('shipment_id')->nullable(false);
+            $table->string('payment_method')->nullable(); // gopay, bank_transfer, dll
+            $table->enum('payment_status', ['pending', 'paid', 'failed', 'expired'])->default('pending');
+            $table->integer('shipping_price')->nullable()->default(0);
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->on('users')->references('id');
-            $table->foreign('payment_id')->on('payments')->references('id');
+            $table->foreign('address_id')->on('addresses')->references('id');
         });
     }
 

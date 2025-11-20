@@ -17,7 +17,7 @@ class OrderController extends Controller
 
     public function show($orderNumber)
     {
-        $order = Order::with(['users', 'shipments', 'shipments.addresses', 'orderItems', 'orderItems.products', 'orderItems.products.categories'])->where('order_number', $orderNumber)->first();
+        $order = Order::with(['users', 'addresses', 'orderItems', 'orderItems.products', 'orderItems.products.categories'])->where('order_number', $orderNumber)->first();
 
         if (!$order) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');

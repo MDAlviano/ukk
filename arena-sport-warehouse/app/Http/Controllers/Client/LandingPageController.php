@@ -9,9 +9,12 @@ class LandingPageController extends Controller
 {
     public function index()
     {
-        $products = Product::take(4)->get();
+        $products = Product::query()
+            ->whereNotNull('deleted_at')
+            ->take(4)
+            ->get();
 
-        if ($products->isEmpty()) {
+            if($products->isEmpty()){
             return redirect()->back()->with('empty', 'Produk masih kosong');
         }
 

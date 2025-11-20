@@ -85,6 +85,7 @@
             <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
                 <div class="flex flex-row justify-between">
                     <h1 class="font-semibold text-lg">Address</h1>
+                    {{-- foreach data address user, lalu masukkan nilainya di tag p dibawah --}}
                     <select name="" id="" class="flex flex-row gap-4 pl-3 pr-5 py-2 rounded-md outline-1">
                         <option value="">Jl. Pandanaran</option>
                     </select>

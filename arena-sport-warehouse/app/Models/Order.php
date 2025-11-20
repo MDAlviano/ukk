@@ -15,11 +15,13 @@ class Order extends Model
     public $incrementing = true;
     protected $fillable = [
         'user_id',
+        'address_id',
         'order_number',
         'final_price',
         'status',
-        'payment_id',
-        'shipment_id',
+        'payment_method',
+        'payment_status',
+        'shipping_price',
         'note',
     ];
 
@@ -33,9 +35,9 @@ class Order extends Model
         return $this->belongsTo(Payment::class, 'payment_id', 'id');
     }
 
-    public function shipments(): BelongsTo
+    public function addresses(): BelongsTo
     {
-        return $this->belongsTo(Shipment::class, 'shipment_id', 'id');
+        return $this->belongsTo(Address::class, 'address_id', 'id');
     }
 
 }

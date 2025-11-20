@@ -22,7 +22,7 @@ class OrderController extends Controller
     {
         $user = Auth::user();
 
-        $order = Order::with(['users', 'shipments', 'shipments.addresses', 'orderItems', 'orderItems.products', 'orderItems.products.categories'])->where('order_number', $orderNumber)->where('user_id', $user->id)->first();
+        $order = Order::with(['users', 'addresses', 'orderItems', 'orderItems.products', 'orderItems.products.categories'])->where('order_number', $orderNumber)->where('user_id', $user->id)->first();
 
         if (!$order) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');

@@ -15,6 +15,7 @@ class ProductController extends Controller
 
         $query = Product::query()
             ->with('categories')
+            ->whereNot('stock', 0)
             ->whereNull('deleted_at');
 
         if ($request->filled('category')) {
@@ -35,12 +36,12 @@ class ProductController extends Controller
         }
 
         match ($request->get('sort')) {
-            'name_asc'  => $query->orderBy('name', 'asc'),
+            'name_asc' => $query->orderBy('name', 'asc'),
             'name_desc' => $query->orderBy('name', 'desc'),
             'price_asc' => $query->orderBy('price', 'asc'),
-            'price_desc'=> $query->orderBy('price', 'desc'),
-            'latest'    => $query->latest(),
-            default     => $query->latest(),
+            'price_desc' => $query->orderBy('price', 'desc'),
+            'latest' => $query->latest(),
+            default => $query->latest(),
         };
 
         $products = $query;
@@ -51,7 +52,10 @@ class ProductController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug', $slug)->first();
-        $products = Product::where('deleted_at', null)->take(4)->get();
+        $products = Product::query()
+            ->whereNot('id', $product->id)
+            ->where('deleted_at', null)
+            ->take(4);
 
         if (!$product) {
             return redirect()->back()->with('error', 'Produk tidak ditemukan!');

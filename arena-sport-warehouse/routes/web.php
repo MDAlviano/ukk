@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
 
 // Admin Route
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::get('/', \App\Http\Controllers\Admin\HomeController::class, 'index')->name('admin');
+    Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin');
 
     Route::get('/orders', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
     Route::get('/orders/{orderNumber}', [\App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.orders.show');

@@ -9,7 +9,7 @@
 <body>
     <div class="flex flex-row justify-between m-12 gap-14">
         <div class="w-full">
-            <a href="/" class="font-bold text-vibrant-orange mt-5"><img src="{{ asset('/assets/ic_icon.svg') }}" alt="icon" class="w-32 -ml-7"></a>
+            <a href="/" class="font-bold text-vibrant-orange mt-5"><img src="{{ asset('/assets/ic_logo.svg') }}" alt="icon" class="w-32 -ml-7"></a>
             <h1 class="text-4xl font-bold text-dark-gray mt-16">Selamat Datang!</h1>
             <p class="text-gray-400 w-2/3 mt-3">Arena sport warehouse akan menjadi tempat favorit kamu untuk belanja alat-alat olahraga</p>
 
@@ -17,11 +17,15 @@
                 @csrf
                 <div class="flex flex-col text-dark-gray gap-1">
                     <label for="email" class="font-medium">Email</label>
-                    <input type="email" name="email" id="" required placeholder="johndoe@gmail.com" class="py-2 px-4 border-[2px] border-light-gray focus:outline-0 rounded-md">
+                    <input type="email" name="email" id="" required placeholder="..." class="py-2 px-4 border-[2px] border-light-gray focus:outline-0 rounded-md">
+                </div>
+                <div class="flex flex-col text-dark-gray gap-1">
+                    <label for="phone" class="font-medium">Phone</label>
+                    <input type="text" name="phone" id="" required placeholder="..." class="py-2 px-4 border-[2px] border-light-gray focus:outline-0 rounded-md">
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="full_name" class="font-medium">Full Name</label>
-                    <input type="text" name="full_name" required placeholder="John Doe" class="py-2 px-4 border-[2px] border-light-gray focus:outline-0 rounded-md">
+                    <input type="text" name="full_name" required placeholder="..." class="py-2 px-4 border-[2px] border-light-gray focus:outline-0 rounded-md">
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="password" class="font-medium">Password</label>

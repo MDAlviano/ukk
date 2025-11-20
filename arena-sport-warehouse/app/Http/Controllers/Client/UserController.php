@@ -33,24 +33,26 @@ class UserController extends Controller
 
     public function login(UserLoginRequest $request)
     {
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        if (Auth::attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();
+        $remember = true;
 
-            $user = Auth::user();
-
-            if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard')->with('success', 'Selamat datang, Admin!');
-            }
-
-            return redirect()->route('profile')->with('success', 'Login berhasil!');
+        if (!Auth::attempt($credentials, $remember)) {
+            return redirect()->back()->with('error', 'Email atau password salah!');
         }
 
-        return back()->with('error', 'Email atau password salah!');
+        $request->session()->regenerate();
+
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard')->with('success', 'Selamat datang, Admin!');
+        }
+
+        return redirect()->route('profile')->with('success', 'Login berhasil!');
     }
 
     public function logout()

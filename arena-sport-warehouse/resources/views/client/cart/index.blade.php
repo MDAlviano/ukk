@@ -10,16 +10,12 @@
         <div class="flex flex-row gap-4 items-center">
             <div class="flex flex-col gap-2">
                 <h1 class="text-lg font-semibold">Total:</h1>
-                <h1 class="text-3xl font-semibold">Rp29.000</h1>
+                <h1 class="text-3xl font-semibold">Rp{{ number_format($totalPrice, 0, ',', '.') }}h1>
             </div>
             <div class="flex flex-col gap-2">
                 <h1 class="text-lg font-semibold">Action:</h1>
                 <div class="flex flex-row gap-2">
-                    <button type="submit"
-                            class="text-white bg-vibrant-orange rounded-md px-4 py-2 hover:opacity-80 transition duration-200 cursor-pointer">
-                        Clear All
-                    </button>
-                    <a href="/order/create"
+                    <a href=""
                        class="text-white bg-vibrant-orange rounded-md px-4 py-2 hover:opacity-80 transition duration-200 cursor-pointer">Checkout</a>
                 </div>
             </div>

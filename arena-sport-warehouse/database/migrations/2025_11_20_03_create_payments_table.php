@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->string('method', 50)->nullable(false);
-            $table->float('final_price')->nullable(false);
+            $table->unsignedBigInteger('order_id')->nullable(false);
+            $table->string('gateway', 100)->nullable();
+            $table->string('gateway_order_id', 100)->nullable();
+            $table->string('snap_token')->nullable();
+            $table->enum('status', ['pending', 'success', 'failed', 'expired'])->default('pending');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('order_id')->on('orders')->references('id')->onDelete('cascade');
         });
     }
 

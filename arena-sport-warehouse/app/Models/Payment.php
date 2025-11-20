@@ -13,8 +13,11 @@ class Payment extends Model
     public $timestamps = true;
     public $incrementing = true;
     protected $fillable = [
-        'method',
-        'final_price',
+        'order_id',
+        'gateway_order_id',
+        'gateway',
+        'snap_token',
+        'status',
     ];
 
     public function orders(): HasMany {
