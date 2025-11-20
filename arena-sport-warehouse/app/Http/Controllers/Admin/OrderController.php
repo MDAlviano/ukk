@@ -17,7 +17,7 @@ class OrderController extends Controller
 
     public function show($orderNumber)
     {
-        $order = Order::with(['users', 'shipments', 'shipments.addresses', 'orderItems'])->where('order_number', $orderNumber)->first();
+        $order = Order::with(['users', 'shipments', 'shipments.addresses', 'orderItems', 'orderItems.products', 'orderItems.products.categories'])->where('order_number', $orderNumber)->first();
 
         if (!$order) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
@@ -33,13 +33,13 @@ class OrderController extends Controller
         ]);
     }
 
-    public function update($orderNumber, Request $request)
+    public function update($orderId, Request $request)
     {
         $data = $request->validate([
             'status' => 'required',
         ]);
 
-        $order = Order::where('order_number', $orderNumber)->first();
+        $order = Order::where('id', $orderId)->first();
 
         if (!$order) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');

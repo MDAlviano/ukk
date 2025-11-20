@@ -9,9 +9,20 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    public function edit($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+
+        if (!$category) {
+            return redirect()->route('category.index')->with('error', 'Data tidak ditemukan');
+        }
+
+        return view('admin.category.update', compact('category'));
+    }
+
     public function index(Request $request)
     {
-        $categories = Category::all()->where('deleted_at', null);
+        $categories = Category::with(['products'])->where('deleted_at', null)->get();
 
         return view('admin.category.index', compact('categories'));
     }
@@ -43,9 +54,9 @@ class CategoryController extends Controller
         return redirect()->route('admin.category.index', with('success', 'Data berhasil ditambahkan'));
     }
 
-    public function show($slug)
+    public function show($id)
     {
-        $category = Category::where('slug', $slug)->first();
+        $category = Category::where('id', $id)->first();
 
         if (!$category) {
             return redirect()->route('category.index')->with('error', 'Data tidak ditemukan');

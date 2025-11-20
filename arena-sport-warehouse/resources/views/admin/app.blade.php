@@ -20,7 +20,7 @@
             <div
                 class="flex flex-row gap-2 hover:bg-vibrant-orange transition duration-200 text-white cursor-pointer rounded-md px-2 py-2 align-middle">
                 <img src="{{ asset('/assets/shopping-cart-white.svg') }}" alt="cart icon" class="size-6">
-                <a href="/admin/orders" class="font-semibold">My Orders</a>
+                <a href="{{ route('admin.orders') }}" class="font-semibold">My Orders</a>
             </div>
             <div class="flex flex-col">
                 <div
@@ -29,7 +29,7 @@
                     <h5 class="font-semibold">My Product</h5>
                 </div>
                 <div class="text-white text-sm font-light flex flex-col gap-2 mt-2 ml-10">
-                    <a href="/admin/products" class="hover:opacity-80">List Products</a>
+                    <a href="{{ route('admin.products') }}" class="hover:opacity-80">List Products</a>
                     <a href="/admin/products/create" class="hover:opacity-80">Create Product</a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                     <h5 class="font-semibold">My Category</h5>
                 </div>
                 <div class="text-white text-sm font-light flex flex-col gap-2 mt-2 ml-10">
-                    <a href="/admin/categories" class="hover:opacity-80">List Categories</a>
+                    <a href="{{ route('admin.categories') }}" class="hover:opacity-80">List Categories</a>
                     <a href="/admin/categories/create" class="hover:opacity-80">Create Category</a>
                 </div>
             </div>
@@ -51,7 +51,7 @@
     </div>
     <div class="p-4 mb-10 flex flex-row px-4 py-2 text-vibrant-orange gap-2 hover:cursor-pointer">
         <img src="{{ asset('/assets/log-out.svg') }}" alt="logout icon" class="size-6">
-        <a href="{{ route('login') }}" class="font-semibold">Log Out</a>
+        <a href="{{ route('user.logout') }}" class="font-semibold">Log Out</a>
     </div>
 </aside>
 

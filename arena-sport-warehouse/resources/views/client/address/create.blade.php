@@ -5,7 +5,8 @@
         <h1 class="font-semibold text-2xl">Add New Address</h1>
     </header>
 
-    <form class="flex flex-col gap-4 mx-20 my-12 bg-white shadow-xl rounded-xl p-7" onsubmit="">
+    <form class="flex flex-col gap-4 mx-20 my-12 bg-white shadow-xl rounded-xl p-7" onsubmit="{{ route('address.create') }}" method="POST">
+        @csrf
         <div class="flex flex-row gap-4 w-full">
             <div class="flex flex-col gap-1">
                 <h3 class="font-semibold text-dark-gray">Recipient Name</h3>
@@ -27,9 +28,29 @@
             </div>
         </div>
         <div class="flex flex-row gap-4 w-full">
+            <div class="flex flex-col gap-1">
+                <h3 class="font-semibold text-dark-gray">Province</h3>
+                <input type="text" placeholder="..." class="w-full outline-2 py-2 px-4 rounded-md">
+            </div>
+            <div class="flex flex-col gap-1">
+                <h3 class="font-semibold text-dark-gray">Country</h3>
+                <input type="text" placeholder="..." class="w-full outline-2 py-2 px-4 rounded-md">
+            </div>
+        </div>
+        <div class="flex flex-row gap-4 w-full">
             <h3 class="font-semibold text-dark-gray">Additional Information (Opsional)</h3>
             <textarea type="text" placeholder="..." class="w-full outline-2 py-2 px-4 rounded-md" rows="5">
         </div>
         <button type="submit" class="w-full bg-vibrant-orange text-white p-2 rounded-lg hover:opacity-70 transition duration-200">Create</button>
     </form>
+
+    @if(session('success'))
+                    <script>
+                    alert(session('success'));
+                    </script>
+                @else
+                    <script>
+                    alert(session('error'));
+                    </script>
+    @endif
 @endsection

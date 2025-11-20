@@ -3,12 +3,33 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    public function store()
+    {
+        $categories = Category::all();
+
+        return view('admin.product.create', compact('categories'));
+    }
+
+    public function edit($slug)
+    {
+        $product = Product::where('slug', $slug)->with('categories')->first();
+
+        if (!$product) {
+            return redirect()->route('product.index')->with('error', 'Data tidak ditemukan');
+        }
+
+        $categories = Category::all();
+
+        return view('admin.product.update', compact(['product', 'categories']));
+    }
+
     public function index(Request $request)
     {
         $products = Product::with('categories')->where('deleted_at', null)->get();
@@ -59,7 +80,7 @@ class ProductController extends Controller
         return view('admin.product.show', compact('product'));
     }
 
-    public function update($slug, Request $request)
+    public function update($id, Request $request)
     {
         $data = $request->validate([
             'unique_id' => 'nullable',
@@ -71,7 +92,7 @@ class ProductController extends Controller
             'stock' => 'nullable',
         ]);
 
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::where('id', $id)->first();
 
         if (!$product) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
@@ -94,9 +115,9 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index')->with('success', 'Data berhasil diupdate');
     }
 
-    public function delete($slug)
+    public function delete($id)
     {
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::where('slug')->first();
 
         if (!$product) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->string('method', 50)->nullable(false);
-            $table->float('price')->nullable(false);
+            $table->float('final_price')->nullable(false);
             $table->timestamps();
             $table->softDeletes();
         });

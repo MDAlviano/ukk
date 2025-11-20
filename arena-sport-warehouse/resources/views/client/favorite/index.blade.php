@@ -38,26 +38,45 @@
                 <th class="py-4 px-8 text-left">Category</th>
                 <th class="py-4 px-8 text-left">Price</th>
                 <th class="py-4 px-8 text-left">Stock</th>
+                <th class="py-4 px-8 text-left">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr class="bg-white rounded-lg drop-shadow-lg">
-                <td class="py-4 px-8 align-middle">
-                    <img src="{{ asset($imageUrl) }}" alt="product image" class="w-20 rounded-md object-cover">
-                </td>
-                <td class="py-4 px-8 align-middle">
-                    <div class="flex flex-col gap-1">
-                        <h1 class="font-semibold hover:underline"><a href="/admin/products/slug">{{ $title }}</a></h1>
-                        <h5 class="text-sm text-[#B6B6B6] truncate max-w-64">{{ $description }}</h5>
-                    </div>
-                </td>
-                <td class="py-4 px-8 align-middle">
-                    <span class="text-white font-medium bg-vibrant-orange px-3 py-2 text-sm rounded-md">{{ $category }}</span>
-                </td>
-                <td class="py-4 px-8 align-middle">Rp {{ number_format($price) }}</td>
-                <td class="py-4 px-8 align-middle">{{ number_format($stock) }}</td>
-            </tr>
+            @foreach($favorites as $item)
+                <tr class="bg-white rounded-lg drop-shadow-lg">
+                    <td class="py-4 px-8 align-middle">
+                        <img src="{{ asset($item->products->image_url) }}" alt="product image"
+                             class="w-20 rounded-md object-cover">
+                    </td>
+                    <td class="py-4 px-8 align-middle">
+                        <div class="flex flex-col gap-1">
+                            <h1 class="font-semibold hover:underline">{{ $item->products->name }}</h1>
+                            <h5 class="text-sm text-[#B6B6B6] truncate max-w-64">{{ $item->products->description }}</h5>
+                        </div>
+                    </td>
+                    <td class="py-4 px-8 align-middle">
+                        <span
+                            class="text-white font-medium bg-vibrant-orange px-3 py-2 text-sm rounded-md">{{ $item->products->categories->name }}</span>
+                    </td>
+                    <td class="py-4 px-8 align-middle">Rp{{ number_format($item->products->price, 0, ',', '.') }}</td>
+                    <td class="py-4 px-8 align-middle">{{ $item->products->stock }}</td>
+                    <td class="py-4 px-8 align-middle">
+                        <a href="{{ route('cart.remove', ['productId' => $item->products->id]) }}"
+                           class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Remove</a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
+
+    @if(session('success'))
+        <script>
+            alert(session('success'));
+        </script>
+    @else
+        <script>
+            alert(session('error'));
+        </script>
+    @endif
 @endsection

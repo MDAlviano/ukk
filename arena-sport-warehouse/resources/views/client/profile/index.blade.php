@@ -11,8 +11,8 @@
                 </a>
             </div>
             <div class="flex flex-col gap-4">
-                <p class="text-lg font-medium">Email : johndoe@gmail.com</p>
-                <p class="text-lg font-medium">Name : John Doe</p>
+                <p class="text-lg font-medium">Email : {{ $user->email }}</p>
+                <p class="text-lg font-medium">Name : {{ $user->full_name }}</p>
             </div>
         </div>
         <div class="flex flex-col gap-5 outline-2 outline-gray-300 rounded-xl p-6">
@@ -23,16 +23,29 @@
             {{-- list addresses --}}
             <div class="flex flex-col gap-3">
                 {{-- item --}}
-                <x-address-card
-                    recipientName="Alviano"
-                    address="Jl. Kenangan"
-                    city="Semarang"
-                    province="Jawa Tengah"
-                    country="Indonesia"
-                    postalCode=50161
-                    additionalInfo="..."
-                />
+                @foreach($addresses as $address)
+                    <x-address-card
+                        recipientName="{{ $address->recipient_name }}"
+                        address="{{ $address->address }}"
+                        city="{{ $address->city }}"
+                        province="{{ $address->province }}"
+                        country="{{ $address->country }}"
+                        postalCode="{{ $address->postal_code }}"
+                        additionalInfo="{{ $address->additional_information ?? "-" }}"
+                        addressData="{{ $address }}"
+                    />
+                @endforeach
             </div>
         </div>
     </div>
+
+    @if(session('success'))
+        <script>
+            alert(session('success'));
+        </script>
+    @else
+        <script>
+            alert(session('error'));
+        </script>
+    @endif
 @endsection

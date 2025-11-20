@@ -34,5 +34,15 @@
         </div>
         <img src="{{ asset('/assets/ig_register.png') }}" alt="register image" class="h-[90vh] rounded-xl">
     </div>
+
+    @if(session('success'))
+        <script>
+            alert(session('success'));
+        </script>
+    @else
+        <script>
+            alert(session('error'));
+        </script>
+    @endif
 </body>
 </html>

@@ -13,7 +13,7 @@ class CartController extends Controller
     {
         $user = Auth::user();
 
-        $carts = Cart::with('products', 'products.categories')->where('user_id', $user->id)->where('deleted_at', null)->get();
+        $carts = Cart::with(['products', 'products.categories'])->where('user_id', $user->id)->where('deleted_at', null)->get();
 
         return view('client.cart.index', compact('carts'));
     }

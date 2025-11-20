@@ -16,59 +16,82 @@ Route::get('/', [LandingPageController::class, 'index'])->name('landing');
 Route::view('/login', 'auth.login')->name('login');
 Route::view('/register', 'auth.register')->name('register');
 
-Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
-Route::post('/user/login', [UserController::class, 'login'])->name('user.login');
+Route::controller(\App\Http\Controllers\Client\UserController::class)->prefix('user')->group(function () {
+    Route::post('/register', 'register')->name('user.register');
+    Route::post('/login', 'login')->name('user.login');
+    Route::post('/logout', 'logout')->name('user.logout');
+});
 
 // Client Route
 Route::middleware('auth')->group(function () {
-    Route::view('/home', 'client.app');
+    Route::get('/home', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');
 
-    Route::view('/categories', 'client.category.index');
+    Route::get('/categories', [\App\Http\Controllers\Client\CategoryController::class, 'index'])->name('categories');
+    Route::get('/categories/{slug}', [\App\Http\Controllers\Client\CategoryController::class, 'show'])->name('categories.show');
 
-    Route::view('/categories/slug', 'client.category.show');
-
-    Route::view('/products', 'client.product.index');
-
-    Route::view('/products/slug', 'client.product.show');
+    Route::get('/products', [\App\Http\Controllers\Client\ProductController::class, 'index'])->name('products');
+    Route::get('/products/{slug}', [\App\Http\Controllers\Client\ProductController::class, 'show'])->name('products.show');
 
     Route::view('/order/create', 'client.order.create');
 
-    Route::view('/profile', 'client.profile.index')->name('profile');
+    Route::get('/profile', [\App\Http\Controllers\Client\AddressController::class, 'index'])->name('profile');
 
-    Route::view('/profile/orders', 'client.order.index');
-
-    Route::view('/profile/orders/show', 'client.order.show');
+    Route::view('/profile/edit', 'client.profile.edit');
+    Route::put('/user/update', [\App\Http\Controllers\Client\UserController::class, 'update'])->name('profile.edit');
 
     Route::view('/profile/add-address', 'client.address.create');
+    Route::post('/address/create', [\App\Http\Controllers\Client\AddressController::class, 'create'])->name('address.create');
+    Route::get('/profile/update-address/{id}', [\App\Http\Controllers\Client\AddressController::class, 'edit'])->name('address.edit');
+    Route::get('/address/update/{addressId}', [\App\Http\Controllers\Client\AddressController::class, 'update'])->name('address.update');
 
-    Route::view('/profile/cart', 'client.cart.index');
+    Route::get('/profile/orders', [\App\Http\Controllers\Client\OrderController::class, 'index'])->name('profile.orders');
+    Route::get('/profile/orders/{orderNumber}', [\App\Http\Controllers\Client\OrderController::class, 'show'])->name('profile.orders.show');
 
-    Route::view('/profile/favorite', 'client.favorite.index');
+    Route::view('/profile/add-address', 'client.address.create');
+    Route::post('/address/create', [\App\Http\Controllers\Client\AddressController::class, 'create'])->name('address.create');
+
+    Route::get('/profile/cart', [\App\Http\Controllers\Client\CartController::class, 'index'])->name('profile.cart');
+    Route::post('/cart/add/{productId}', [\App\Http\Controllers\Client\CartController::class, 'add'])->name('cart.add');
+    Route::delete('/cart/{productId}', [\App\Http\Controllers\Client\CartController::class, 'remove'])->name('cart.remove');
+
+    Route::get('/profile/favorite', [\App\Http\Controllers\Client\FavoriteController::class, 'index'])->name('profile.favorite');
+    Route::post('/favorite/{productId}', [\App\Http\Controllers\Client\FavoriteController::class, 'add'])->name('favorite.add');
+    Route::delete('/favorite/{productId}', [\App\Http\Controllers\Client\FavoriteController::class, 'remove'])->name('favorite.remove');
 });
 
 // Admin Route
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::view('/', 'admin.home.index')->name('admin');
+    Route::get('/', \App\Http\Controllers\Admin\HomeController::class, 'index')->name('admin');
 
-    Route::view('/orders', 'admin.order.index');
+    Route::get('/orders', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
+    Route::get('/orders/{orderNumber}', [\App\Http\Controllers\Admin\OrderController::class, 'show'])->name('admin.orders.show');
+    Route::put('/orders/{orderId}', [\App\Http\Controllers\Admin\OrderController::class, 'update'])->name('admin.orders.show');
 
-    Route::view('/orders/orderId', 'admin.order.show');
+    Route::controller(\App\Http\Controllers\Admin\ProductController::class)->group(function () {
+        Route::get('/products', 'index')->name('admin.products');
 
-    Route::view('/products', 'admin.product.index');
+        Route::get('/products/{slug}', 'show')->name('admin.products.show');
 
-    Route::view('/products/slug', 'admin.product.show');
+        Route::get('/products/create-product', 'store');
+        Route::post('/products/create', 'create')->name('admin.products.create');
 
-    Route::view('/products/create', 'admin.product.create');
+        Route::get('/products/update-product/{slug}', 'edit')->name('admin.products.edit');
+        Route::put('/products/update/{id}', 'update')->name('admin.products.update');
+        Route::delete('/products/delete/{id}', 'delete')->name('admin.products.update');
+    });
 
-    Route::view('/products/update', 'admin.product.update');
+    Route::controller(\App\Http\Controllers\Admin\CategoryController::class)->group(function () {
+        Route::get('/categories', 'index')->name('admin.categories');
 
-    Route::view('/categories', 'admin.category.index');
+        Route::get('/categories/{slug}', 'show')->name('admin.categories.show');
 
-    Route::view('/categories/slug', 'admin.category.show');
+        Route::view('/categories/create-category', 'admin.category.create');
+        Route::post('/categories/create', 'create')->name('admin.category.create');
 
-    Route::view('/categories/create', 'admin.category.create');
-
-    Route::view('/categories/update', 'admin.category.update');
+        Route::get('/categories/update-category/{slug}', 'edit')->name('admin.category.edit');
+        Route::put('/categories/update/{id}', 'update')->name('admin.category.update');
+        Route::put('/categories/delete/{id}', 'delete')->name('admin.category.delete');
+    });
 
     Route::view('/reports', 'admin.report.index');
 });

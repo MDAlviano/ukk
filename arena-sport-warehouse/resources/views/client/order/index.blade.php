@@ -23,26 +23,38 @@
         {{-- list orders --}}
         <div class="flex flex-col gap-4">
             {{-- order item --}}
-            <div class="w-full h-fit bg-white rounded-lg drop-shadow-lg py-3 px-8 flex flex-col gap-3">
-                <div class="grid grid-cols-4 gap-x-8 text-[#B6B6B6]">
-                    <h5>Id</h5>
-                    <h5>Created</h5>
-                    <h5 class="text-right">Total Price</h5>
-                    <h5 class="text-center">Status Order</h5>
-                </div>
-                <span class="bg-[#B6B6B6] opacity-70 w-full h-[1px]"></span>
-                <div class="grid grid-cols-4 gap-x-8">
-                    <h5>#12A23</h5>
-                    <div class="flex flex-col gap-1">
-                        <h5>07 Sep</h5>
-                        <h5 class="text-sm text-[#B6B6B6]">20:48</h5>
+            @foreach($orders as $order)
+                <div class="w-full h-fit bg-white rounded-lg drop-shadow-lg py-3 px-8 flex flex-col gap-3">
+                    <div class="grid grid-cols-4 gap-x-8 text-[#B6B6B6]">
+                        <h5>Id</h5>
+                        <h5>Created</h5>
+                        <h5 class="text-right">Total Price</h5>
+                        <h5 class="text-center">Status Order</h5>
                     </div>
-                    <h5 class="text-right">Rp 1.500.000</h5>
-                    <h5 class="text-center"><i>Pending</i></h5>
+                    <span class="bg-[#B6B6B6] opacity-70 w-full h-[1px]"></span>
+                    <div class="grid grid-cols-4 gap-x-8">
+                        <h5>{{ $order->order_number }}</h5>
+                        <div class="flex flex-col gap-1">
+                            <h5>{{ $order->created_at->format('d M') }}</h5>
+                            <h5 class="text-sm text-[#B6B6B6]">{{ $order->createdd_at->format('H:i') }}</h5>
+                        </div>
+                        <h5 class="text-right">Rp{{ number_format($order->total_price) }}</h5>
+                        <h5 class="text-center"><i>{{ $order->status }}</i></h5>
+                    </div>
+                    <span class="bg-[#B6B6B6] opacity-70 w-full h-[1px]"></span>
+                    <a href="{{ route('profile.orders.show', ['orderNumber' => $order->order_number]) }}" class="text-[#B6B6B6] hover:underline">Details...</a>
                 </div>
-                <span class="bg-[#B6B6B6] opacity-70 w-full h-[1px]"></span>
-                <a href="/profile/orders/show" class="text-[#B6B6B6] hover:underline">Details...</a>
-            </div>
+            @endforeach
         </div>
     </div>
+
+    @if(session('success'))
+        <script>
+            alert(session('success'));
+        </script>
+    @else
+        <script>
+            alert(session('error'));
+        </script>
+    @endif
 @endsection

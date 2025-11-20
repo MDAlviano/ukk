@@ -9,7 +9,7 @@
             <p class="font-semibold">Rp{{ number_format($price) }}</p>
             <div class="flex flex-row gap-1 items-center">
                 <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
-                <p><span class="font-medium text-dark-gray">{{ $orders }} Terjual</p>
+                <p><span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $id) }} Terjual</p>
             </div>
         </div>
     </a>

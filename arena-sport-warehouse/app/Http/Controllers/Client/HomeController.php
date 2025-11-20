@@ -25,6 +25,6 @@ class HomeController extends Controller
             return redirect()->back()->with('productEmpty', 'Produk belum tersedia saat ini.');
         }
 
-        return view('client.app', compact('categories', 'products', 'fullName'))->with('success', 'Berhasil mendapatkan data kategori dan produk.');
+        return view('client.app', compact(['categories', 'products', 'fullName']))->with('success', 'Berhasil mendapatkan data kategori dan produk.');
     }
 }

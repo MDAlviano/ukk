@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
+    public function edit($id)
+    {
+        $user = Auth::user();
+
+        $address = Address::where('id', $id)->where('user_id', $user->id)->first();
+
+        return view('client.address.update', compact('address'));
+    }
+
     public function index()
     {
         $user = Auth::user();

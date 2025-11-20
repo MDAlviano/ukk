@@ -20,7 +20,8 @@ class Address extends Model
         'city',
         'province',
         'country',
-        'postal_code'
+        'postal_code',
+        'additional_information',
     ];
 
     public function shipments(): HasMany

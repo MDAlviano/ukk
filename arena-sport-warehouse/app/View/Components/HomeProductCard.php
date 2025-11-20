@@ -8,25 +8,24 @@ use Illuminate\View\Component;
 
 class HomeProductCard extends Component
 {
+    public $id;
     public $imageUrl;
     public $name;
     public $description;
     public $price;
-    public $orders;
 
     public function __construct(
+        $id,
         $imageUrl,
         $name,
         $description,
         $price,
-        $orders,
     )
     {
         $this->imageUrl = $imageUrl;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
-        $this->orders = $orders;
     }
 
     /**

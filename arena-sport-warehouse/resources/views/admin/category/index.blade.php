@@ -14,28 +14,50 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-2">
-            {{-- title --}}
-            <div class="w-full h-fit flex flex-row bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm py-4 px-8 gap-3 text-[#B6B6B6]">
-                <h5>Image</h5>
-                <h5 class="ml-16">Name</h5>
-                <h5 class="ml-80">Total Products</h5>
-                <h5 class="ml-72">Action</h5>
-            </div>
-            {{-- item --}}
-            <div class="w-full h-fit flex flex-row justify-between bg-white rounded-lg drop-shadow-lg py-4 px-8 gap-3">
-                <div class="flex flex-row gap-6">
-                    <img src="{{ asset($imageUrl) }}" alt="category image" class="size-24 rounded-md object-cover">
-                    <h5 class="font-semibold my-auto hover:underline"><a href="/admin/categories/slug">{{ $title }}</a></h5>
-                </div>
-                <h5 class="font-semibold my-auto">{{ $products }} Products</h5>
-                <div class="flex flex-row w-fit h-fit gap-3 my-auto">
-                    <a href="/admin/categories/{{ $slug }}/update/"
-                       class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Edit</a>
-                    <a href="" class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Delete</a>
-                </div>
-            </div>
-        </div>
+        <table class="w-full table-fixed border-collapse">
+            <thead>
+            <tr class="bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm text-[#B6B6B6]">
+                <th class="py-4 px-8 text-left">Image</th>
+                <th class="py-4 px-8 text-left">Name</th>
+                <th class="py-4 px-8 text-left">Total Products</th>
+                <th class="py-4 px-8 text-left">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($categories as $category)
+                <tr class="bg-white rounded-lg drop-shadow-lg">
+                    <td class="py-4 px-8 align-middle">
+                        <div class="flex items-center gap-6">
+                            <img src="{{ asset($category->image_url) }}" alt="{{ $category->name }}"
+                                 class="size-24 rounded-md object-cover">
+                            <h5 class="font-semibold hover:underline"><a
+                                    href="{{ route('admin.category.show', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                            </h5>
+                        </div>
+                    </td>
+                    <td class="py-4 px-8 align-middle font-semibold">{{ $category->products->count() }} Products</td>
+                    <td class="py-4 px-8 align-middle">
+                        <div class="flex gap-3">
+                            <a href="{{ route('admin.category.edit', ['slug' => $category->slug]) }}"
+                               class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Edit</a>
+                            <a href="{{ route('admin.category.delete', ['id' => $category->id]) }}"
+                               class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </main>
+
+    @if(session('success'))
+        <script>
+            alert(session('success'));
+        </script>
+    @else
+        <script>
+            alert(session('error'));
+        </script>
+    @endif
 
 @endsection

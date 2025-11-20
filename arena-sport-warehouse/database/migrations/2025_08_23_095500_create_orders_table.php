@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'processing', 'shipped', 'completed', 'cancelled'])->nullable(false)->default('pending');
             $table->unsignedBigInteger('payment_id')->nullable(false);
             $table->unsignedBigInteger('shipment_id')->nullable(false);
+            $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

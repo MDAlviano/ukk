@@ -10,12 +10,12 @@
 {{-- navbar --}}
 <nav class="w-full flex flex-col">
     <div class="w-full flex flex-row justify-between opacity-70 px-20 py-6">
-        <a href="/home" class="hover:underline">Home</a>
-        <a href="/categories" class="hover:underline">Categories</a>
-        <a href="/products" class="hover:underline">Products</a>
+        <a href="{{ route('home') }}" class="hover:underline">Home</a>
+        <a href="{{ route('categories') }}" class="hover:underline">Categories</a>
+        <a href="{{ route('products') }}" class="hover:underline">Products</a>
     </div>
     <div class="px-20 py-6 outline-1 outline-gray-300 flex flex-row justify-between items-center">
-        <a href="/home" class="-ml-8 mr-4">
+        <a href="{{ route('home') }}" class="-ml-8 mr-4">
             <img src="{{ asset('/assets/ic_logo.svg') }}" alt="logo" class="w-44">
         </a>
         <div class="flex flex-row w-full gap-4 px-3 py-2 rounded-lg outline-1 outline-dark-gray">
@@ -23,10 +23,10 @@
             <input type="text" placeholder="Search product here..." class="focus:outline-0 w-full">
         </div>
         <div class="flex flex-row gap-5 w-fit h-fit pl-8">
-            <a href="/">
+            <a href="{{ route('profile.cart') }}">
                 <img src="{{ asset('/assets/shopping-cart.svg') }}" alt="shopping cart" class="w-10">
             </a>
-            <a href="/profile">
+            <a href="{{ route('profile') }}">
                 <img src="{{ asset('/assets/account_circle.svg') }}" alt="profile" class="w-10">
             </a>
         </div>
@@ -74,7 +74,8 @@
                             class="bg-dark-gray hover:opacity-90 hover:drop-shadow-sm transition duration-200 cursor-pointer flex flex-row items-center gap-3 text-white rounded-lg px-5 py-3 font-medium">
                         Beli Sekarang
                     </button>
-                    <form onsubmit="" method="POST">
+                    <form onsubmit="{{ route('favorite.add', ['productId' => $product->id]) }}" method="POST">
+                        @csrf
                         <button
                             type="submit"
                             class="bg-dark-gray hover:bg-pink-400 hover:drop-shadow-sm transition duration-200 cursor-pointer flex flex-row items-center gap-3 text-white rounded-lg p-3 font-medium">
@@ -116,5 +117,15 @@
 
 {{-- footer --}}
 @include('partial.footer')
+
+@if(session('success'))
+    <script>
+        alert(session('success'));
+    </script>
+@else
+    <script>
+        alert(session('error'));
+    </script>
+@endif
 </body>
 </html>

@@ -23,6 +23,7 @@ class UserController extends Controller
         User::create([
             'email' => $data['email'],
             'full_name' => $data['full_name'],
+            'phone' => $data['phone'],
             'password_hash' => Hash::make($data['password']),
             'role' => 'user'
         ]);
@@ -65,6 +66,7 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'full_name' => 'nullable',
+            'phone' => 'nullable',
         ]);
 
         $user = Auth::user();

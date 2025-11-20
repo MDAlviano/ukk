@@ -10,40 +10,46 @@
 {{-- sidebar --}}
 <aside class="w-64 shadow-lg flex flex-col justify-between">
     <div>
-        <a href="/" class="flex flex-row gap-2 px-6 pt-6 hover:opacity-80 transition duration-200">
+        <a href="{{ route('home') }}" class="flex flex-row gap-2 px-6 pt-6 hover:opacity-80 transition duration-200">
             <img src="{{ asset('assets/arrow_back.svg') }}" alt="back">
             <h5 class="text-lg font-medium">Back</h5>
         </a>
         <div class="p-6 flex flex-row items-center gap-3">
             <img src="{{ asset('assets/ig_user.png') }}" alt="plachholder" class="rounded-full size-16">
             <div class="flex flex-col">
-                <h2 class="font-semibold text-xl">Alviano</h2>
-                <h3 class="font-semibold">alvin@gmail.com</h3>
+                <h2 class="font-semibold text-xl">{{ \Illuminate\Support\Facades\Auth::user()->full_name }}</h2>
+                <h3 class="font-semibold">{{ \Illuminate\Support\Facades\Auth::user()->email }}</h3>
+                <a href="{{ route('logout') }}" class="font-semibold text-vibrant-orange gap-2 hover:cursor-pointer">Logout</a>
             </div>
         </div>
         <hr class="w-5/6 mx-auto">
         <nav class="flex flex-col p-4 text-lg">
-            <div class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
+            <div
+                class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
                 <img src="{{ asset('/assets/user.svg') }}" alt="cart icon" class="size-6">
-                <a href="/profile" class="font-semibold text-black">My Profile</a>
+                <a href="{{ route('profile') }}" class="font-semibold text-black">My Profile</a>
             </div>
-            <div class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
+            <div
+                class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
                 <img src="{{ asset('/assets/ic_order.svg') }}" alt="cart icon" class="size-6">
-                <a href="/profile/orders" class="font-semibold text-black">My Orders</a>
+                <a href="{{ route('profile.orders') }}" class="font-semibold text-black">My Orders</a>
             </div>
-            <div class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
+            <div
+                class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
                 <img src="{{ asset('/assets/ic_cart.svg') }}" alt="cart icon" class="size-6">
-                <a href="/profile/cart" class="font-semibold text-black">My Cart</a>
+                <a href="{{ route('profile.cart') }}" class="font-semibold text-black">My Cart</a>
             </div>
-            <div class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
+            <div
+                class="flex flex-row items-center gap-3 hover:shadow-lg transition duration-200 text-white cursor-pointer rounded-lg px-3 py-3 align-middle">
                 <img src="{{ asset('/assets/ic_favorite.svg') }}" alt="cart icon" class="size-6">
-                <a href="/profile/favorite" class="font-semibold text-black">My Favorite</a>
+                <a href="{{ route('profile.favorite') }}" class="font-semibold text-black">My Favorite</a>
             </div>
         </nav>
     </div>
-    <div class="p-4 mb-10 flex flex-row px-4 py-2 text-red-500 hover:text-red-400 gap-2 hover:cursor-pointer transition duration-200">
+    <div
+        class="p-4 mb-10 flex flex-row px-4 py-2 text-red-500 hover:text-red-400 gap-2 hover:cursor-pointer transition duration-200">
         <img src="{{ asset('/assets/log-out.svg') }}" alt="logout icon" class="size-6">
-        <a href="/" class="font-semibold">Log Out</a>
+        <a href="{{ route('logout') }}" class="font-semibold">Logout</a>
     </div>
 </aside>
 
@@ -52,5 +58,14 @@
     @yield('content')
 </main>
 
+@if(session('success'))
+    <script>
+        alert(session('success'));
+    </script>
+@else
+    <script>
+        alert(session('error'));
+    </script>
+@endif
 </body>
 </html>

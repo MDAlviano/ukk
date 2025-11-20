@@ -1,5 +1,5 @@
 <div class="relative hover:shadow-lg mb-6 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
-    <a href="/products/{{ $slug }}" class="flex flex-col justify-center items-start">
+    <a href="{{ route('products.show', ['slug' => $slug]) }}" class="flex flex-col justify-center items-start">
         <div class="relative flex justify-end overflow-hidden">
             <img src="{{ asset($imageUrl) }}" alt="Raket Yonex terbaru" class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-105">
         </div>
@@ -9,7 +9,7 @@
             <p class="font-semibold">Rp{{ number_format($price) }}</p>
             <div class="flex flex-row gap-1 items-center">
                 <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
-                <p><span class="font-medium text-dark-gray">{{ $orders }} Terjual</p>
+                <p><span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $id)->count() }} Terjual</p>
             </div>
         </div>
     </a>

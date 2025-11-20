@@ -5,11 +5,11 @@
         {{-- top section --}}
         <div class="flex flex-col gap-5">
             <div class="flex flex-row gap-5">
-                <h1 class="text-2xl font-semibold">Order Detail : {orderId}</h1>
+                <h1 class="text-2xl font-semibold">Order Detail : {{ $order->order_number }}</h1>
                 <h5 class="px-3 py-1 rounded-md outline-1 outline-vibrant-orange text-vibrant-orange bg-[#FFE2D7] italic">
-                    {status}</h5>
+                    {{ $order->status }}</h5>
             </div>
-            <p class="text-lg">September 9, 2025 at 20:48 WIB</p>
+            <p class="text-lg">{{ $order->created_at->format('d F Y, H:i') }}</p>
         </div>
 
         {{-- main section --}}
@@ -21,51 +21,53 @@
                     <h1 class="font-semibold text-lg">Customer</h1>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Full Name</h4>
-                        <p>{fullName}</p>
+                        <p>{{ $order->users->full_name }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Email</h4>
-                        <p>{email}</p>
+                        <p>{{ $order->users->email }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Phone</h4>
-                        <p>{phone}</p>
+                        <p>{{ $order->users->phone }}</p>
                     </div>
                 </div>
                 {{-- order items --}}
                 <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-4">
                     <h1 class="font-semibold text-lg">Order Items</h1>
                     {{-- item --}}
-                    <div class="flex flex-row justify-between w-full">
-                        <div class="flex flex-row gap-5">
-                            <img src="{{ asset('/assets/placeholder.png') }}" alt="product image" class="size-20">
-                            <div class="flex flex-col gap-3">
-                                <p class="opacity-70 text-dark-gray">{category}</p>
-                                <p class="text-lg font-medium text-dark-gray">{productName}</p>
+                    @foreach($order->orderItems as $item)
+                        <div class="flex flex-row justify-between w-full">
+                            <div class="flex flex-row gap-5">
+                                <img src="{{ asset('/assets/placeholder.png') }}" alt="product image" class="size-20">
+                                <div class="flex flex-col gap-3">
+                                    <p class="opacity-70 text-dark-gray">{{ $item->products->categories->name }}</p>
+                                    <p class="text-lg font-medium text-dark-gray">{{ $item->products->name }}</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3 items-end">
+                                <p class="text-dark-gray opacity-80">{{ $item->quantity }} x Rp{{ number_format($item->price, 0, ',', '.') }}</p>
+                                <p class="font-medium text-dark-gray">Rp{{ number_format($item->quantity * $item->price, 0, ',', '.') }}</p>
                             </div>
                         </div>
-                        <div class="flex flex-col gap-3 items-end">
-                            <p class="text-dark-gray opacity-80">{subQuantity} x {price}</p>
-                            <p class="font-medium text-dark-gray">{subTotalPrice}</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 {{-- order summary --}}
                 <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-4">
                     <h1 class="font-semibold text-lg">Order Summary</h1>
                     <div class="flex flex-row w-full justify-between">
                         <h5>Subtotal</h5>
-                        <p>6 item</p>
-                        <p>Rp1.200.000</p>
+                        <p>{{ $order->orderItems->sum('quantity') }} item</p>
+                        <p>Rp{{ number_format($order->orderItems->sum('price')) }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h5>Shipping</h5>
-                        <p>Rp50.000</p>
+                        <p>Rp{{ number_format($order->shipments->price, 0, ',', '.') }}</p>
                     </div>
                     <span class="w-full h-[1px] border-[1px] border-gray-300"></span>
                     <div class="flex flex-row w-full justify-between">
                         <h5 class="font-medium">Total</h5>
-                        <p>Rp1.250.000</p>
+                        <p>Rp{{ number_format($order->total_price, 0, ',', '.') }}</p>
                     </div>
                 </div>
             </div>
@@ -77,39 +79,45 @@
                     <h1 class="font-semibold text-lg">Address</h1>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Recipient Name</h4>
-                        <p>{name}</p>
+                        <p>{{ $order->shipments->addresses->recipient_name }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Address</h4>
-                        <p>{address}</p>
+                        <p>{{ $order->shipments->addresses->address }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>City</h4>
-                        <p>{city}</p>
+                        <p>{{ $order->shipments->addresses->city }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Province</h4>
-                        <p>{province}</p>
+                        <p>{{ $order->shipments->addresses->province }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Country</h4>
-                        <p>{country}</p>
+                        <p>{{ $order->shipments->addresses->country }}</p>
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h4>Postal Code</h4>
-                        <p>{postalCode}</p>
+                        <p>{{ $order->shipments->addresses->postal_code }}</p>
                     </div>
                 </div>
                 {{-- note info --}}
                 <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
                     <h1 class="font-semibold text-lg">Note</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, id?</p>
+                    <p>{{ $order->note ?? "-" }}</p>
                 </div>
                 {{-- update order status --}}
-                <form onsubmit="" class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-4">
+                <form onsubmit="{{ route('admin.orders.update', ['orderId' => $order->id]) }}" method="POST" class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-4">
+                    @csrf
+                    @method('PUT')
                     <h1 class="font-semibold text-lg">Update Order Status</h1>
-                    <select name="" id="" class="flex flex-row gap-4 w-full pl-3 pr-8 py-2 rounded-md outline-1">
-                        <option value="">Pending</option>
+                    <select name="status" id="" class="flex flex-row gap-4 w-full pl-3 pr-8 py-2 rounded-md outline-1">
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
                     </select>
                     <button
                         class="w-fit bg-vibrant-orange py-1 px-6 rounded-md text-white cursor-pointer hover:opacity-90 transition duration-200">
@@ -119,4 +127,14 @@
             </div>
         </div>
     </div>
+
+    @if(session('success'))
+        <script>
+            alert(session('success'));
+        </script>
+    @else
+        <script>
+            alert(session('error'));
+        </script>
+    @endif
 @endsection

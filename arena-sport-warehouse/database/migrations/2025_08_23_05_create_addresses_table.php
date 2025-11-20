@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('province', 100)->nullable(false);
             $table->string('country', 50)->nullable(false);
             $table->integer('postal_code')->nullable(false);
+            $table->string('additional_information', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -13,9 +13,9 @@ class FavoriteController extends Controller
     {
         $user = Auth::user();
 
-        $products = Favorite::with('products')->where('user_id', $user->id)->where('deleted_at', null)->get();
+        $favorites = Favorite::with(['products', 'products.categories'])->where('user_id', $user->id)->where('deleted_at', null)->get();
 
-        return view('client.favorite.index', compact('products'));
+        return view('client.favorite.index', compact('favorites'));
     }
 
     public function add($productId)

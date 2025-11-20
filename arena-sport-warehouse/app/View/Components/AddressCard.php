@@ -15,6 +15,7 @@ class AddressCard extends Component
     public $country;
     public $postalCode;
     public $additionalInfo;
+    public $addressData;
 
     public function __construct(
         $recipientName,
@@ -24,6 +25,7 @@ class AddressCard extends Component
         $country,
         $postalCode,
         $additionalInfo,
+        $addressData,
     )
     {
         $this->recipientName = $recipientName;
@@ -33,6 +35,7 @@ class AddressCard extends Component
         $this->country = $country;
         $this->postalCode = $postalCode;
         $this->additionalInfo = $additionalInfo;
+        $this->addressData = $addressData;
     }
 
     /**

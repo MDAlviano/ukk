@@ -5,11 +5,25 @@
         <h1 class="font-semibold text-2xl">Edit User Information</h1>
     </header>
 
-    <form class="flex flex-col gap-4 mx-20 my-12 bg-white shadow-xl rounded-xl p-7" onsubmit="">
+    <form class="flex flex-col gap-4 mx-20 my-12 bg-white shadow-xl rounded-xl p-7" onsubmit="{{ route('profile.edit') }}">
         <div class="flex flex-col gap-1">
             <h3 class="font-semibold text-dark-gray">Full Name</h3>
-            <input type="text" placeholder="..." class="w-full outline-2 py-2 px-4 rounded-md">
+            <input type="text" placeholder="..." value="{{ \Illuminate\Support\Facades\Auth::user()->full_name }}" class="w-full outline-2 py-2 px-4 rounded-md">
+        </div>
+        <div class="flex flex-col gap-1">
+            <h3 class="font-semibold text-dark-gray">Phone</h3>
+            <input type="text" placeholder="..." value="{{ \Illuminate\Support\Facades\Auth::user()->phone }}" class="w-full outline-2 py-2 px-4 rounded-md">
         </div>
         <button type="submit" class="w-full bg-vibrant-orange text-white p-2 rounded-lg hover:opacity-70 transition duration-200">Confirm</button>
     </form>
+
+    @if(session('success'))
+        <script>
+            alert(session('success'));
+        </script>
+    @else
+        <script>
+            alert(session('error'));
+        </script>
+    @endif
 @endsection

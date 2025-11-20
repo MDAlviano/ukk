@@ -3,7 +3,7 @@
     <p>{{ $city }}, {{ $province }} - {{ $country }} ({{ $postalCode }})</p>
     <p>{{ $additionalInfo }}</p>
     <div class="flex flex-row gap-2 items-center">
-        <a href="/" class="text-gray-500 font-medium hover:underline">Edit</a>
+        <a href="{{ route('address.edit', ['address' => $address]) }}" class="text-gray-500 font-medium hover:underline">Edit</a>
         <img src="{{ asset('/assets/ic_edit-gray.svg') }}" alt="edit" class="size-4">
     </div>
 </div>
