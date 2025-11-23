@@ -36,7 +36,6 @@ Route::middleware(['auth', 'client'])->group(function () {
 
     Route::get('/order/create', [\App\Http\Controllers\Client\OrderController::class, 'create'])->name('order.create');
     Route::post('/order', [\App\Http\Controllers\Client\OrderController::class, 'store'])->name('order.store');
-
     Route::get('/order/{order}/pay', [\App\Http\Controllers\Client\PaymentController::class, 'initiatePayment'])->name('order.pay');
 
     Route::get('/profile', [\App\Http\Controllers\Client\AddressController::class, 'index'])->name('profile');
@@ -63,8 +62,6 @@ Route::middleware(['auth', 'client'])->group(function () {
     Route::post('/cart/add/{id}', [\App\Http\Controllers\Client\CartController::class, 'add'])->name('cart.add');
 
     Route::delete('/cart/{productId}', [\App\Http\Controllers\Client\CartController::class, 'remove'])->name('cart.remove');
-
-    Route::post('/favorite/toggle/{product}', [\App\Http\Controllers\Client\FavoriteController::class, 'toggle'])->name('favorite.toggle');
 
     Route::get('/profile/favorite', [\App\Http\Controllers\Client\FavoriteController::class, 'index'])->name('profile.favorite');
 

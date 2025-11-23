@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,8 +21,10 @@ class CartController extends Controller
 
     public function add($productId, Request $request)
     {
+        $product = Product::where('id', $productId)->first();
+
         $data = $request->validate([
-            'quantity' => 'required|integer|min:1',
+            'quantity' => 'required|integer|min:1|max:' . $product->stock,
         ]);
 
         $user = Auth::user();

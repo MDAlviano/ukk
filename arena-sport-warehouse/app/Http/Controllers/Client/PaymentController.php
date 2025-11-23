@@ -62,7 +62,7 @@ class PaymentController extends Controller
         if ($order->shipping_method === 'delivery' && $order->address) {
             $params['shipping_address'] = [
                 'first_name'   => $order->addresses->recipient_name,
-                'address'      => $order->addresses->address . ($order->addresses->additional_info ? ', ' . $order->addresses->additional_info : ''),
+                'address'      => $order->addresses->address . ($order->addresses->additional_information ? ', ' . $order->addresses->additional_information : ''),
                 'city'         => $order->addresses->city,
                 'postal_code'  => $order->addresses->postal_code,
                 'phone'        => $order->users->phone,

@@ -13,15 +13,15 @@
     </a>
 </header>
 
-<div class="flex flex-col gap-6 m-12">
+<div class="flex flex-col gap-6 mx-auto my-40">
     <h1 class="font-semibold text-2xl">Pembayaran Order #{{ $order->order_number }}</h1>
 
     <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
-        <h2 class="font-semibold text-lg">Ringkasan Order</h2>
+        <h2 class="font-semibold text-lg">Ringkasan Order a.n {{ $order->users->name }}</h2>
         <p>Total: <strong>Rp {{ number_format($order->final_price, 0, ',', '.') }}</strong></p>
         <p>Metode Pengiriman: {{ $order->shipping_method === 'delivery' ? 'Antar' : 'Ambil di Toko' }}</p>
         @if($order->shipping_method === 'delivery' && $order->address)
-            <p>Alamat: {{ $order->address->address }}, {{ $order->address->city }}</p>
+            <p>Alamat: {{ $order->addresses->address }}, {{ $order->addresses->city }}</p>
         @endif
     </div>
 

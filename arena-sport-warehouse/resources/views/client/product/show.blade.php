@@ -47,7 +47,7 @@
             <h1 class="text-4xl font-bold">{{ $product->name }}</h1>
             <div class="flex flex-row gap-1 items-center">
                 <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
-                <p><span class="text-dark-gray font-semibold text-lg opacity-50">{{ number_format(125) }} orders</span>
+                <p><span class="text-dark-gray font-semibold text-lg opacity-50">{{ \App\Models\OrderItem::where('product_id', $product->id)->sum('quantity') }} orders</p>
                 </p>
             </div>
             <div class="flex flex-col">
@@ -56,7 +56,7 @@
             </div>
             <div class="flex flex-col">
                 <h1 class="font-semibold">Harga:</h1>
-                <p class="text-3xl font-semibold">Rp{{ number_format($product->price) }}</p>
+                <p class="text-3xl font-semibold">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
             </div>
             <div class="flex flex-col gap-3 mt-4">
                 <form action="{{ route('cart.add', $product->id) }}" method="POST" class="flex flex-col gap-4">
@@ -80,49 +80,49 @@
                         <img src="{{ asset('/assets/favourite-white.svg') }}" alt="cart" class="size-7">
                         Tambah ke favorit
                     </button>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
 
-    {{-- description --}}
-    <div class="flex flex-col gap-2">
-        <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
-        <h1 class="font-semibold text-xl mb-4">Deskripsi</h1>
-        <p class="text-lg">{{ $product->description }}</p>
-    </div>
+        {{-- description --}}
+        <div class="flex flex-col gap-2">
+            <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
+            <h1 class="font-semibold text-xl mb-4">Deskripsi</h1>
+            <p class="text-lg">{{ $product->description }}</p>
+        </div>
 
-    {{-- reccomendation products --}}
-    <div class="flex flex-col gap-2 mb-10">
-        <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
-        <h1 class="font-semibold text-xl mb-4">Rekomendasi Produk Lainnya!</h1>
-        <div id="products" class="grid grid-cols-4 justify-between">
-            @foreach($products as $product)
-                {{--  product card  --}}
-                <div
-                    class="hover:shadow-lg my-4 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
-                    <a href="{{ route('products.show', $product->slug) }}"
-                       class="flex flex-col justify-center items-start">
-                        <div class="relative flex justify-end overflow-hidden">
-                            <img src="{{ asset('/storage/' . $product->image_url) }}" alt="Raket Yonex terbaru"
-                                 class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-110">
-                        </div>
-                        <div class="flex flex-col gap-2 p-3">
-                            <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">{{ $product->name }}</h1>
-                            <p class="text-sm truncate">{{ $product->description }}</p>
-                            <p class="font-semibold">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
-                            <div class="flex flex-row gap-1 items-center">
-                                <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
-                                <p><span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $product->id)->count()    }} Terjual
-                                </p>
+        {{-- reccomendation products --}}
+        <div class="flex flex-col gap-2 mb-10">
+            <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
+            <h1 class="font-semibold text-xl mb-4">Rekomendasi Produk Lainnya!</h1>
+            <div id="products" class="grid grid-cols-4 justify-between">
+                @foreach($products as $product)
+                    {{--  product card  --}}
+                    <div
+                        class="hover:shadow-lg my-4 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
+                        <a href="{{ route('products.show', $product->slug) }}"
+                           class="flex flex-col justify-center items-start">
+                            <div class="relative flex justify-end overflow-hidden">
+                                <img src="{{ asset('/storage/' . $product->image_url) }}" alt="{{ $product->name }}"
+                                     class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-110">
                             </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
+                            <div class="flex flex-col gap-2 p-3">
+                                <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">{{ $product->name }}</h1>
+                                <p class="text-sm truncate">{{ $product->description }}</p>
+                                <p class="font-semibold">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
+                                <div class="flex flex-row gap-1 items-center">
+                                    <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
+                                    <p>
+                                        <span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $product->id)->sum('quantity')    }} Terjual</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
-
 </main>
 
 {{-- footer --}}

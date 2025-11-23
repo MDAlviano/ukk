@@ -129,11 +129,11 @@ class OrderController extends Controller
             'address_id' => $address->id,
             'final_price' => $finalPrice,
             'status' => 'pending',
-            'payment_method' => null, // nanti diisi pas payment gateway
+            'payment_method' => 'payment online method', // nanti diisi pas payment gateway
             'payment_status' => 'pending',
             'shipping_method' => $shippingMethod,
             'shipping_price' => $shippingPrice,
-            'note' => $request->notes,
+            'notes' => $request->notes,
         ]);
 
         // Buat order items + kurangi stock

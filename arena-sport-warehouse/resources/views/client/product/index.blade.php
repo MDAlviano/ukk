@@ -109,7 +109,7 @@
                             <p class="font-semibold">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
                             <div class="flex flex-row gap-1 items-center">
                                 <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
-                                <p><span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $product->id)->count()    }} Terjual</p>
+                                <p><span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $product->id)->sum('quantity')    }} Terjual</p>
                             </div>
                         </div>
                     </a>

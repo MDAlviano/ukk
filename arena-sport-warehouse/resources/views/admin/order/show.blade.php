@@ -111,7 +111,7 @@
                 {{-- note info --}}
                 <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
                     <h1 class="font-semibold text-lg">Note</h1>
-                    <p>{{ $order->note ? $order->note : '-' }}</p>
+                    <p>{{ $order->notes ? $order->notes : '-' }}</p>
                 </div>
                 {{-- update order status --}}
                 <form action="{{ route('admin.orders.update', ['orderId' => $order->id]) }}" method="POST" class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-4">
