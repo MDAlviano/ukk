@@ -5,47 +5,46 @@
         <h1 class="font-semibold text-2xl">Update Product</h1>
     </header>
 
-    <form class="flex flex-row gap-12 mx-20 my-12 bg-white shadow-xl rounded-xl p-7"
-          onsubmit="{{ route('admin.products.update', ['id' => $product->id]) }}" method="POST">
+    <form class="flex flex-row gap-12 mx-20 my-12 bg-white shadow-xl rounded-xl p-7" action="{{ route('products.update', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="w-3/5 flex flex-col gap-5">
             <h1 class="text-lg font-semibold">Update Product Form</h1>
             <div class="flex flex-col gap-2 w-full">
                 <h4 class="font-semibold">Unique ID</h4>
-                <input name="unique_id" type="text" value="{{ $product->unique_id }}" placeholder="#A1234"
+                <input name="unique_id" required type="text" value="{{ $product->unique_id }}" placeholder="#A1234"
                        class="outline-2 py-2 px-4 rounded-md">
             </div>
             <div class="flex flex-row gap-5">
                 <div class="flex flex-col gap-2 w-full">
                     <h4 class="font-semibold">Name</h4>
-                    <input name="name" type="text" value="{{ $product->name }}" placeholder="My Product"
+                    <input name="name" required type="text" value="{{ $product->name }}" placeholder="My Product"
                            class="outline-2 py-2 px-4 rounded-md">
                 </div>
                 <div class="flex flex-col gap-2 w-full">
                     <h4>Price</h4>
-                    <input name="price" type="number" value="{{ $product->price }}" placeholder="200.000"
+                    <input name="price" required type="number" value="{{ $product->price }}" placeholder="200.000"
                            class="outline-2 py-2 px-4 rounded-md">
                 </div>
             </div>
             <div class="flex flex-row gap-5">
                 <div class="flex flex-col gap-2 w-fit">
                     <h4>Stock</h4>
-                    <input name="stock" type="number" value="{{ $product->stock }}" placeholder="50"
+                    <input name="stock" required type="number" value="{{ $product->stock }}" placeholder="50"
                            class="outline-2 py-2 px-4 rounded-md w-16">
                 </div>
                 <div class="flex flex-col gap-2 w-full">
                     <h4>Category</h4>
-                    <select name="category" id="" class="outline-2 py-2 px-4 rounded-md">
+                    <select name="category" required class="outline-2 py-2 px-4 rounded-md">
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->id }}</option>
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
             <div class="flex flex-col gap-2 w-full">
                 <h4>Description</h4>
-                <textarea name="description" id="" cols="6" rows="10"
+                <textarea name="description" required id="" cols="6" rows="10"
                           placeholder="This is my first product, i hope it can increase my money..."
                           class="outline-2 py-2 px-4 rounded-md">{{ $product->description }}</textarea>
             </div>
@@ -56,7 +55,7 @@
         </div>
         <div class="w-2/5 h-fit outline-2 py-3 px-4 rounded-md flex flex-col gap-4">
             <h4>Image</h4>
-            <input type="image" src="{{ asset('/assets/ic_upload.svg') }}" alt="Input Image Product"
+            <input type="file" name="image" required src="{{ asset('/assets/ic_upload.svg') }}" alt="Input Image Product"
                    class="outline-2 py-2 px-4 rounded-md h-24 mb-2">
         </div>
     </form>

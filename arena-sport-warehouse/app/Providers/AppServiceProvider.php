@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Midtrans\Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Config::$serverKey = config('midtrans.serverKey');
+        Config::$isProduction = config('midtrans.isProduction', false);
+        Config::$isSanitized = config('midtrans.isSanitized', true);
+        Config::$is3ds = config('midtrans.is3ds', true);
+
+        Config::$overrideNotifUrl = url('/midtrans-notification');
     }
 }

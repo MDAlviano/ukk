@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Cart extends Model
 {
-    protected $table = "wishlists";
+    protected $table = "carts";
     protected $primaryKey = "id";
     protected $keyType = "int";
     public $timestamps = true;
@@ -15,6 +15,7 @@ class Cart extends Model
     protected $fillable = [
         'user_id',
         'product_id',
+        'quantity',
         'quantity',
     ];
 

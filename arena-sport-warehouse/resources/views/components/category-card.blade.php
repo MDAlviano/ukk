@@ -1,5 +1,5 @@
 <div class="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group my-3">
-    <img src="{{ asset($imageUrl) }}" alt="{{ $name }}"
+    <img src="{{ asset('/storage/' . $imageUrl) }}" alt="{{ $name }}"
          class="absolute w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
 
     <div class="absolute inset-0 flex flex-col justify-between p-6 text-white w-1/2 backdrop-blur-md">

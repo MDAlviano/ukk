@@ -39,7 +39,7 @@
                     @foreach($order->orderItems as $item)
                         <div class="flex flex-row justify-between w-full">
                             <div class="flex flex-row gap-5">
-                                <img src="{{ asset('/assets/placeholder.png') }}" alt="product image" class="size-20">
+                                <img src="{{ asset('/storage/' . $item->products->image_url) }}" alt="product image" class="size-20">
                                 <div class="flex flex-col gap-3">
                                     <p class="opacity-70 text-dark-gray">{{ $item->products->categories->name }}</p>
                                     <p class="text-lg font-medium text-dark-gray">{{ $item->products->name }}</p>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="flex flex-row w-full justify-between">
                         <h5>Shipping</h5>
-                        <p>Rp{{ number_format($order->shipments->price, 0, ',', '.') }}</p>
+                        <p>Rp{{ number_format($order->shipping_price, 0, ',', '.') }}</p>
                     </div>
                     <span class="w-full h-[1px] border-[1px] border-gray-300"></span>
                     <div class="flex flex-row w-full justify-between">
@@ -76,41 +76,47 @@
             <div class="flex flex-col gap-5 w-3/6">
                 {{-- address info --}}
                 <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
-                    <h1 class="font-semibold text-lg">Address</h1>
-                    <div class="flex flex-row w-full justify-between">
-                        <h4>Recipient Name</h4>
-                        <p>{{ $order->addresses->recipient_name }}</p>
-                    </div>
-                    <div class="flex flex-row w-full justify-between">
-                        <h4>Address</h4>
-                        <p>{{ $order->addresses->address }}</p>
-                    </div>
-                    <div class="flex flex-row w-full justify-between">
-                        <h4>City</h4>
-                        <p>{{ $order->addresses->city }}</p>
-                    </div>
-                    <div class="flex flex-row w-full justify-between">
-                        <h4>Province</h4>
-                        <p>{{ $order->addresses->province }}</p>
-                    </div>
-                    <div class="flex flex-row w-full justify-between">
-                        <h4>Country</h4>
-                        <p>{{ $order->addresses->country }}</p>
-                    </div>
-                    <div class="flex flex-row w-full justify-between">
-                        <h4>Postal Code</h4>
-                        <p>{{ $order->addresses->postal_code }}</p>
-                    </div>
+                    <h1 class="font-semibold text-lg">Shipping Method</h1>
+                    <p>{{ $order->shipping_method }}</p>
                 </div>
+                @if($order->addresses)
+                    <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
+                        <h1 class="font-semibold text-lg">Address</h1>
+                        <div class="flex flex-row w-full justify-between">
+                            <h4>Recipient Name</h4>
+                            <p>{{ $order->addresses->recipient_name }}</p>
+                        </div>
+                        <div class="flex flex-row w-full justify-between">
+                            <h4>Address</h4>
+                            <p>{{ $order->addresses->address }}</p>
+                        </div>
+                        <div class="flex flex-row w-full justify-between">
+                            <h4>City</h4>
+                            <p>{{ $order->addresses->city }}</p>
+                        </div>
+                        <div class="flex flex-row w-full justify-between">
+                            <h4>Province</h4>
+                            <p>{{ $order->addresses->province }}</p>
+                        </div>
+                        <div class="flex flex-row w-full justify-between">
+                            <h4>Country</h4>
+                            <p>{{ $order->addresses->country }}</p>
+                        </div>
+                        <div class="flex flex-row w-full justify-between">
+                            <h4>Postal Code</h4>
+                            <p>{{ $order->addresses->postal_code }}</p>
+                        </div>
+                    </div>
+                @endif
                 {{-- note info --}}
                 <div class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-3">
                     <h1 class="font-semibold text-lg">Note</h1>
-                    <p>{{ $order->note ?? "-" }}</p>
+                    <p>{{ $order->note ? $order->note : '-' }}</p>
                 </div>
                 {{-- update order status --}}
-                <form onsubmit="{{ route('admin.orders.update', ['orderId' => $order->id]) }}" method="POST" class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-4">
+                <form action="{{ route('admin.orders.update', ['orderId' => $order->id]) }}" method="POST" class="flex flex-col outline-2 outline-gray-300 rounded-lg p-4 gap-4">
                     @csrf
-                    @method('PUT')
+                    @method('PATCH')
                     <h1 class="font-semibold text-lg">Update Order Status</h1>
                     <select name="status" id="" class="flex flex-row gap-4 w-full pl-3 pr-8 py-2 rounded-md outline-1">
                         <option value="pending">Pending</option>
@@ -120,6 +126,7 @@
                         <option value="cancelled">Cancelled</option>
                     </select>
                     <button
+                        type="submit"
                         class="w-fit bg-vibrant-orange py-1 px-6 rounded-md text-white cursor-pointer hover:opacity-90 transition duration-200">
                         Save
                     </button>
@@ -127,14 +134,4 @@
             </div>
         </div>
     </div>
-
-    @if(session('success'))
-        <script>
-            alert(session('success'));
-        </script>
-    @else
-        <script>
-            alert(session('error'));
-        </script>
-    @endif
 @endsection

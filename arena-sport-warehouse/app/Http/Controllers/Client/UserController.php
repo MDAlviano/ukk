@@ -64,15 +64,23 @@ class UserController extends Controller
         return redirect()->route('landing')->with('success', 'Berhasil logout!');
     }
 
+    public function edit()
+    {
+        $user = Auth::user();
+
+        return view('client.profile.update', compact('user'));
+    }
+
     public function update(Request $request)
     {
         $data = $request->validate([
             'full_name' => 'nullable',
-            'phone' => 'nullable',
+            'phone' => 'required',
         ]);
 
         $user = Auth::user();
         $user->full_name = $data['full_name'];
+        $user->phone = $data['phone'];
         $user->save();
 
         return redirect()->route('profile')->with('success', 'Berhasil mengupdate profil!');

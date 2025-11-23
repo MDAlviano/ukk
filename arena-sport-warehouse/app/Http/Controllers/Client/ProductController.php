@@ -44,7 +44,7 @@ class ProductController extends Controller
             default => $query->latest(),
         };
 
-        $products = $query;
+        $products = $query->get();
 
         return view('client.product.index', compact('products', 'categories'));
     }
@@ -55,11 +55,7 @@ class ProductController extends Controller
         $products = Product::query()
             ->whereNot('id', $product->id)
             ->where('deleted_at', null)
-            ->take(4);
-
-        if (!$product) {
-            return redirect()->back()->with('error', 'Produk tidak ditemukan!');
-        }
+            ->take(4)->get();
 
         return view('client.product.show', compact(['product', 'products']));
     }

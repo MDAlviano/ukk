@@ -6,7 +6,7 @@
     </header>
 
     <form class="flex flex-row gap-12 mx-20 my-12 bg-white shadow-xl rounded-xl p-7"
-          onsubmit="{{ route('admin.categories.create') }}" method="POST">
+          action="{{ route('category.create') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="w-3/5 flex flex-col gap-6">
             <h1 class="text-lg font-semibold">Add Category Form</h1>
@@ -22,19 +22,9 @@
         </div>
         <div class="w-2/5 h-fit outline-2 py-3 px-4 rounded-md flex flex-col gap-4">
             <h4>Image</h4>
-            <input name="name" required type="image" src="{{ asset('/assets/ic_upload.svg') }}"
+            <input name="image" required type="file" src="{{ asset('/assets/ic_upload.svg') }}"
                    alt="Input Image Product"
                    class="outline-2 py-2 px-4 rounded-md h-24 mb-2">
         </div>
     </form>
-
-    @if(session('success'))
-        <script>
-            alert(session('success'));
-        </script>
-    @else
-        <script>
-            alert(session('error'));
-        </script>
-    @endif
 @endsection

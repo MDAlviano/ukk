@@ -7,17 +7,16 @@ use App\Models\Product;
 
 class LandingPageController extends Controller
 {
+/** Function index() untuk mengambil 4 produk dari database yang disimpan di variable products lalu mengembalikan view
+ * 'landing.index' dan menyertakan variable products.
+ */
     public function index()
     {
         $products = Product::query()
-            ->whereNotNull('deleted_at')
+            ->whereNull('deleted_at')
             ->take(4)
             ->get();
 
-            if($products->isEmpty()){
-            return redirect()->back()->with('empty', 'Produk masih kosong');
-        }
-
-        return view('client.landing.index', compact('products'))->with('success', 'Berhasil mendapatkan produk');
+        return view('landing.index', compact('products'));
     }
 }

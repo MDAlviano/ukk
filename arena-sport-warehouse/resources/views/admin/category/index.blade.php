@@ -9,55 +9,69 @@
         {{--  filter  --}}
         <div class="flex flex-row gap-6">
             <div class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1">
-                <input type="text" placeholder="Search..." class="text-[#B6B6B6] focus:outline-0">
+                <input type="text" id="search-input" placeholder="Search..." class="focus:outline-0">
                 <img src="{{ asset('/assets/Search.svg') }}" alt="">
             </div>
         </div>
 
-        <table class="w-full table-fixed border-collapse">
+        <table class="table-fixed border-collapse">
             <thead>
             <tr class="bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm text-[#B6B6B6]">
                 <th class="py-4 px-8 text-left">Image</th>
-                <th class="py-4 px-8 text-left">Name</th>
-                <th class="py-4 px-8 text-left">Total Products</th>
+                <th class="py-4 text-left">Name</th>
+                <th class="py-4 text-left">Total Products</th>
                 <th class="py-4 px-8 text-left">Action</th>
             </tr>
             </thead>
-            <tbody>
-            @foreach($categories as $category)
-                <tr class="bg-white rounded-lg drop-shadow-lg">
-                    <td class="py-4 px-8 align-middle">
-                        <div class="flex items-center gap-6">
-                            <img src="{{ asset($category->image_url) }}" alt="{{ $category->name }}"
-                                 class="size-24 rounded-md object-cover">
-                            <h5 class="font-semibold hover:underline"><a
-                                    href="{{ route('admin.category.show', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
-                            </h5>
-                        </div>
-                    </td>
-                    <td class="py-4 px-8 align-middle font-semibold">{{ $category->products->count() }} Products</td>
-                    <td class="py-4 px-8 align-middle">
-                        <div class="flex gap-3">
-                            <a href="{{ route('admin.category.edit', ['slug' => $category->slug]) }}"
-                               class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Edit</a>
-                            <a href="{{ route('admin.category.delete', ['id' => $category->id]) }}"
-                               class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Delete</a>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
+            <tbody id="category-table-body">
+            @include('admin.category.partials.table-body')
             </tbody>
         </table>
     </main>
 
-    @if(session('success'))
-        <script>
-            alert(session('success'));
-        </script>
-    @else
-        <script>
-            alert(session('error'));
-        </script>
-    @endif
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const tableBody = document.getElementById('category-table-body');
 
+        let timer;
+
+        function fetchCategories() {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                const params = new URLSearchParams({
+                    q: searchInput.value.trim(),
+                });
+
+                const url = `/admin/categories/search?${params.toString()}`;
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'text/html',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(html => {
+                        tableBody.innerHTML = html;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-10 text-red-600">
+                            Terjadi kesalahan saat memuat data
+                        </td>
+                    </tr>`;
+                    });
+            }, 350);
+        }
+
+        searchInput.addEventListener('input', fetchCategories);
+    </script>
 @endsection

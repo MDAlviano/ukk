@@ -10,9 +10,33 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $orders = Order::all()->where('deleted_at', null);
+        $query = Order::with(['users'])->whereNull('deleted_at');
 
-        return view('admin.order.index', compact('orders'));
+        // Filter Tanggal
+        if ($request->filled('date')) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        // Filter Status
+        if ($request->filled('status') && $request->status !== 'all') {
+            $query->where('status', $request->status);
+        }
+
+        // Urutkan dari yang terbaru
+        $orders = $query->latest()->get();
+
+        // Daftar status untuk dropdown (bisa disesuaikan)
+        $statusOptions = [
+            'all'         => 'all',
+            'pending'     => 'pending',
+            'processing'  => 'processing',
+            'shipped'     => 'shipped',
+            'delivered'   => 'delivered',
+            'cancelled'   => 'cancelled',
+            'completed'   => 'completed',
+        ];
+
+        return view('admin.order.index', compact('orders', 'statusOptions'));
     }
 
     public function show($orderNumber)
@@ -24,13 +48,6 @@ class OrderController extends Controller
         }
 
         return view('admin.order.show', compact('order'));
-    }
-
-    public function create(Request $request)
-    {
-        $data = $request->validate([
-
-        ]);
     }
 
     public function update($orderId, Request $request)
@@ -49,6 +66,6 @@ class OrderController extends Controller
         $order->updated_at = now();
         $order->save();
 
-        return redirect()->route('admin.order.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('admin.orders')->with('success', 'Data berhasil diupdate');
     }
 }

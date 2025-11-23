@@ -12,18 +12,10 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $fullName = $user->fullName;
+        $fullName = $user->full_name;
 
-        $categories = Category::with('products')->where('deleted_at', null)->take(4)->get();
-        $products = Product::where('deleted_at', null)->take(12)->get();
-
-        if ($categories->isEmpty()) {
-            return redirect()->back()->with('categoryEmpty', 'Kategori belum tersedia saat ini.');
-        }
-
-        if ($products->isEmpty()) {
-            return redirect()->back()->with('productEmpty', 'Produk belum tersedia saat ini.');
-        }
+        $categories = Category::with('products')->whereNull('deleted_at')->take(4)->get();
+        $products = Product::whereNull('deleted_at')->take(12)->get();
 
         return view('client.app', compact(['categories', 'products', 'fullName']))->with('success', 'Berhasil mendapatkan data kategori dan produk.');
     }

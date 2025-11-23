@@ -22,7 +22,7 @@ class AddressController extends Controller
     {
         $user = Auth::user();
 
-        $addresses = Address::all()->where('deleted_at', null)->where('user_id', $user->id);
+        $addresses = Address::all()->whereNull('deleted_at')->where('user_id', $user->id);
 
         return view('client.profile.index', compact(['user', 'addresses']));
     }
@@ -36,15 +36,24 @@ class AddressController extends Controller
             'province' => 'required',
             'country' => 'required',
             'postal_code' => 'required',
+            'additional_info' => 'nullable',
         ]);
 
         $user = Auth::user();
 
-        $address = Address::create($data);
-        $address->user_id = $user->id;
-        $address->save();
+        $address = Address::create([
+            'user_id' => $user->id,
+            'recipient_name' => $data['recipient_name'],
+            'address' => $data['address'],
+            'city' => $data['city'],
+            'province' => $data['province'],
+            'country' => $data['country'],
+            'postal_code' => $data['postal_code'],
+            'additional_information' => $data['additional_info'],
+            'created_at' => now()
+        ]);
 
-        return redirect()->route('client.address.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('profile')->with('success', 'Data berhasil diupdate');
     }
 
     public function update($addressId, Request $request)
@@ -58,6 +67,7 @@ class AddressController extends Controller
             'province' => 'nullable',
             'country' => 'nullable',
             'postal_code' => 'nullable',
+            'additional_info' => 'nullable',
         ]);
 
         $address = Address::where('id', $addressId)->where('user_id', $user->id)->first();
@@ -66,18 +76,26 @@ class AddressController extends Controller
             return redirect()->back()->with('error', 'Data tidak ditemukan');
         }
 
-        $address->update($data);
-        $address->updated_at = now();
+        $address->update([
+            'recipient_name' => $data['recipient_name'],
+            'address' => $data['address'],
+            'city' => $data['city'],
+            'province' => $data['province'],
+            'country' => $data['country'],
+            'postal_code' => $data['postal_code'],
+            'additional_information' => $data['additional_info'],
+            'updated_at' => now()
+        ]);
         $address->save();
 
-        return redirect()->route('client.address.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('profile')->with('success', 'Data berhasil diupdate');
     }
 
-    public function delete($addressId)
+    public function delete($id)
     {
         $user = Auth::user();
 
-        $address = Address::where('id', $addressId)->where('user_id', $user->id)->first();
+        $address = Address::where('id', $id)->where('user_id', $user->id)->first();
 
         if (!$address) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
@@ -86,6 +104,6 @@ class AddressController extends Controller
         $address->deleted_at = now();
         $address->save();
 
-        return redirect()->route('client.address.index')->with('success', 'Data berhasil diupdate');
+        return redirect()->route('profile')->with('success', 'Data berhasil diupdate');
     }
 }

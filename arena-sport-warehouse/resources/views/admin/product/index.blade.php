@@ -11,25 +11,44 @@
             <div class="flex flex-col gap-1">
                 <h1 class="text-lg font-semibold">Filter:</h1>
                 <div class="flex flex-row gap-4">
+                    {{-- Search --}}
                     <div class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1">
-                        <input type="text" placeholder="Search..." class="text-[#B6B6B6] focus:outline-0">
+                        <input type="text" id="search-input" placeholder="Search..."
+                               class="focus:outline-0">
                         <img src="{{ asset('/assets/Search.svg') }}" alt="">
                     </div>
-                    <select name="" id=""
+
+                    {{-- Kategori --}}
+                    <select id="filter-category"
                             class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1 focus:outline-0">
-                        <option value="">Kategori</option>
+                        <option value="all">Kategori</option>
+                        @foreach($categories as $cat)
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                        @endforeach
                     </select>
-                    <select name="" id=""
+
+                    {{-- Harga --}}
+                    <select id="filter-price"
                             class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1 focus:outline-0">
-                        <option value="">Harga</option>
+                        <option value="all">Harga</option>
+                        <option value="cheap">Di bawah Rp50.000</option>
+                        <option value="medium">Rp50.000 - Rp200.000</option>
+                        <option value="expensive">Di atas Rp200.000</option>
                     </select>
                 </div>
             </div>
+
+            {{-- sort --}}
             <div class="flex flex-col gap-1">
                 <h1 class="text-lg font-semibold">Sort:</h1>
-                <select name="" id=""
+                <select id="sort-select"
                         class="flex flex-row gap-4 px-3 py-2 rounded-md outline-1 focus:outline-0">
-                    <option value="">A-Z</option>
+                    <option value="name_asc">A-Z</option>
+                    <option value="name_desc">Z-A</option>
+                    <option value="price_asc">Harga: Rendah → Tinggi</option>
+                    <option value="price_desc">Harga: Tinggi → Rendah</option>
+                    <option value="stock_asc">Stok: Rendah → Tinggi</option>
+                    <option value="stock_desc">Stok: Tinggi → Rendah</option>
                 </select>
             </div>
         </div>
@@ -39,51 +58,72 @@
         <thead>
         <tr class="bg-white rounded-tr-lg rounded-tl-lg drop-shadow-sm text-[#B6B6B6]">
             <th class="py-4 px-8 text-left">Image</th>
-            <th class="py-4 px-8 text-left">Name</th>
-            <th class="py-4 px-8 text-left">Category</th>
-            <th class="py-4 px-8 text-left">Price</th>
-            <th class="py-4 px-8 text-left">Stock</th>
-            <th class="py-4 px-8 text-left">Orders</th>
+            <th class="py-4 text-left">Name</th>
+            <th class="py-4 text-left">Category</th>
+            <th class="py-4 text-left">Price</th>
+            <th class="py-4 text-left">Stock</th>
+            <th class="py-4 text-left">Orders</th>
             <th class="py-4 px-8 text-left">Action</th>
         </tr>
         </thead>
-        <tbody>
-        @foreach($products as $product)
-            <tr class="bg-white rounded-lg drop-shadow-lg">
-                <td class="py-4 px-8 align-middle">
-                    <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" class="w-20 rounded-md object-cover">
-                </td>
-                <td class="py-4 px-8 align-middle">
-                    <div class="flex flex-col gap-1">
-                        <h1 class="font-semibold">{{ $product->unique_id }}</h1>
-                        <h1 class="font-semibold hover:underline"><a href="{{ route('admin.products.show', ['slug' => $product->slug]) }}">{{ $product->name }}</a></h1>
-                        <h5 class="text-sm text-[#B6B6B6] truncate max-w-64">{{ $product->description }}</h5>
-                    </div>
-                </td>
-                <td class="py-4 px-8 align-middle">
-                    <span class="text-white font-medium bg-vibrant-orange px-3 py-2 text-sm rounded-md">{{ $product->categories->name }}</span>
-                </td>
-                <td class="py-4 px-8 align-middle">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
-                <td class="py-4 px-8 align-middle">{{ $product->stock }}</td>
-                <td class="py-4 px-8 align-middle">{{ \App\Models\OrderItem::where('product_id', $product->id)->count() }}</td>
-                <td class="py-4 px-8 align-middle">
-                    <div class="flex gap-3">
-                        <a href="{{ route('admin.products.update', ['product' => $product]) }}" class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Edit</a>
-                        <a href="{{ route('admin.products.delete', ['id' => $product->id]) }}" class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Delete</a>
-                    </div>
-                </td>
-            </tr>
-        @endforeach
+        <tbody id="product-table-body">
+        @include('admin.product.partials.table-body')
         </tbody>
     </table>
 
-    @if(session('success'))
-        <script>
-            alert(session('success'));
-        </script>
-    @else
-        <script>
-            alert(session('error'));
-        </script>
-    @endif
+    {{-- search script --}}
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const categorySel = document.getElementById('filter-category');
+        const priceSel = document.getElementById('filter-price');
+        const sortSel = document.getElementById('sort-select');
+        const tableBody = document.getElementById('product-table-body');
+
+        let timer;
+
+        function fetchProducts() {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                const params = new URLSearchParams({
+                    q: searchInput.value.trim(),
+                    category: categorySel.value,
+                    price: priceSel.value,
+                    sort: sortSel.value
+                });
+
+                const url = `/admin/products/search?${params.toString()}`;
+
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'text/html',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(html => {
+                        tableBody.innerHTML = html;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-10 text-red-600">
+                            Terjadi kesalahan saat memuat data
+                        </td>
+                    </tr>`;
+                    });
+            }, 350);
+        }
+
+        searchInput.addEventListener('input', fetchProducts);
+        categorySel.addEventListener('change', fetchProducts);
+        priceSel.addEventListener('change', fetchProducts);
+        sortSel.addEventListener('change', fetchProducts);
+    </script>
 @endsection

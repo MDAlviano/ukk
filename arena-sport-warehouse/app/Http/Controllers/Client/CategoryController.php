@@ -16,17 +16,34 @@ class CategoryController extends Controller
         return view('client.category.index', compact('categories'));
     }
 
+    public function search(Request $request)
+    {
+        $query = Category::whereNull('deleted_at');
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        $categories = $query->get();
+
+        return view('category.partials.category-grid', compact('categories'))->render();
+    }
+
     public function show($slug, Request $request)
     {
         $category = Category::where('slug', $slug)->first();
 
-        if ($category->isEmpty()) {
+        if (!$category) {
             return redirect()->back()->with('error', 'Kategori belum tersedia saat ini.');
         }
 
         $query = Product::query()
             ->where('category_id', $category->id)
             ->whereNull('deleted_at');
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
 
         if ($request->filled('price')) {
             $range = explode('-', $request->price);
@@ -48,8 +65,8 @@ class CategoryController extends Controller
             default     => $query->latest(),
         };
 
-        $products = $query;
+        $products = $query->get();
 
-        return view('client.category.show', compact('products'));
+        return view('client.category.show', compact('products', 'category'));
     }
 }

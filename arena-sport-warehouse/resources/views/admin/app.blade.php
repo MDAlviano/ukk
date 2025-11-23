@@ -30,7 +30,7 @@
                 </div>
                 <div class="text-white text-sm font-light flex flex-col gap-2 mt-2 ml-10">
                     <a href="{{ route('admin.products') }}" class="hover:opacity-80">List Products</a>
-                    <a href="/admin/products/create" class="hover:opacity-80">Create Product</a>
+                    <a href="{{ route('admin.products.store') }}" class="hover:opacity-80">Create Product</a>
                 </div>
             </div>
             <div class="flex flex-col">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="text-white text-sm font-light flex flex-col gap-2 mt-2 ml-10">
                     <a href="{{ route('admin.categories') }}" class="hover:opacity-80">List Categories</a>
-                    <a href="/admin/categories/create" class="hover:opacity-80">Create Category</a>
+                    <a href="{{ route('admin.category.store') }}" class="hover:opacity-80">Create Category</a>
                 </div>
             </div>
             <div class="flex flex-row gap-2 hover:bg-vibrant-orange transition duration-200 text-white cursor-pointer rounded-md px-2 py-2 align-middle">

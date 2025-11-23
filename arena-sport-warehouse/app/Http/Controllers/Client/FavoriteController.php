@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Favorite;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,7 @@ class FavoriteController extends Controller
     {
         $user = Auth::user();
 
-        $favorites = Favorite::with(['products', 'products.categories'])->where('user_id', $user->id)->where('deleted_at', null)->get();
+        $favorites = Favorite::with(['products', 'products.categories'])->where('user_id', $user->id)->whereNull('deleted_at')->get();
 
         return view('client.favorite.index', compact('favorites'));
     }

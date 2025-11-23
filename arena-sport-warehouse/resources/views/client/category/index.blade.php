@@ -19,8 +19,8 @@
             <img src="{{ asset('/assets/ic_logo.svg') }}" alt="logo" class="w-44">
         </a>
         <div class="flex flex-row w-full gap-4 px-3 py-2 rounded-lg outline-1 outline-dark-gray">
-            <img src="{{ asset('/assets/Search.svg') }}" alt="search" class="opacity-70 w-5">
-            <input type="text" placeholder="Search product here..." class="focus:outline-0 w-full">
+            <input type="text" id="search-input" placeholder="Kategori Kami" disabled
+                   class="focus:outline-0 w-full text-center">
         </div>
         <div class="flex flex-row gap-5 w-fit h-fit pl-8">
             <a href="{{ route('profile.cart') }}">
@@ -34,36 +34,42 @@
 </nav>
 
 {{-- categories --}}
-@if(session('empty'))
-    <main id="empty" class="px-20 py-16 flex flex-col items-center">
-        <h1 class="font-medium text-dark-gray opacity-80">{{ session('empty') }}</h1>
+@if($categories->isEmpty())
+    <main id="empty" class="px-20 py-52 flex flex-col items-center gap-2">
+        <img src="{{ asset('/assets/ic_box-gray.svg') }}" alt="box" class="opacity-80 w-12">
+        <h1 class="font-medium text-dark-gray opacity-80">Kategori belum tersedia saat ini.</h1>
     </main>
 @else
-    <main id="categories" class="px-20 py-16 grid grid-cols-2 gap-x-6">
+    <main id="categories" class="px-20 py-16 flex flex-col">
         <h1 class="text-xl font-semibold">Jelajahi Semua Kategori yang Tersedia!</h1>
-        @foreach($categories as $category)
-            {{--  category card  --}}
-            <x-category-card
-                imageUrl="{{ $category->image_url }}"
-                name="{{ $category->name }}"
-                products={{ $category->products->count() }}
-                slug="{{ $category->slug }}"
-            />
-        @endforeach
+        <div class="grid grid-cols-2 gap-x-6">
+            @foreach($categories as $category)
+                {{--  category card  --}}
+                <div class="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group my-3">
+                    <img src="{{ asset('/storage/' . $category->image_url) }}" alt="{{ $category->name }}"
+                         class="absolute w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+
+                    <div class="absolute inset-0 flex flex-col justify-between p-6 text-white w-1/2 backdrop-blur-md">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-3xl font-bold drop-shadow-md">{{ $category->name }}</h3>
+                                <p class="text-lg drop-shadow">{{ $category->products->count() }} products</p>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('categories.show', ['slug' => $category->slug]) }}" class="hover:opacity-80 transition duration-200">
+                            <div class="flex flex-row gap-2 items-center">
+                                <h1 class="text-xl">Jelajahi</h1>
+                                <img src="{{ asset('/assets/ic_chevron-right.svg') }}" alt="explore" class="size-7">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </main>
 @endif
 
-{{-- footer --}}
 @include('partial.footer')
-
-@if(session('success'))
-    <script>
-        alert(session('success'));
-    </script>
-@else
-    <script>
-        alert(session('error'));
-    </script>
-@endif
 </body>
 </html>

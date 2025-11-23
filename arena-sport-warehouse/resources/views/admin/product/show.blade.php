@@ -5,42 +5,63 @@
         <h1 class="font-semibold text-2xl">Product Detail</h1>
     </header>
 
-    <div class="flex flex-col justify-between gap-12 m-12 overflow-auto">
-        <div class="flex flex-row justify-between gap-8">
-            {{-- product data --}}
-            <div class="flex flex-col gap-5">
-                <h1 class="font-semibold text-3xl">{{ $product->name }}</h1>
-                <div class="flex flex-row gap-3 items-center">
-                    <h5 class="py-1 px-3 rounded-md bg-vibrant-orange text-white hover:drop-shadow-md transition duration-200">
-                        Badminton</h5>
-                    <h5 class="font-semibold text-lg">{{ $product->unique_id }}</h5>
+    <div class="mx-auto px-6 lg:px-12 py-12">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+            <!-- Bagian Teks (Kiri) -->
+            <div class="flex flex-col gap-7">
+                <div>
+                    <h1 class="font-semibold text-3xl lg:text-4xl leading-tight">
+                        {{ $product->name }}
+                    </h1>
                 </div>
-                <div class="flex flex-col gap-2">
-                    <h1 class="font-semibold">Deskripsi:</h1>
-                    <p>{{ $route->description }}</p>
+
+                <div class="flex flex-row gap-3 items-center flex-wrap">
+                <span class="py-2 px-4 rounded-md bg-vibrant-orange text-white text-sm font-medium
+                              hover:drop-shadow-md transition duration-200">
+                    Badminton
+                </span>
+                    <span class="font-semibold text-lg text-gray-700">
+                    {{ $product->unique_id }}
+                </span>
                 </div>
-                <div class="flex flex-col gap-2">
-                    <h1 class="font-semibold">Informasi Produk:</h1>
-                    <ul class="space-y-1">
-                        <li>Harga : Rp{{ number_format($product->price, 0, ',', '.') }}</li>
-                        <li>Stok : {{ $product->stock }}</li>
-                        <li>Terjual : {{ \App\Models\OrderItem::where('product_id', $product->id) }}</li>
+
+                <div class="flex flex-col gap-3">
+                    <h2 class="font-semibold text-lg">Deskripsi</h2>
+                    <p class="text-gray-600 leading-relaxed">
+                        {{ $product->description }}
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <h2 class="font-semibold text-lg">Informasi Produk</h2>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex justify-between">
+                            <span>Harga</span>
+                            <span class="font-medium">Rp{{ number_format($product->price, 0, ',', '.') }}</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Stok</span>
+                            <span class="font-medium">{{ $product->stock }}</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Terjual</span>
+                            <span class="font-medium">
+                            {{ \App\Models\OrderItem::where('product_id', $product->id)->count() }}
+                        </span>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            {{-- product image --}}
-            <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" class="w-full h-96 object-cover">
+            <!-- Bagian Gambar (Kanan) -->
+            <div class="w-full">
+                <div class="relative overflow-hidden rounded-xl shadow-lg">
+                    <img
+                        src="{{ asset('storage/' . $product->image_url) }}"
+                        alt="{{ $product->name }}"
+                        class="w-full h-96 lg:h-full lg:max-h-screen object-cover transition-transform duration-500 hover:scale-105">
+                </div>
+            </div>
         </div>
     </div>
-
-    @if(session('success'))
-        <script>
-            alert(session('success'));
-        </script>
-    @else
-        <script>
-            alert(session('error'));
-        </script>
-    @endif
 @endsection

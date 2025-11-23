@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    use SoftDeletes;
+
     protected $table = "orders";
     protected $primaryKey = "id";
     protected $keyType = "int";
@@ -21,6 +24,7 @@ class Order extends Model
         'status',
         'payment_method',
         'payment_status',
+        'shipping_method',
         'shipping_price',
         'note',
     ];
@@ -28,6 +32,11 @@ class Order extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
+    }
+
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function payments(): BelongsTo

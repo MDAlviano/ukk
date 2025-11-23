@@ -4,22 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $date = date('D, d M Y');
-
         $user = Auth::user();
 
-        $orders = Order::with(['users'])->where('created_at', today());
+        $today = Carbon::today();
+        $date = $today->translatedFormat('d F Y');
 
-        $totalRevenue = $orders->sum('total_price');
+        $orders = Order::with('users')
+            ->whereDate('created_at', $today)
+            ->take(3)
+            ->get();
 
+        $totalRevenue = $orders->sum('final_price');
         $totalOrders = $orders->count();
 
-        return view('admin.home.index', compact(['date', 'user', 'totalRevenue', 'totalOrders']))->with('success', 'Berhasil mengambil semua data.');
+        return view('admin.home.index', compact(['date', 'user', 'totalRevenue', 'totalOrders', 'orders']))->with('success', 'Berhasil mengambil semua data.');
     }
 }

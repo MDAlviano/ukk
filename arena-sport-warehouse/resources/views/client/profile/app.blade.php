@@ -8,7 +8,7 @@
 </head>
 <body class="flex min-h-screen">
 {{-- sidebar --}}
-<aside class="w-64 shadow-lg flex flex-col justify-between">
+<aside class="w-fit shadow-lg flex flex-col justify-between">
     <div>
         <a href="{{ route('home') }}" class="flex flex-row gap-2 px-6 pt-6 hover:opacity-80 transition duration-200">
             <img src="{{ asset('assets/arrow_back.svg') }}" alt="back">
@@ -19,7 +19,6 @@
             <div class="flex flex-col">
                 <h2 class="font-semibold text-xl">{{ \Illuminate\Support\Facades\Auth::user()->full_name }}</h2>
                 <h3 class="font-semibold">{{ \Illuminate\Support\Facades\Auth::user()->email }}</h3>
-                <a href="{{ route('logout') }}" class="font-semibold text-vibrant-orange gap-2 hover:cursor-pointer">Logout</a>
             </div>
         </div>
         <hr class="w-5/6 mx-auto">
@@ -49,7 +48,7 @@
     <div
         class="p-4 mb-10 flex flex-row px-4 py-2 text-red-500 hover:text-red-400 gap-2 hover:cursor-pointer transition duration-200">
         <img src="{{ asset('/assets/log-out.svg') }}" alt="logout icon" class="size-6">
-        <a href="{{ route('logout') }}" class="font-semibold">Logout</a>
+        <a href="{{ route('user.logout') }}" class="font-semibold">Logout</a>
     </div>
 </aside>
 
@@ -57,15 +56,5 @@
 <main class="flex-1">
     @yield('content')
 </main>
-
-@if(session('success'))
-    <script>
-        alert(session('success'));
-    </script>
-@else
-    <script>
-        alert(session('error'));
-    </script>
-@endif
 </body>
 </html>

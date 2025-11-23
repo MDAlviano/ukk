@@ -5,7 +5,7 @@
         <h1 class="font-semibold text-2xl">Create Product</h1>
     </header>
 
-    <form class="flex flex-row gap-12 mx-20 my-12 bg-white shadow-xl rounded-xl p-7" onsubmit="{{ route('admin.products.create') }}" method="POST">
+    <form class="flex flex-row gap-12 mx-20 my-12 bg-white shadow-xl rounded-xl p-7" action="{{ route('products.create') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="w-3/5 flex flex-col gap-5">
             <h1 class="text-lg font-semibold">Add Product Form</h1>
@@ -32,7 +32,7 @@
                     <h4>Category</h4>
                     <select name="category" required id="" class="outline-2 py-2 px-4 rounded-md">
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">$category->name</option>
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -50,7 +50,7 @@
         </div>
         <div class="w-2/5 h-fit outline-2 py-3 px-4 rounded-md flex flex-col gap-4">
             <h4>Image</h4>
-            <input required name="image" type="image" src="{{ asset('/assets/ic_upload.svg') }}" alt="Input Image Product"
+            <input required name="image" type="file" src="{{ asset('/assets/ic_upload.svg') }}" alt="Input Image Product"
                    class="outline-2 py-2 px-4 rounded-md h-24 mb-2">
         </div>
     </form>

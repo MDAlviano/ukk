@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class ClientMiddleware
 {
     /**
      * Handle an incoming request.
@@ -20,8 +20,8 @@ class AdminMiddleware
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu!');
         }
 
-        if (Auth::user()->role !== 'admin') {
-            return redirect()->back()->with('error', 'Akses ditolak! Hanya Admin.');
+        if (Auth::user()->role !== 'user') {
+            return redirect()->back()->with('error', 'Akses ditolak! Hanya user.');
         }
 
         return $next($request);

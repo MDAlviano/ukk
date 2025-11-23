@@ -1,5 +1,5 @@
 <div class="w-full h-fit flex flex-row justify-between bg-white rounded-lg drop-shadow-lg py-4 px-8 gap-3">
-    <img src="{{ asset($imageUrl) }}" alt="product image" class="w-20 rounded-md object-cover">
+    <img src="{{ asset('/storage/' . $imageUrl) }}" alt="product image" class="w-20 rounded-md object-cover">
     <div class="w-fit h-fit flex flex-col gap-1 my-auto">
         <h1 class="font-semibold hover:underline"><a href="/admin/products/slug">{{ $title }}</a></h1>
         <h5 class="text-sm text-[#B6B6B6] font-normal truncate max-w-64">{{ $description }}</h5>

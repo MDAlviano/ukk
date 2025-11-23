@@ -1,6 +1,6 @@
 <div class="w-full h-fit flex flex-row justify-between bg-white rounded-lg drop-shadow-lg py-4 px-8 gap-3">
     <div class="flex flex-row gap-6">
-        <img src="{{ asset($imageUrl) }}" alt="category image" class="size-24 rounded-md object-cover">
+        <img src="{{ asset('/storage/' . $imageUrl) }}" alt="category image" class="size-24 rounded-md object-cover">
         <h5 class="font-semibold my-auto hover:underline"><a href="/admin/categories/slug">{{ $title }}</a></h5>
     </div>
     <h5 class="font-semibold my-auto">{{ $products }} Products</h5>

@@ -14,9 +14,8 @@ class CartController extends Controller
         $user = Auth::user();
 
         $carts = Cart::with(['products', 'products.categories'])->where('user_id', $user->id)->where('deleted_at', null)->get();
-        $totalPrice = $carts->sum('price');
 
-        return view('client.cart.index', compact(['carts', 'totalPrice']));
+        return view('client.cart.index', compact('carts'));
     }
 
     public function add($productId, Request $request)

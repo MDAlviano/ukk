@@ -39,9 +39,10 @@
     <div id="jumbotron" class="relative">
         <img src="{{ asset('/assets/ig_jumbotron.png') }}" alt="" class="w-full h-auto object-cover">
         <div class="absolute inset-0 w-1/2 flex flex-col justify-center gap-2 px-16">
-            <h1 class="text-3xl text-white drop-shadow-lg">Halo,</h1>
+            <h1 class="text-4xl text-white drop-shadow-lg">Halo,</h1>
             <h1 class="text-6xl font-semibold text-white drop-shadow-lg">Mau Belanja Apa</h1>
-            <h1 class="text-6xl font-bold text-white drop-shadow-lg md:w-1/2 hover:text-vibrant-orange transition duration-200">{{ $fullName }}</h1>
+            <h1 class="text-6xl font-bold text-white drop-shadow-lg hover:text-vibrant-orange transition duration-200">{{ $fullName }}
+                ?</h1>
         </div>
     </div>
 
@@ -52,22 +53,37 @@
                 <h1 class="text-2xl font-semibold">Cari Berdasarkan Kategori</h1>
                 <a href="/categories" class="hover:opacity-60 transition duration-200">Lihat Semua Kategori</a>
             </div>
-            @if(session('categoryEmpty'))
-                <div class="w-full flex flex-col items-center py-20">
-                    <h1 class="font-medium text-dark-gray opacity-80">{{ session('categoryEmpty') }}</h1>
+            @if($categories->isEmpty())
+                <div class="w-full flex flex-col items-center py-10 gap-2">
+                    <img src="{{ asset('/assets/ic_box-gray.svg') }}" alt="box" class="opacity-80 w-12">
+                    <h1 class="font-medium text-dark-gray opacity-80">Kategori belum tersedia saat ini.</h1>
                 </div>
             @else
-                @foreach($categories as $category)
-                    <div class="grid grid-cols-2 gap-x-6">
-                        {{--  category card  --}}
-                        <x-category-card
-                            imageUrl="{{ $category->image_url }}"
-                            name="{{ $category->name }}"
-                            products={{ $category->products->count() }}
-                            slug="{{ $category->slug }}"
-                        />
-                    </div>
-                @endforeach
+                <div class="grid grid-cols-2 gap-x-6">
+                    {{--  category card  --}}
+                    @foreach($categories as $category)
+                        <div class="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group my-3">
+                            <img src="{{ asset('/storage/' . $category->image_url) }}" alt="{{ $category->name }}"
+                                 class="absolute w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+
+                            <div class="absolute inset-0 flex flex-col justify-between p-6 text-white w-1/2 backdrop-blur-md">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-3xl font-bold drop-shadow-md">{{ $category->name }}</h3>
+                                        <p class="text-lg drop-shadow">{{ $category->products->count() }} products</p>
+                                    </div>
+                                </div>
+
+                                <a href="{{ route('categories.show', ['slug' => $category->slug]) }}" class="hover:opacity-80 transition duration-200">
+                                    <div class="flex flex-row gap-2 items-center">
+                                        <h1 class="text-xl">Jelajahi</h1>
+                                        <img src="{{ asset('/assets/ic_chevron-right.svg') }}" alt="explore" class="size-7">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             @endif
         </div>
 
@@ -77,24 +93,33 @@
                 <h1 class="text-2xl font-semibold">Cek Produk Kami!</h1>
                 <a href="/products" class="hover:opacity-60 transition duration-200">Lihat Semua Produk</a>
             </div>
-            @if(session('productEmpty'))
-                <div class="w-full flex flex-col items-center py-20">
-                    <h1 class="font-medium text-dark-gray opacity-80">{{ session('productEmpty') }}</h1>
+            @if($products->isEmpty())
+                <div class="w-full flex flex-col items-center py-10 gap-2">
+                    <img src="{{ asset('/assets/ic_box-gray.svg') }}" alt="box" class="opacity-80 w-12">
+                    <h1 class="font-medium text-dark-gray opacity-80">Produk belum tersedia saat ini. </h1>
                 </div>
             @else
-                @foreach($products as $product)
-                    <div class="grid grid-cols-4 justify-between">
+                <div class="grid grid-cols-4 justify-between">
+                    @foreach($products as $product)
                         {{--  product card  --}}
-                        <x-product-card
-                            id="{{ $product->id }}"
-                            imageUrl="{{ $product->image_url }}"
-                            name="{{ $product->name }}"
-                            description="{{ $product->description }}"
-                            price={{ $product->price }}
-                            slug="{{ $product->slug }}"
-                        />
-                    </div>
-                @endforeach
+                        <div class="hover:shadow-lg my-4 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
+                            <a href="{{ route('products.show', $product->slug) }}" class="flex flex-col justify-center items-start">
+                                <div class="relative flex justify-end overflow-hidden">
+                                    <img src="{{ asset('/storage/' . $product->image_url) }}" alt="Raket Yonex terbaru" class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                                </div>
+                                <div class="flex flex-col gap-2 p-3">
+                                    <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">{{ $product->name }}</h1>
+                                    <p class="text-sm truncate">{{ $product->description }}</p>
+                                    <p class="font-semibold">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
+                                    <div class="flex flex-row gap-1 items-center">
+                                        <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
+                                        <p><span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $product->id)->count()    }} Terjual</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
             @endif
         </div>
     </div>
