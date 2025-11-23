@@ -18,6 +18,14 @@ class ProductController extends Controller
             ->whereNot('stock', 0)
             ->whereNull('deleted_at');
 
+        if ($request->filled('search')) {
+            $search = $request->get('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
+
         if ($request->filled('category')) {
             $query->whereHas('categories', function ($q) use ($request) {
                 $q->where('category_id', $request->category);
@@ -45,6 +53,10 @@ class ProductController extends Controller
         };
 
         $products = $query->get();
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return view('client.product.partials.product-grid', compact('products'))->render();
+        }
 
         return view('client.product.index', compact('products', 'categories'));
     }

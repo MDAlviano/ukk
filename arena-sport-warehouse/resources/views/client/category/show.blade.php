@@ -74,37 +74,65 @@
     </form>
 
     {{-- products --}}
-    @if($products->isEmpty())
-        <div id="empty" class="px-20 py-16 w-full flex flex-col gap-2 items-center">
-            <img src="{{ asset('/assets/ic_box-gray.svg') }}" alt="box" class="opacity-80 w-12">
-            <h1 class="font-medium text-dark-gray opacity-80">Produk belum tersedia.</h1>
-        </div>
-    @else
-        <div id="products" class="grid grid-cols-4 justify-between">
-            @foreach($products as $product)
-                {{--  product card  --}}
-                <div class="hover:shadow-lg my-4 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
-                    <a href="{{ route('products.show', $product->slug) }}" class="flex flex-col justify-center items-start">
-                        <div class="relative flex justify-end overflow-hidden">
-                            <img src="{{ asset('/storage/' . $product->image_url) }}" alt="Raket Yonex terbaru" class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-110">
-                        </div>
-                        <div class="flex flex-col gap-2 p-3">
-                            <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">{{ $product->name }}</h1>
-                            <p class="text-sm truncate">{{ $product->description }}</p>
-                            <p class="font-semibold">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
-                            <div class="flex flex-row gap-1 items-center">
-                                <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
-                                <p><span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $product->id)->sum('quantity')    }} Terjual</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    @endif
+    <div id="products-container">
+        @include('client.category.partials.category-product-grid')
+    </div>
 </main>
 
 {{-- footer --}}
 @include('partial.footer')
+
+<script>
+    const searchInput = document.querySelector('input[name="q"]');
+    const productsContainer = document.getElementById('products-container');
+    let debounceTimer;
+
+    function updateProducts() {
+        const query = searchInput.value.trim();
+        const price = document.querySelector('[name="price"]').value;
+        const sort = document.querySelector('[name="sort"]').value;
+
+        const url = new URL(window.location.href);
+
+        // Update query params
+        if (query) url.searchParams.set('q', query);
+        else url.searchParams.delete('q');
+
+        if (price) url.searchParams.set('price', price);
+        else url.searchParams.delete('price');
+
+        if (sort) url.searchParams.set('sort', sort);
+        else url.searchParams.delete('sort');
+
+        fetch(url.toString(), {
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+            .then(r => r.text())
+            .then(html => {
+                productsContainer.innerHTML = html;
+                history.pushState({}, '', url); // update URL tanpa reload
+            })
+            .catch(err => console.error(err));
+    }
+
+    // Live search
+    searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(updateProducts, 400);
+    });
+
+    // Filter & Sort (ganti onchange jadi JS)
+    document.querySelector('[name="price"]').addEventListener('change', updateProducts);
+    document.querySelector('[name="sort"]').addEventListener('change', updateProducts);
+
+    // Optional: Enter di search
+    searchInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            clearTimeout(debounceTimer);
+            updateProducts();
+        }
+    });
+</script>
 </body>
 </html>

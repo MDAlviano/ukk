@@ -11,22 +11,22 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::all();
+        $query = Category::query();
 
-        return view('client.category.index', compact('categories'));
-    }
-
-    public function search(Request $request)
-    {
-        $query = Category::whereNull('deleted_at');
-
-        if ($request->filled('q')) {
-            $query->where('name', 'like', '%' . $request->q . '%');
+        // Tambah fitur SEARCH
+        if ($request->filled('search')) {
+            $search = $request->get('search');
+            $query->where('name', 'LIKE', "%{$search}%");
         }
 
         $categories = $query->get();
 
-        return view('category.partials.category-grid', compact('categories'))->render();
+        // Kalau request dari AJAX, return hanya grid kategorinya
+        if ($request->ajax() || $request->wantsJson()) {
+            return view('client.category.partials.category-grid', compact('categories'))->render();
+        }
+
+        return view('client.category.index', compact('categories'));
     }
 
     public function show($slug, Request $request)
@@ -40,6 +40,14 @@ class CategoryController extends Controller
         $query = Product::query()
             ->where('category_id', $category->id)
             ->whereNull('deleted_at');
+
+        if ($request->filled('q')) {
+            $search = $request->q;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+            });
+        }
 
         if ($request->filled('q')) {
             $query->where('name', 'like', '%' . $request->q . '%');
@@ -66,6 +74,10 @@ class CategoryController extends Controller
         };
 
         $products = $query->get();
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return view('client.category.partials.category-product-grid', compact('products', 'category'))->render();
+        }
 
         return view('client.category.show', compact('products', 'category'));
     }

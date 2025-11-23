@@ -27,7 +27,6 @@ Route::middleware(['auth', 'client'])->group(function () {
     Route::get('/home', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');
 
     Route::get('/categories', [\App\Http\Controllers\Client\CategoryController::class, 'index'])->name('categories');
-    Route::get('/categories/search', [\App\Http\Controllers\Client\CategoryController::class, 'search'])->name('categories.search');
 
     Route::get('/categories/{slug}', [\App\Http\Controllers\Client\CategoryController::class, 'show'])->name('categories.show');
 

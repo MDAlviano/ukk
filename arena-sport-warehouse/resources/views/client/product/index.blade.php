@@ -23,7 +23,7 @@
         </a>
         <div class="flex flex-row w-full gap-4 px-3 py-2 rounded-lg outline-1 outline-dark-gray">
             <img src="{{ asset('/assets/Search.svg') }}" alt="search" class="opacity-70 w-5">
-            <input type="text" id="search" placeholder="Search product here..." class="focus:outline-0 w-full">
+            <input type="text" id="search" placeholder="Search produk..." class="focus:outline-0 w-full">
         </div>
         <div class="flex flex-row gap-5 w-fit h-fit pl-8">
             <a href="{{ route('profile.cart') }}">
@@ -89,37 +89,55 @@
     </form>
 
     {{-- products --}}
-    @if($products->isEmpty())
-        <div id="empty" class="px-20 py-24 flex flex-col items-center gap-3">
-            <img src="{{ asset('/assets/ic_box-gray.svg') }}" alt="box" class="opacity-80 w-12">
-            <h1 class="font-medium text-dark-gray opacity-80">Produk belum tersedia saat ini.</h1>
-        </div>
-    @else
-        <div id="products" class="grid grid-cols-4 justify-between">
-            @foreach($products as $product)
-                {{--  product card  --}}
-                <div class="hover:shadow-lg my-4 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
-                    <a href="{{ route('products.show', $product->slug) }}" class="flex flex-col justify-center items-start">
-                        <div class="relative flex justify-end overflow-hidden">
-                            <img src="{{ asset('/storage/' . $product->image_url) }}" alt="Raket Yonex terbaru" class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-110">
-                        </div>
-                        <div class="flex flex-col gap-2 p-3">
-                            <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">{{ $product->name }}</h1>
-                            <p class="text-sm truncate">{{ $product->description }}</p>
-                            <p class="font-semibold">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
-                            <div class="flex flex-row gap-1 items-center">
-                                <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
-                                <p><span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $product->id)->sum('quantity')    }} Terjual</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    @endif
+    <div id="products-container">
+        @include('client.product.partials.product-grid')
+    </div>
 </main>
 
 {{-- footer --}}
 @include('partial.footer')
+
+<script>
+    const searchInput = document.getElementById('search');
+    const productsContainer = document.getElementById('products-container');
+    let debounceTimer;
+
+    function performSearch() {
+        const query = searchInput.value.trim();
+        const url = new URL(window.location);
+
+        if (query) {
+            url.searchParams.set('search', query);
+        } else {
+            url.searchParams.delete('search');
+        }
+
+        // Biar filter & sort tetap stay
+        fetch(url.toString(), {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+            .then(response => response.text())
+            .then(html => {
+                productsContainer.innerHTML = html;
+            })
+            .catch(err => console.error(err));
+    }
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(performSearch, 400); // debounce 400ms
+    });
+
+    // Kalau user tekan Enter (opsional)
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            clearTimeout(debounceTimer);
+            performSearch();
+        }
+    });
+</script>
 </body>
 </html>

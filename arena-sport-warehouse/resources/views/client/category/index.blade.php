@@ -19,8 +19,9 @@
             <img src="{{ asset('/assets/ic_logo.svg') }}" alt="logo" class="w-44">
         </a>
         <div class="flex flex-row w-full gap-4 px-3 py-2 rounded-lg outline-1 outline-dark-gray">
-            <input type="text" id="search-input" placeholder="Kategori Kami" disabled
-                   class="focus:outline-0 w-full text-center">
+            <img src="{{ asset('/assets/Search.svg') }}" alt="search" class="opacity-70 w-5">
+            <input type="text" id="search-input" placeholder="Cari kategori..."
+                   class="focus:outline-0 w-full">
         </div>
         <div class="flex flex-row gap-5 w-fit h-fit pl-8">
             <a href="{{ route('profile.cart') }}">
@@ -34,42 +35,57 @@
 </nav>
 
 {{-- categories --}}
-@if($categories->isEmpty())
-    <main id="empty" class="px-20 py-52 flex flex-col items-center gap-2">
-        <img src="{{ asset('/assets/ic_box-gray.svg') }}" alt="box" class="opacity-80 w-12">
-        <h1 class="font-medium text-dark-gray opacity-80">Kategori belum tersedia saat ini.</h1>
-    </main>
-@else
-    <main id="categories" class="px-20 py-16 flex flex-col">
-        <h1 class="text-xl font-semibold">Jelajahi Semua Kategori yang Tersedia!</h1>
-        <div class="grid grid-cols-2 gap-x-6">
-            @foreach($categories as $category)
-                {{--  category card  --}}
-                <div class="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group my-3">
-                    <img src="{{ asset('/storage/' . $category->image_url) }}" alt="{{ $category->name }}"
-                         class="absolute w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-
-                    <div class="absolute inset-0 flex flex-col justify-between p-6 text-white w-1/2 backdrop-blur-md">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-3xl font-bold drop-shadow-md">{{ $category->name }}</h3>
-                                <p class="text-lg drop-shadow">{{ $category->products->count() }} products</p>
-                            </div>
-                        </div>
-
-                        <a href="{{ route('categories.show', ['slug' => $category->slug]) }}" class="hover:opacity-80 transition duration-200">
-                            <div class="flex flex-row gap-2 items-center">
-                                <h1 class="text-xl">Jelajahi</h1>
-                                <img src="{{ asset('/assets/ic_chevron-right.svg') }}" alt="explore" class="size-7">
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </main>
-@endif
+<main id="categories-container" class="px-20 py-16 flex flex-col">
+    <h1 class="text-xl font-semibold mb-8">Jelajahi Semua Kategori yang Tersedia!</h1>
+    @include('client.category.partials.category-grid')
+</main>
 
 @include('partial.footer')
+
+<script>
+    const searchInput = document.getElementById('search-input');
+    const container = document.getElementById('categories-container');
+    let debounceTimer;
+
+    function performSearch() {
+        const query = searchInput.value.trim();
+        const url = new URL(window.location.href);
+
+        if (query) {
+            url.searchParams.set('search', query);
+        } else {
+            url.searchParams.delete('search');
+        }
+
+        fetch(url.toString(), {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+            .then(response => response.text())
+            .then(html => {
+                container.innerHTML = html;
+                // Update judul tetap ada
+                if (!container.querySelector('h1')) {
+                    container.insertAdjacentHTML('afterbegin', '<h1 class="text-xl font-semibold mb-8">Jelajahi Semua Kategori yang Tersedia!</h1>');
+                }
+            })
+            .catch(err => console.error('Error:', err));
+    }
+
+    searchInput.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(performSearch, 400); // 400ms debounce
+    });
+
+    // Optional: langsung cari saat tekan Enter
+    searchInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            clearTimeout(debounceTimer);
+            performSearch();
+        }
+    });
+</script>
 </body>
 </html>
