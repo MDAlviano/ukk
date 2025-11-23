@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
+    // fungsi untuk mengambil data produk favorit
     public function index(Request $request)
     {
         $user = Auth::user();
@@ -19,6 +20,7 @@ class FavoriteController extends Controller
         return view('client.favorite.index', compact('favorites'));
     }
 
+    // fungsi untuk menambahkan produk di favorite
     public function add($productId)
     {
         $user = Auth::user();
@@ -31,6 +33,7 @@ class FavoriteController extends Controller
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan');
     }
 
+    // fungsi untuk menghapus produk di favorite
     public function remove($productId)
     {
         $user = Auth::user();

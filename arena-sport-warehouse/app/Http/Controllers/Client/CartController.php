@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+    // fungsi untuk mengambil data cart
     public function index()
     {
         $user = Auth::user();
@@ -19,6 +20,7 @@ class CartController extends Controller
         return view('client.cart.index', compact('carts'));
     }
 
+    // fungsi untuk menambah produk ke cart
     public function add($productId, Request $request)
     {
         $product = Product::where('id', $productId)->first();
@@ -38,6 +40,7 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Berhasil menambahkan produk ke keranjang!');
     }
 
+    // fungsi untuk menghapus produk dari cart
     public function remove($productId)
     {
         $user = Auth::user();

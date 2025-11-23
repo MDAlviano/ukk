@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
+    // fungsi untuk membuka halaman edit alamat
     public function edit($id)
     {
         $user = Auth::user();
@@ -18,6 +19,7 @@ class AddressController extends Controller
         return view('client.address.update', compact('address'));
     }
 
+    // fungsi untuk mengambil data produk
     public function index()
     {
         $user = Auth::user();
@@ -27,6 +29,7 @@ class AddressController extends Controller
         return view('client.profile.index', compact(['user', 'addresses']));
     }
 
+    // fungsi untuk membuat alamat
     public function create(Request $request)
     {
         $data = $request->validate([
@@ -56,6 +59,7 @@ class AddressController extends Controller
         return redirect()->route('profile')->with('success', 'Data berhasil diupdate');
     }
 
+    // fungsi untuk mengupdate alamat
     public function update($addressId, Request $request)
     {
         $user = Auth::user();
@@ -91,6 +95,7 @@ class AddressController extends Controller
         return redirect()->route('profile')->with('success', 'Data berhasil diupdate');
     }
 
+    // fungsi untuk menghapus alamat
     public function delete($id)
     {
         $user = Auth::user();

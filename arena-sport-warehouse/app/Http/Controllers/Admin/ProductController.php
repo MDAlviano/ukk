@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    // fungsi untuk mengambil data kategori dan membuka view 'admin.category.create'
     public function store()
     {
         $categories = Category::all()->whereNull('deleted_at');
@@ -17,6 +18,7 @@ class ProductController extends Controller
         return view('admin.product.create', compact('categories'));
     }
 
+    // fungsi untuk membuka view 'admin.category.update'
     public function edit($slug)
     {
         $product = Product::where('slug', $slug)->whereNull('deleted_at')->with('categories')->first();
@@ -30,6 +32,7 @@ class ProductController extends Controller
         return view('admin.product.update', compact(['product', 'categories']));
     }
 
+    // fungsi untuk membuka view 'admin.category.index'
     public function index(Request $request)
     {
         $categories = Category::all()->whereNull('deleted_at');
@@ -38,6 +41,7 @@ class ProductController extends Controller
         return view('admin.product.index', compact('products', 'categories'));
     }
 
+    // fungsi untuk mencari produk
     public function search(Request $request)
     {
         $query = Product::with('categories')->whereNull('deleted_at');
@@ -78,6 +82,7 @@ class ProductController extends Controller
         return view('admin.product.partials.table-body', compact('products'))->render();
     }
 
+    // fungsi untuk membuat produk
     public function create(Request $request)
     {
         $data = $request->validate([
@@ -115,6 +120,7 @@ class ProductController extends Controller
         return redirect()->route('admin.products')->with('success', 'Data berhasil ditambahkan');
     }
 
+    // fungsi untuk melihat detail produk
     public function show($slug)
     {
         $product = Product::where('slug', $slug)->whereNull('deleted_at')->with('categories')->first();
@@ -126,6 +132,7 @@ class ProductController extends Controller
         return view('admin.product.show', compact('product'));
     }
 
+    // fungsi untuk mengupdate produk
     public function update($id, Request $request)
     {
         $data = $request->validate([
@@ -168,6 +175,7 @@ class ProductController extends Controller
         return redirect()->route('admin.products')->with('success', 'Data berhasil diupdate');
     }
 
+    // fungsi untuk menghapus produk
     public function delete($id)
     {
         $product = Product::where('id', $id)->whereNull('deleted_at')->first();

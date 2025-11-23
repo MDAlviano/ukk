@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
+    // fungsi untuk mengambil data order hari ini
     public function index()
     {
         $today = Carbon::today();
@@ -27,6 +28,7 @@ class ReportController extends Controller
         return view('admin.report.index', compact(['date', 'orders', 'totalRevenue', 'currentMonth', 'currentYear']));
     }
 
+    // fungsi untuk mengambil data order per bulan
     public function monthly(Request $request)
     {
         $month = $request->input('month', Carbon::now()->month);

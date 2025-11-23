@@ -115,4 +115,14 @@
             </div>
         </div>
     </div>
+
+    @if(session('success'))
+        <script>
+            alert(' {{ session('success') }}');
+        </script>
+    @else
+        <script>
+            alert(' {{ session('error') }}');
+        </script>
+    @endif
 @endsection

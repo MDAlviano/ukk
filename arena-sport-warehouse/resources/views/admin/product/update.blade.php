@@ -62,11 +62,11 @@
 
     @if(session('success'))
         <script>
-            alert(session('success'));
+            alert(' {{ session('success') }}');
         </script>
     @else
         <script>
-            alert(session('error'));
+            alert(' {{ session('error') }}');
         </script>
     @endif
 @endsection

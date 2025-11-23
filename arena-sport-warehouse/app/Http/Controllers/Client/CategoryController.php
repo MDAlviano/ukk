@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    // fungsi untuk mengambil data kategori
     public function index(Request $request)
     {
         $query = Category::query();
@@ -29,6 +30,7 @@ class CategoryController extends Controller
         return view('client.category.index', compact('categories'));
     }
 
+    // fungsi untuk melihat detail produk di kategori
     public function show($slug, Request $request)
     {
         $category = Category::where('slug', $slug)->first();

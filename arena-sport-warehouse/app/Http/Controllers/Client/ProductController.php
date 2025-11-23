@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // fungsi untuk mengambil data produk
     public function index(Request $request)
     {
         $categories = Category::all();
@@ -61,6 +62,7 @@ class ProductController extends Controller
         return view('client.product.index', compact('products', 'categories'));
     }
 
+    // fungsi untuk mengambil data detail produk
     public function show($slug)
     {
         $product = Product::where('slug', $slug)->first();

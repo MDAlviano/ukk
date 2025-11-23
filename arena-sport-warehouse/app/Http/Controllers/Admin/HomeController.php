@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    // fungsi untuk mengambil data order dan mengembalikan di view 'admin.home.index'
     public function index()
     {
         $user = Auth::user();

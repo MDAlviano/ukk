@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
+    // fungsi untuk mengambil data order
     public function index(Request $request)
     {
         $user = Auth::user();
@@ -46,6 +47,7 @@ class OrderController extends Controller
         return view('client.order.index', compact('orders', 'availableStatuses'));
     }
 
+    // fungsi untuk melihat detail order
     public function show($orderNumber)
     {
         $user = Auth::user();
@@ -59,6 +61,7 @@ class OrderController extends Controller
         return view('client.order.show', compact('order'));
     }
 
+    // fungsi untuk membuat pesanan
     public function create()
     {
         $user = Auth::user();
@@ -88,6 +91,7 @@ class OrderController extends Controller
         return view('client.order.create', compact('carts', 'subtotal', 'shippingPrice', 'finalPrice', 'addresses'));
     }
 
+    // fungsi untuk menyimpan pesanan
     public function store(Request $request)
     {
         $request->validate([

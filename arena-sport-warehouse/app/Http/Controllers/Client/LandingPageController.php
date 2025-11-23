@@ -7,9 +7,6 @@ use App\Models\Product;
 
 class LandingPageController extends Controller
 {
-/** Function index() untuk mengambil 4 produk dari database yang disimpan di variable products lalu mengembalikan view
- * 'landing.index' dan menyertakan variable products.
- */
     public function index()
     {
         $products = Product::query()

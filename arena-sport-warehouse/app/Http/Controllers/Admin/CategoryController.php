@@ -9,11 +9,13 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    // fungsi untuk mengembalikan view 'admin.category.index'
     public function store()
     {
         return view('admin.category.create');
     }
 
+    // fungsi untuk mengembalikan view 'admin.category.update'
     public function edit($slug)
     {
         $category = Category::where('slug', $slug)->whereNull('deleted_at')->first();
@@ -25,6 +27,7 @@ class CategoryController extends Controller
         return view('admin.category.update', compact('category'));
     }
 
+    // fungsi untuk mengembalikan view 'admin.category.index' beserta datanya
     public function index(Request $request)
     {
         $categories = Category::with(['products'])->whereNull('deleted_at')->get();
@@ -32,6 +35,7 @@ class CategoryController extends Controller
         return view('admin.category.index', compact('categories'));
     }
 
+    // fungsi untuk melakukan search dan mengembalikannya di view 'admin.category.partials.table-body'
     public function search(Request $request)
     {
         $query = Category::whereNull('deleted_at');
@@ -45,6 +49,7 @@ class CategoryController extends Controller
         return view('admin.category.partials.table-body', compact('categories'))->render();
     }
 
+    // fungsi untuk membuat kategori
     public function create(Request $request)
     {
         $data = $request->validate([
@@ -71,6 +76,7 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories')->with('success', 'Data berhasil ditambahkan');
     }
 
+    // fungsi untuk melihat produk dari kategori terpilih
     public function show($slug)
     {
         $category = Category::where('slug', $slug)->whereNull('deleted_at')->first();
@@ -84,6 +90,7 @@ class CategoryController extends Controller
         return view('admin.category.show', compact('products', 'category'));
     }
 
+    // fungsi untuk mencari produk
     public function productsSearch($slug, Request $request)
     {
         $category = Category::where('slug', $slug)->firstOrFail();
@@ -121,6 +128,7 @@ class CategoryController extends Controller
         return view('admin.category.partials.table-body-product', compact('products', 'category'))->render();
     }
 
+    // fungsi untuk melakukan update kategori
     public function update($id, Request $request)
     {
         $data = $request->validate([
@@ -153,6 +161,7 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories')->with('success', 'Data berhasil diupdate');
     }
 
+    // fungsi untuk menghapus kategori
     public function delete($id)
     {
         $category = Category::where('id', $id)->whereNull('deleted_at')->first();

@@ -27,4 +27,14 @@
                    class="outline-2 py-2 px-4 rounded-md h-24 mb-2">
         </div>
     </form>
+
+    @if(session('success'))
+        <script>
+            alert(' {{ session('success') }}');
+        </script>
+    @else
+        <script>
+            alert(' {{ session('error') }}');
+        </script>
+    @endif
 @endsection

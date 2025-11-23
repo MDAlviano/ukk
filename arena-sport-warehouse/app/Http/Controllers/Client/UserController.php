@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    // fungsi untuk membuat akun baru
     public function register(UserRegisterRequest $request)
     {
         $data = $request->validated();
@@ -31,6 +32,7 @@ class UserController extends Controller
         return redirect()->route('login')->with('success', 'Berhasil mendaftar! Silakan login.');
     }
 
+    // fungsi untuk login
     public function login(UserLoginRequest $request)
     {
         $credentials = $request->validate([
@@ -55,6 +57,7 @@ class UserController extends Controller
         return redirect()->route('profile')->with('success', 'Login berhasil!');
     }
 
+    // fungsi untuk logout
     public function logout()
     {
         Auth::logout();
@@ -64,6 +67,7 @@ class UserController extends Controller
         return redirect()->route('landing')->with('success', 'Berhasil logout!');
     }
 
+    // fungsi untuk membuka view update user
     public function edit()
     {
         $user = Auth::user();
@@ -71,6 +75,7 @@ class UserController extends Controller
         return view('client.profile.update', compact('user'));
     }
 
+    // fungsi untuk mengupdate data user
     public function update(Request $request)
     {
         $data = $request->validate([

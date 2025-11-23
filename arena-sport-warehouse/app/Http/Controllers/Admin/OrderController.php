@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    // fungsi untuk mengambil data order
     public function index(Request $request)
     {
         $query = Order::with(['users'])->whereNull('deleted_at');
@@ -39,6 +40,7 @@ class OrderController extends Controller
         return view('admin.order.index', compact('orders', 'statusOptions'));
     }
 
+    // fungsi untuk mengambil detail order
     public function show($orderNumber)
     {
         $order = Order::with(['users', 'addresses', 'orderItems', 'orderItems.products', 'orderItems.products.categories'])->where('order_number', $orderNumber)->first();
@@ -50,6 +52,7 @@ class OrderController extends Controller
         return view('admin.order.show', compact('order'));
     }
 
+    // fungsi untuk memperbarui status order
     public function update($orderId, Request $request)
     {
         $data = $request->validate([
