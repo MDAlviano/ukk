@@ -47,6 +47,6 @@ class CartController extends Controller
         $cart->deleted_at = now();
         $cart->save();
 
-        return redirect()->route('client.cart.index')->with('success', 'Berhasil menambahkan produk ke keranjang!');
+        return redirect()->route('profile.cart')->with('success', 'Berhasil menambahkan produk ke keranjang!');
     }
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('payment_method')->nullable(); // gopay, bank_transfer, dll
             $table->enum('payment_status', ['pending', 'paid', 'failed', 'expired'])->default('pending');
             $table->integer('shipping_price')->nullable()->default(0);
-            $table->integer('shipping_method')->nullable()->default(0);
+            $table->string('shipping_method', 50)->nullable()->default(0);
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();

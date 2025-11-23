@@ -133,7 +133,7 @@ class OrderController extends Controller
             'payment_status' => 'pending',
             'shipping_method' => $shippingMethod,
             'shipping_price' => $shippingPrice,
-            'notes' => $request->notes,
+            'note' => $request->notes,
         ]);
 
         // Buat order items + kurangi stock

@@ -54,7 +54,7 @@ class ProductController extends Controller
         $product = Product::where('slug', $slug)->first();
         $products = Product::query()
             ->whereNot('id', $product->id)
-            ->where('deleted_at', null)
+            ->whereNull('deleted_at')
             ->take(4)->get();
 
         return view('client.product.show', compact(['product', 'products']));

@@ -37,7 +37,9 @@ class FavoriteController extends Controller
 
         $product = Favorite::where('user_id', $user->id)->where('product_id', $productId)->first();
 
-        $product->delete_at = now();
+        $product->deleted_at = now();
         $product->save();
+
+        return redirect()->back()->with('success', 'Berhasil menghapus produk!');
     }
 }

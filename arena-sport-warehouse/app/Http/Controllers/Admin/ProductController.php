@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function edit($slug)
     {
-        $product = Product::where('slug', $slug)->with('categories')->first();
+        $product = Product::where('slug', $slug)->whereNull('deleted_at')->with('categories')->first();
 
         if (!$product) {
             return redirect()->route('product.index')->with('error', 'Data tidak ditemukan');
@@ -117,7 +117,7 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->with('categories')->first();
+        $product = Product::where('slug', $slug)->whereNull('deleted_at')->with('categories')->first();
 
         if (!$product) {
             return redirect()->route('admin.products')->with('error', 'Data tidak ditemukan');
@@ -138,7 +138,7 @@ class ProductController extends Controller
             'stock' => 'required',
         ]);
 
-        $product = Product::where('id', $id)->first();
+        $product = Product::where('id', $id)->whereNull('deleted_at')->first();
 
         if (!$product) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
@@ -170,7 +170,7 @@ class ProductController extends Controller
 
     public function delete($id)
     {
-        $product = Product::where('id', $id)->first();
+        $product = Product::where('id', $id)->whereNull('deleted_at')->first();
 
         if (!$product) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');

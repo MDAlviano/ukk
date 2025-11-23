@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
     public function edit($slug)
     {
-        $category = Category::where('slug', $slug)->first();
+        $category = Category::where('slug', $slug)->whereNull('deleted_at')->first();
 
         if (!$category) {
             return redirect()->route('admin.categories')->with('error', 'Data tidak ditemukan');
@@ -73,7 +73,7 @@ class CategoryController extends Controller
 
     public function show($slug)
     {
-        $category = Category::where('slug', $slug)->first();
+        $category = Category::where('slug', $slug)->whereNull('deleted_at')->first();
 
         if (!$category) {
             return redirect()->route('admin.categories')->with('error', 'Data tidak ditemukan');
@@ -128,7 +128,7 @@ class CategoryController extends Controller
             'image' => 'required|file',
         ]);
 
-        $category = Category::where('id', $id)->first();
+        $category = Category::where('id', $id)->whereNull('deleted_at')->first();
 
         if (!$category) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');
@@ -155,7 +155,7 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        $category = Category::where('id', $id)->first();
+        $category = Category::where('id', $id)->whereNull('deleted_at')->first();
 
         if (!$category) {
             return redirect()->back()->with('error', 'Data tidak ditemukan');

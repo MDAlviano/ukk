@@ -44,8 +44,12 @@
                         <td class="py-4 px-8 align-middle">Rp{{ number_format($item->products->price, 0, ',', '.') }}</td>
                         <td class="py-4 px-8 align-middle">{{ $item->products->stock }}</td>
                         <td class="py-4 px-8 align-middle">
-                            <a href="{{ route('cart.remove', ['productId' => $item->products->id]) }}"
-                               class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Remove</a>
+                            <form action="{{ route('favorite.remove', ['productId' => $item->products->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                        class="bg-[#E6E6E6] px-3 py-1 rounded-lg hover:bg-gray-300 transition duration-200">Remove</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

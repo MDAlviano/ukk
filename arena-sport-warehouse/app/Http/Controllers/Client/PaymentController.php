@@ -13,51 +13,68 @@ class PaymentController extends Controller
 {
     public function initiatePayment(Order $order)
     {
-        // Pastikan order pending
-        if ($order->status !== 'pending') {
+        // Cek status order
+        if ($order->payment_status !== 'pending') {
             return redirect()->route('profile.orders')->with('error', 'Order sudah diproses!');
         }
 
-        // Params untuk Midtrans
+        // Hitung ulang subtotal dari order items (pasti akurat)
+        $subtotal = $order->orderItems->sum(fn($item) => $item->unit_price * $item->quantity);
+
+        // Item details yang BENAR untuk Midtrans
+        $item_details = $order->orderItems->map(function ($item) {
+            return [
+                'id'       => 'PROD-' . $item->product_id,
+                'price'    => (int) $item->unit_price,        // WAJIB integer
+                'quantity' => (int) $item->quantity,          // WAJIB integer
+                'name'     => substr($item->products->name, 0, 50), // max 50 char
+            ];
+        })->toArray();
+
+        // Tambahkan item ongkir jika ada
+        if ($order->shipping_price > 0) {
+            $item_details[] = [
+                'id'       => 'SHIPPING',
+                'price'    => (int) $order->shipping_price,
+                'quantity' => 1,
+                'name'     => 'Biaya Pengiriman (Antar)',
+            ];
+        }
+
+        // Gross amount HARUS sama persis dengan total item_details
+        $gross_amount = (int) array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $item_details));
+
+        // Parameter lengkap untuk Midtrans
         $params = [
             'transaction_details' => [
-                'order_id' => $order->order_number,  // Pakai order_number sebagai ID unik
-                'gross_amount' => $order->final_price,  // Total termasuk ongkir
+                'order_id'     => $order->order_number,
+                'gross_amount' => $gross_amount,  // SEKARANG SAMA PERSIS
             ],
+            'item_details' => $item_details,      // SEKARANG FORMAT BENAR
             'customer_details' => [
                 'first_name' => $order->users->full_name,
-                'email' => $order->users->email,
-                'phone' => $order->users->phone,
+                'email'      => $order->users->email,
+                'phone'      => $order->users->phone,
             ],
-            'item_details' => $order->items->map(function ($item) {
-                return [
-                    'id' => $item->products->slug,
-                    'price' => $item->unit_price,
-                    'quantity' => $item->quantity,
-                    'name' => $item->products->name,
-                ];
-            })->toArray(),
         ];
 
         // Jika delivery, tambah shipping address
         if ($order->shipping_method === 'delivery' && $order->address) {
             $params['shipping_address'] = [
-                'first_name' => $order->addresses->recipient_name,
-                'address' => $order->addresses->address,
-                'city' => $order->addresses->city,
-                'postal_code' => $order->addresses->postal_code,
-                'phone' => $order->users->phone,
+                'first_name'   => $order->addresses->recipient_name,
+                'address'      => $order->addresses->address . ($order->addresses->additional_info ? ', ' . $order->addresses->additional_info : ''),
+                'city'         => $order->addresses->city,
+                'postal_code'  => $order->addresses->postal_code,
+                'phone'        => $order->users->phone,
             ];
         }
 
         try {
             $snapToken = \Midtrans\Snap::getSnapToken($params);
-            Log::info('Snap token generated for order: ' . $order->order_number);
-
             return view('client.payment.initiate', compact('snapToken', 'order'));
         } catch (Exception $e) {
-            Log::error('Midtrans token error: ' . $e->getMessage());
-            return back()->with('error', 'Gagal inisiasi pembayaran: ' . $e->getMessage());
+            Log::error('Midtrans Error: ' . $e->getMessage());
+            return back()->with('error', 'Gagal membuat pembayaran. Silakan coba lagi.');
         }
     }
 
