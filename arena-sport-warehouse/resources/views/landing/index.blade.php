@@ -59,10 +59,9 @@
 {{-- about us --}}
 <div id="about" class="mt-16 lg:mt-20 flex flex-col mx-6 sm:mx-10 lg:mx-20 gap-6 items-center">
     <h1 class="font-semibold text-3xl sm:text-4xl text-center">Tentang Kami</h1>
-    <p class="text-base sm:text-lg text-center max-w-4xl"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur.
+    <p class="text-base sm:text-lg text-center max-w-4xl">
+        Arena Sport Warehouse hadir sebagai destinasi utama bagi pecinta olahraga di Semarang dan seluruh Indonesia. Kami adalah toko perlengkapan olahraga terlengkap yang berkomitmen menyediakan produk berkualitas tinggi dari brand-brand ternama dunia maupun lokal, mulai dari sepatu running, raket badminton, bola sepak, pakaian training, hingga alat fitness rumahan. Didirikan dengan semangat untuk mendukung gaya hidup aktif dan sehat, kami ingin setiap orang bisa bergerak lebih leluasa dan mencapai performa terbaiknya.
+        Kami percaya bahwa olahraga bukan sekadar aktivitas, tapi bagian dari identitas dan kebahagiaan hidup. Oleh karena itu, setiap produk yang kami sajikan telah melalui proses kurasi ketat agar sesuai dengan kebutuhan atlet profesional, penggemar olahraga rekreasi, hingga anak-anak yang baru memulai perjalanan aktif mereka. Dari lapangan futsal di kota hingga gym di rumah, kami ingin menjadi teman setia yang selalu siap mendampingi langkahmu.
     </p>
 </div>
 
