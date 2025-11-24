@@ -26,7 +26,6 @@
         <div class="flex flex-row gap-5 w-fit h-fit pl-8">
             <a href="{{ route('profile.cart') }}">
                 <img src="{{ asset('/assets/shopping-cart.svg') }}" alt="shopping cart" class="w-10">
-                <p class="text-sm p-1 rounded-full bg-vibrant-orange text-white">{{  }}</p>
             </a>
             <a href="{{ route('profile') }}">
                 <img src="{{ asset('/assets/account_circle.svg') }}" alt="profile" class="w-10">
@@ -37,7 +36,6 @@
 
 {{-- categories --}}
 <main id="categories-container" class="px-20 py-16 flex flex-col">
-    <h1 class="text-xl font-semibold mb-8">Jelajahi Semua Kategori yang Tersedia!</h1>
     @include('client.category.partials.category-grid')
 </main>
 
@@ -66,10 +64,6 @@
             .then(response => response.text())
             .then(html => {
                 container.innerHTML = html;
-                // Update judul tetap ada
-                if (!container.querySelector('h1')) {
-                    container.insertAdjacentHTML('afterbegin', '<h1 class="text-xl font-semibold mb-8">Jelajahi Semua Kategori yang Tersedia!</h1>');
-                }
             })
             .catch(err => console.error('Error:', err));
     }

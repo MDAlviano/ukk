@@ -7,7 +7,6 @@
 
     <div class="mx-auto px-6 lg:px-12 py-12">
         <div class="grid lg:grid-cols-2 gap-12 items-start">
-            <!-- Bagian Teks (Kiri) -->
             <div class="flex flex-col gap-7">
                 <div>
                     <h1 class="font-semibold text-3xl lg:text-4xl leading-tight">
@@ -53,7 +52,6 @@
                 </div>
             </div>
 
-            <!-- Bagian Gambar (Kanan) -->
             <div class="w-full">
                 <div class="relative overflow-hidden rounded-xl shadow-lg">
                     <img

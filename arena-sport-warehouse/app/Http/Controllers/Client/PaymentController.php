@@ -18,16 +18,16 @@ class PaymentController extends Controller
             return redirect()->route('profile.orders')->with('error', 'Order sudah diproses!');
         }
 
-        // Hitung ulang subtotal dari order items (pasti akurat)
+        // Hitung ulang subtotal dari order items
         $subtotal = $order->orderItems->sum(fn($item) => $item->unit_price * $item->quantity);
 
-        // Item details yang BENAR untuk Midtrans
+        // Item details untuk Midtrans
         $item_details = $order->orderItems->map(function ($item) {
             return [
                 'id'       => 'PROD-' . $item->product_id,
-                'price'    => (int) $item->unit_price,        // WAJIB integer
-                'quantity' => (int) $item->quantity,          // WAJIB integer
-                'name'     => substr($item->products->name, 0, 50), // max 50 char
+                'price'    => (int) $item->unit_price,
+                'quantity' => (int) $item->quantity,
+                'name'     => substr($item->products->name, 0, 50),
             ];
         })->toArray();
 
@@ -41,16 +41,16 @@ class PaymentController extends Controller
             ];
         }
 
-        // Gross amount HARUS sama persis dengan total item_details
+        // Gross amount harus sama persis dengan total item_details
         $gross_amount = (int) array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $item_details));
 
         // Parameter lengkap untuk Midtrans
         $params = [
             'transaction_details' => [
                 'order_id'     => $order->order_number,
-                'gross_amount' => $gross_amount,  // SEKARANG SAMA PERSIS
+                'gross_amount' => $gross_amount,
             ],
-            'item_details' => $item_details,      // SEKARANG FORMAT BENAR
+            'item_details' => $item_details,
             'customer_details' => [
                 'first_name' => $order->users->full_name,
                 'email'      => $order->users->email,
@@ -105,7 +105,7 @@ class PaymentController extends Controller
             if ($fraudStatus == 'accept') {
                 $order->update([
                     'payment_status' => 'paid',
-                    'status' => 'processing',  // Siap dikirim
+                    'status' => 'processing',
                 ]);
                 Log::info('Payment success for order: ' . $orderNumber);
             } elseif ($fraudStatus == 'challenge') {

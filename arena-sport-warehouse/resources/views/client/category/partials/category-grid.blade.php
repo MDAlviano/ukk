@@ -6,6 +6,7 @@
         </h1>
     </div>
 @else
+    <h1 class="text-xl font-semibold mb-8">Jelajahi Semua Kategori yang Tersedia!</h1>
     <div class="grid grid-cols-2 gap-x-6">
         @foreach($categories as $category)
             <div class="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group my-3">

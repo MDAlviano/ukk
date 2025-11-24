@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Client\LandingPageController;
-use App\Http\Controllers\Client\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Fallback route
