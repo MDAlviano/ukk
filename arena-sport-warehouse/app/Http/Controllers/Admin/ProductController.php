@@ -117,7 +117,7 @@ class ProductController extends Controller
             'created_at' => now(),
         ]);
 
-        return redirect()->route('admin.products')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('admin.products');
     }
 
     // fungsi untuk melihat detail produk

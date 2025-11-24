@@ -11,6 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->web(append: [
+            \App\Http\Middleware\PreventBackHistory::class,
+        ]);
         $middleware->alias([
             'auth' => \App\Http\Middleware\AuthMiddleware::class,
             'admin' => \App\Http\Middleware\AdminMiddleware::class,

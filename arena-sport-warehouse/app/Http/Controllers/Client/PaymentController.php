@@ -13,15 +13,12 @@ class PaymentController extends Controller
 {
     public function initiatePayment(Order $order)
     {
-        // Cek status order
         if ($order->payment_status !== 'pending') {
             return redirect()->route('profile.orders')->with('error', 'Order sudah diproses!');
         }
 
-        // Hitung ulang subtotal dari order items
         $subtotal = $order->orderItems->sum(fn($item) => $item->unit_price * $item->quantity);
 
-        // Item details untuk Midtrans
         $item_details = $order->orderItems->map(function ($item) {
             return [
                 'id'       => 'PROD-' . $item->product_id,
@@ -31,7 +28,6 @@ class PaymentController extends Controller
             ];
         })->toArray();
 
-        // Tambahkan item ongkir jika ada
         if ($order->shipping_price > 0) {
             $item_details[] = [
                 'id'       => 'SHIPPING',
@@ -41,10 +37,8 @@ class PaymentController extends Controller
             ];
         }
 
-        // Gross amount harus sama persis dengan total item_details
         $gross_amount = (int) array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $item_details));
 
-        // Parameter lengkap untuk Midtrans
         $params = [
             'transaction_details' => [
                 'order_id'     => $order->order_number,
@@ -58,7 +52,6 @@ class PaymentController extends Controller
             ],
         ];
 
-        // Jika delivery, tambah shipping address
         if ($order->shipping_method === 'delivery' && $order->address) {
             $params['shipping_address'] = [
                 'first_name'   => $order->addresses->recipient_name,
@@ -78,7 +71,6 @@ class PaymentController extends Controller
         }
     }
 
-    // Method 2: Handle notification dari Midtrans (webhook)
     public function handleNotification(Request $request)
     {
         $notif = new Notification();
