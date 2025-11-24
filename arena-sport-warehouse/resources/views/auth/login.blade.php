@@ -32,14 +32,10 @@
         <img src="{{ asset('/assets/ig_login.png') }}" alt="login image" class="h-[90vh] rounded-xl">
     </div>
 
-    @if(session('success'))
-        <script>
-            alert(' {{ session('success') }}');
-        </script>
-    @else
-        <script>
-            alert(' {{ session('error') }}');
-        </script>
-    @endif
+@if(session('success'))
+    <script>
+        alert('Berhasil mendaftar, silahkan login!')
+    </script>
+@endif
 </body>
 </html>

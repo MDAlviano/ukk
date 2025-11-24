@@ -18,14 +18,4 @@
         </div>
         <button type="submit" class="w-full bg-vibrant-orange text-white p-2 rounded-lg hover:opacity-70 transition duration-200">Confirm</button>
     </form>
-
-    @if(session('success'))
-        <script>
-            alert(' {{ session('success') }}');
-        </script>
-    @else
-        <script>
-            alert(' {{ session('error') }}');
-        </script>
-    @endif
 @endsection

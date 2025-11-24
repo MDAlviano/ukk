@@ -47,7 +47,8 @@
             <h1 class="text-4xl font-bold">{{ $product->name }}</h1>
             <div class="flex flex-row gap-1 items-center">
                 <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
-                <p><span class="text-dark-gray font-semibold text-lg opacity-50">{{ \App\Models\OrderItem::where('product_id', $product->id)->sum('quantity') }} orders</p>
+                <p>
+                    <span class="text-dark-gray font-semibold text-lg opacity-50">{{ \App\Models\OrderItem::where('product_id', $product->id)->sum('quantity') }} orders</span>
                 </p>
             </div>
             <div class="flex flex-col">
@@ -83,59 +84,49 @@
                 </form>
             </div>
         </div>
+    </div>
 
-        {{-- description --}}
-        <div class="flex flex-col gap-2">
-            <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
-            <h1 class="font-semibold text-xl mb-4">Deskripsi</h1>
-            <p class="text-lg">{{ $product->description }}</p>
-        </div>
+    {{-- description --}}
+    <div class="flex flex-col gap-2">
+        <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
+        <h1 class="font-semibold text-xl mb-4">Deskripsi</h1>
+        <p class="text-lg">{{ $product->description }}</p>
+    </div>
 
-        {{-- reccomendation products --}}
-        <div class="flex flex-col gap-2 mb-10">
-            <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
-            <h1 class="font-semibold text-xl mb-4">Rekomendasi Produk Lainnya!</h1>
-            <div id="products" class="grid grid-cols-4 justify-between">
-                @foreach($products as $product)
-                    {{--  product card  --}}
-                    <div
-                        class="hover:shadow-lg my-4 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
-                        <a href="{{ route('products.show', $product->slug) }}"
-                           class="flex flex-col justify-center items-start">
-                            <div class="relative flex justify-end overflow-hidden">
-                                <img src="{{ asset('/storage/' . $product->image_url) }}" alt="{{ $product->name }}"
-                                     class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+    {{-- reccomendation products --}}
+    <div class="flex flex-col gap-2 mb-10">
+        <span class="w-full bg-dark-gray h-[1px] opacity-70 mb-6"></span>
+        <h1 class="font-semibold text-xl mb-4">Rekomendasi Produk Lainnya!</h1>
+        <div id="products" class="grid grid-cols-4 justify-between">
+            @foreach($products as $product)
+                {{--  product card  --}}
+                <div
+                    class="hover:shadow-lg my-4 transition duration-200 rounded-xl overflow-hidden w-fit hover:opacity-90 group">
+                    <a href="{{ route('products.show', $product->slug) }}"
+                       class="flex flex-col justify-center items-start">
+                        <div class="relative flex justify-end overflow-hidden">
+                            <img src="{{ asset('/storage/' . $product->image_url) }}" alt="{{ $product->name }}"
+                                 class="self-start w-72 h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                        </div>
+                        <div class="flex flex-col gap-2 p-3">
+                            <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">{{ $product->name }}</h1>
+                            <p class="text-sm truncate">{{ $product->description }}</p>
+                            <p class="font-semibold">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
+                            <div class="flex flex-row gap-1 items-center">
+                                <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
+                                <p>
+                                    <span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $product->id)->sum('quantity')    }} Terjual</span>
+                                </p>
                             </div>
-                            <div class="flex flex-col gap-2 p-3">
-                                <h1 class="text-2xl font-medium hover:opacity-90 transition duration-200">{{ $product->name }}</h1>
-                                <p class="text-sm truncate">{{ $product->description }}</p>
-                                <p class="font-semibold">Rp{{ number_format($product->price, 0, ',', '.') }}</p>
-                                <div class="flex flex-row gap-1 items-center">
-                                    <img src="{{ asset('/assets/ic_bag.svg') }}" alt="star" class="size-5">
-                                    <p>
-                                        <span class="font-medium text-dark-gray">{{ \App\Models\OrderItem::where('product_id', $product->id)->sum('quantity')    }} Terjual</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 </main>
 
 {{-- footer --}}
 @include('partial.footer')
-
-@if(session('success'))
-    <script>
-        alert(' {{ session('success') }}');
-    </script>
-@else
-    <script>
-        alert(' {{ session('error') }}');
-    </script>
-@endif
 </body>
 </html>
