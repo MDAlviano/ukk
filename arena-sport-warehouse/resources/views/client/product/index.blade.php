@@ -25,7 +25,6 @@
         <div class="flex flex-row gap-5 w-fit h-fit pl-8">
             <a href="{{ route('profile.cart') }}">
                 <img src="{{ asset('/assets/shopping-cart.svg') }}" alt="shopping cart" class="w-10">
-                <p class="text-sm p-1 rounded-full bg-vibrant-orange text-white">{{  }}</p>
             </a>
             <a href="{{ route('profile') }}">
                 <img src="{{ asset('/assets/account_circle.svg') }}" alt="profile" class="w-10">

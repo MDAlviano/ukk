@@ -2,7 +2,7 @@
     <div class="px-20 py-24 flex flex-col items-center gap-3">
         <img src="{{ asset('/assets/ic_box-gray.svg') }}" alt="box" class="opacity-80 w-12">
         <h1 class="font-medium text-dark-gray opacity-80">
-            Produk tidak ditemukan untuk "{{ request('q') ?? 'pencarian ini' }}".
+            Produk tidak ditemukan untuk {{ request('q') ?? 'pencarian ini' }}.
         </h1>
     </div>
 @else

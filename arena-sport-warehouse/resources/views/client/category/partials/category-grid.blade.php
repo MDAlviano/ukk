@@ -2,7 +2,7 @@
     <div class="px-20 py-52 flex flex-col items-center gap-2">
         <img src="{{ asset('/assets/ic_box-gray.svg') }}" alt="box" class="opacity-80 w-12">
         <h1 class="font-medium text-dark-gray opacity-80">
-            Kategori tidak ditemukan untuk "{{ request('search') ?? 'pencarian ini' }}".
+            Kategori tidak ditemukan untuk {{ request('search') ?? 'pencarian ini' }}.
         </h1>
     </div>
 @else

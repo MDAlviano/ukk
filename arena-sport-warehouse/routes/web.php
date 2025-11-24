@@ -23,7 +23,7 @@ Route::controller(\App\Http\Controllers\Client\UserController::class)->prefix('u
 });
 
 // Client Route
-Route::middleware(['auth', 'client'])->group(function () {
+Route::middleware('client')->group(function () {
     Route::get('/home', [\App\Http\Controllers\Client\HomeController::class, 'index'])->name('home');
 
     Route::get('/categories', [\App\Http\Controllers\Client\CategoryController::class, 'index'])->name('categories');
@@ -69,7 +69,7 @@ Route::middleware(['auth', 'client'])->group(function () {
 });
 
 // Admin Route
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/orders', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('admin.orders');
